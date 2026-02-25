@@ -1,0 +1,84 @@
+/* Getzio Custom Styles */
+
+:root {
+    --primary: #261FB3;
+    --primary-light: #4e47d4;
+    --primary-dark: #1a157e;
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.3);
+}
+
+/* Base Styles */
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Glassmorphism */
+.glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+}
+
+.glass-dark {
+    background: rgba(26, 31, 179, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Background Gradients */
+.hero-gradient {
+    background: radial-gradient(circle at top right, var(--primary-light), var(--primary));
+    position: relative;
+}
+
+/* Scroll Reveal Base State */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform, opacity;
+}
+
+.scroll-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Custom Animations */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+.animate-float {
+    animation: float 4s ease-in-out infinite;
+}
+
+.stagger-1 { transition-delay: 100ms; }
+.stagger-2 { transition-delay: 200ms; }
+.stagger-3 { transition-delay: 300ms; }
+
+/* Custom Buttons & Hover Effects */
+.btn-primary {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 10px 25px -5px rgba(38, 31, 179, 0.3);
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+    box-shadow: 0 20px 35px -5px rgba(38, 31, 179, 0.4);
+    transform: translateY(-2px);
+}
+
+/* Responsive Overrides */
+@media (max-width: 768px) {
+    .scroll-reveal {
+        transition-duration: 0.8s;
+        transform: translateY(20px);
+    }
+}

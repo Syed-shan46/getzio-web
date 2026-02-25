@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Getzio | Delivery Beyond Boundaries</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            getzio: '#261FB3',
+            'getzio-dark': '#1a157e',
+            'getzio-light': '#4e47d4',
+          },
+          fontFamily: {
+            sans: ['Outfit', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-slate-50 text-slate-900 font-sans overflow-x-hidden">
+
+
+  <!-- Navigation -->
+  <nav class="fixed w-full z-50 glass transition-all duration-300 px-6 py-4">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <div class="flex items-center space-x-2">
+        <div class="w-10 h-10 bg-getzio rounded-xl flex items-center justify-center shadow-lg shadow-getzio/30">
+          <span class="text-white font-bold text-xl">G</span>
+        </div>
+        <span
+          class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-getzio to-getzio-light">Getzio</span>
+      </div>
+
+      <div class="hidden md:flex space-x-8 items-center text-sm font-semibold">
+        <a href="#features" class="hover:text-getzio transition-colors">Features</a>
+        <a href="#users" class="hover:text-getzio transition-colors">For Users</a>
+        <a href="#partners" class="hover:text-getzio transition-colors">For Partners</a>
+        <a href="#contact"
+          class="bg-getzio text-white px-6 py-2.5 rounded-full hover:bg-getzio-dark transition-all transform hover:scale-105 shadow-lg shadow-getzio/20">Download
+          App</a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button class="md:hidden text-getzio" id="menu-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+        </svg>
+      </button>
+    </div>
+    <!-- Mobile Dropdown -->
+    <div id="mobile-menu"
+      class="hidden md:hidden absolute top-full left-0 w-full glass border-t border-slate-200 py-6 px-10 flex flex-col space-y-4 animate__animated animate__fadeInDown">
+      <a href="#features" class="text-lg font-medium">Features</a>
+      <a href="#users" class="text-lg font-medium">For Users</a>
+      <a href="#partners" class="text-lg font-medium">For Partners</a>
+      <a href="#contact" class="bg-getzio text-white px-6 py-3 rounded-xl text-center font-bold">Download App</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="min-h-screen pt-32 pb-20 px-6 hero-gradient relative overflow-hidden flex items-center">
+    <!-- Decorative Elements -->
+    <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-white/10 rounded-full blur-[100px] -mr-64 -mt-32"></div>
+    <div class="absolute bottom-0 left-0 w-[300px] h-[300px] bg-getzio-light/20 rounded-full blur-[80px] -ml-32 -mb-16">
+    </div>
+
+    <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center relative z-10">
+      <div class="text-white space-y-8 animate__animated animate__fadeInLeft">
+        <div
+          class="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-sm font-semibold tracking-wider">
+          ✨ REDEFINING LOCAL LOGISTICS
+        </div>
+        <h1 class="text-5xl md:text-7xl font-bold leading-tight">
+          Get Anything <br> <span class="text-blue-200 italic italic">Instantly</span>
+        </h1>
+        <p class="text-lg md:text-xl text-blue-50/80 max-w-lg leading-relaxed font-light">
+          Getzio is your all-in-one delivery partner. From daily essentials to sudden cravings, we bridge the distance
+          between you and your needs.
+        </p>
+        <div class="flex flex-wrap gap-4 pt-4">
+          <a href="#"
+            class="bg-white text-getzio px-8 py-4 rounded-full font-bold text-lg hover:shadow-2xl transition-all transform hover:-translate-y-1">Start
+            Ordering</a>
+          <a href="#"
+            class="border-2 border-white/30 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition-all backdrop-blur-sm">Become
+            a Partner</a>
+        </div>
+      </div>
+
+      <div class="relative hidden lg:block animate__animated animate__fadeInRight">
+        <div class="w-full h-[600px] glass rounded-[3rem] p-8 flex items-center justify-center relative animate-float">
+          <!-- Placeholder for App Mockup -->
+          <div
+            class="w-64 h-[500px] bg-slate-900 rounded-[2.5rem] border-[8px] border-slate-800 shadow-2xl relative overflow-hidden">
+            <div class="absolute top-0 inset-x-0 h-6 bg-slate-800 flex justify-center py-1">
+              <div class="w-16 h-1 w-1 bg-slate-700/50 rounded-full"></div>
+            </div>
+            <!-- Mock App Content -->
+            <div class="p-4 pt-8 space-y-4">
+              <div class="h-4 w-2/3 bg-slate-800 rounded-lg"></div>
+              <div class="grid grid-cols-2 gap-2">
+                <div class="h-20 bg-getzio/20 rounded-xl border border-getzio/30"></div>
+                <div class="h-20 bg-slate-800 rounded-xl"></div>
+              </div>
+              <div class="h-32 bg-slate-800 rounded-xl"></div>
+              <div class="h-24 bg-getzio rounded-xl flex items-center justify-center">
+                <span class="text-[10px] text-white/50">Ordering Now...</span>
+              </div>
+            </div>
+          </div>
+          <!-- Floating Icons -->
+          <div
+            class="absolute -top-10 -right-10 w-20 h-20 glass rounded-2xl flex items-center justify-center shadow-xl">🍔
+          </div>
+          <div class="absolute top-1/2 -left-10 w-24 h-24 glass rounded-3xl flex items-center justify-center shadow-xl">
+            🛒</div>
+          <div
+            class="absolute bottom-5 -right-5 w-16 h-16 glass rounded-2xl flex items-center justify-center shadow-xl">🛵
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- User Benefits -->
+  <section id="users" class="py-24 px-6 bg-white overflow-hidden">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16 scroll-reveal">
+        <h2 class="text-getzio font-bold uppercase tracking-widest text-sm mb-4">FOR OUR CUSTOMERS</h2>
+        <h3 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6">Built for Everyday Convenience</h3>
+        <p class="text-slate-500 max-w-2xl mx-auto text-lg">We've streamlined the ordering process to make sure you get
+          what you want, when you want it, with zero friction.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <div
+          class="p-8 rounded-3xl bg-slate-50 border border-slate-100 hover:border-getzio/20 hover:shadow-2xl transition-all duration-500 scroll-reveal">
+          <div class="w-16 h-16 bg-getzio/10 rounded-2xl flex items-center justify-center mb-8 text-3xl">🚀</div>
+          <h4 class="text-2xl font-bold mb-4">Hyper-Fast Delivery</h4>
+          <p class="text-slate-500 leading-relaxed">Our optimized routing algorithms ensure your packages reach you
+            faster than ever before. Real-time tracking keeps you in control.</p>
+        </div>
+        <div
+          class="p-8 rounded-3xl bg-slate-50 border border-slate-100 hover:border-getzio/20 hover:shadow-2xl transition-all duration-500 scroll-reveal"
+          style="transition-delay: 100ms;">
+          <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mb-8 text-3xl">🛡️</div>
+          <h4 class="text-2xl font-bold mb-4">Secure Payments</h4>
+          <p class="text-slate-500 leading-relaxed">Multiple payment options from UPI to Cards, all protected by
+            industry-leading encryption for your peace of mind.</p>
+        </div>
+        <div
+          class="p-8 rounded-3xl bg-slate-50 border border-slate-100 hover:border-getzio/20 hover:shadow-2xl transition-all duration-500 scroll-reveal"
+          style="transition-delay: 200ms;">
+          <div class="w-16 h-16 bg-indigo-100 rounded-2xl flex items-center justify-center mb-8 text-3xl">💎</div>
+          <h4 class="text-2xl font-bold mb-4">Premium Selection</h4>
+          <p class="text-slate-500 leading-relaxed">Enjoy access to an "Elite" list of local stores and restaurants
+            handpicked for quality and reliability.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partner Benefits -->
+  <section id="partners" class="py-24 px-6 bg-slate-900 text-white relative overflow-hidden">
+    <div class="absolute inset-0 bg-getzio/5 opacity-50"></div>
+    <div class="max-w-7xl mx-auto relative z-10">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="scroll-reveal">
+          <h2 class="text-getzio font-bold uppercase tracking-widest text-sm mb-4">FOR BUSINESS PARTNERS</h2>
+          <h3 class="text-4xl md:text-5xl font-extrabold mb-8">Empower Your Business with Getzio</h3>
+          <p class="text-slate-400 text-lg mb-12 leading-relaxed">We provide more than just delivery. We provide a
+            platform for growth. Join thousands of merchants who have expanded their reach with our intuitive tools.</p>
+
+          <div class="space-y-6">
+            <div class="flex items-start gap-5">
+              <div class="bg-getzio w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <div>
+                <h5 class="font-bold text-xl mb-1">Powerful Admin Dashboard</h5>
+                <p class="text-slate-400">Track orders, manage inventory, and analyze sales performance with real-time
+                  analytics.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-5">
+              <div class="bg-getzio w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <div>
+                <h5 class="font-bold text-xl mb-1">Low Onboarding Friction</h5>
+                <p class="text-slate-400">Simplified registration process. Get your shop online in under 30 minutes with
+                  our easy setup.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-5">
+              <div class="bg-getzio w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <div>
+                <h5 class="font-bold text-xl mb-1">Seamless Logistics</h5>
+                <p class="text-slate-400">Focus on your product while we handle the delivery network. Expert riders
+                  ready whenever you are.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-12">
+            <a href="#"
+              class="inline-block bg-getzio text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-getzio-light transition-all">Get
+              Started Today</a>
+          </div>
+        </div>
+
+        <div class="relative scroll-reveal">
+          <!-- Dashboard Mockup Image -->
+          <div
+            class="bg-slate-800 rounded-3xl border-4 border-slate-700 shadow-3xl overflow-hidden aspect-video relative">
+            <div class="bg-slate-700 p-3 flex gap-2">
+              <div class="w-2 h-2 rounded-full bg-red-400"></div>
+              <div class="w-2 h-2 rounded-full bg-yellow-400"></div>
+              <div class="w-2 h-2 rounded-full bg-green-400"></div>
+            </div>
+            <div class="p-6 grid grid-cols-4 gap-4 h-full">
+              <div class="col-span-1 border-r border-slate-700 space-y-4">
+                <div class="h-4 w-full bg-slate-700 rounded"></div>
+                <div class="h-4 w-4/5 bg-slate-700 rounded opacity-50"></div>
+                <div class="h-4 w-full bg-slate-700 rounded opacity-50"></div>
+              </div>
+              <div class="col-span-3 space-y-6">
+                <div class="grid grid-cols-3 gap-4">
+                  <div class="h-16 bg-getzio/20 rounded-xl border border-getzio/30 flex items-center justify-center">
+                    <div class="h-2 w-1/2 bg-getzio rounded"></div>
+                  </div>
+                  <div class="h-16 bg-slate-700 rounded-xl"></div>
+                  <div class="h-16 bg-slate-700 rounded-xl"></div>
+                </div>
+                <div class="h-full bg-slate-700/30 rounded-2xl border border-white/5"></div>
+              </div>
+            </div>
+          </div>
+          <!-- Stats badge -->
+          <div class="absolute -bottom-10 -left-10 glass p-6 rounded-2xl text-slate-900 animate-float">
+            <p class="text-xs uppercase text-slate-500 font-bold mb-1">Monthly Orders</p>
+            <p class="text-3xl font-bold text-getzio">+25.4%</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact" class="bg-white pt-24 pb-12 px-6 border-t border-slate-100">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid md:grid-cols-4 gap-12 mb-16">
+        <div class="col-span-2">
+          <div class="flex items-center space-x-2 mb-6">
+            <div class="w-10 h-10 bg-getzio rounded-xl flex items-center justify-center">
+              <span class="text-white font-bold text-xl">G</span>
+            </div>
+            <span class="text-2xl font-bold text-slate-900">Getzio</span>
+          </div>
+          <p class="text-slate-500 max-w-sm mb-8 leading-relaxed">The premium delivery network designed for your modern
+            lifestyle. Connecting local merchants with valued customers across the globe.</p>
+          <div class="flex space-x-4">
+            <a href="#"
+              class="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center hover:bg-getzio hover:text-white transition-all">FB</a>
+            <a href="#"
+              class="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center hover:bg-getzio hover:text-white transition-all">TW</a>
+            <a href="#"
+              class="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center hover:bg-getzio hover:text-white transition-all">IG</a>
+          </div>
+        </div>
+        <div>
+          <h6 class="font-bold text-slate-900 mb-6 uppercase tracking-wider text-sm">Navigation</h6>
+          <ul class="space-y-4 text-slate-500">
+            <li><a href="#features" class="hover:text-getzio transition-colors">How it Works</a></li>
+            <li><a href="#users" class="hover:text-getzio transition-colors">For Customers</a></li>
+            <li><a href="#partners" class="hover:text-getzio transition-colors">Become a Partner</a></li>
+            <li><a href="#" class="hover:text-getzio transition-colors">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div>
+          <h6 class="font-bold text-slate-900 mb-6 uppercase tracking-wider text-sm">Download</h6>
+          <ul class="space-y-4 text-slate-500">
+            <li><a href="#" class="hover:text-getzio transition-colors font-semibold">User App - Android</a></li>
+            <li><a href="#" class="hover:text-getzio transition-colors font-semibold">User App - iOS</a></li>
+            <li><a href="#" class="hover:text-getzio transition-colors font-semibold text-getzio">Partner App</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="pt-8 border-t border-slate-100 text-center text-slate-400 text-sm">
+        &copy; 2026 Getzio. All rights reserved. Built with precision for premium logistics.
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+
+</html>

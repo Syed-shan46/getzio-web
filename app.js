@@ -6,6 +6,7 @@
  * - Intersection Observer for scroll animations
  * - Smooth scrolling for anchor links
  * - Navigation background transitions
+ * - Onboarding Modal & Interest Form
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -24,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    menuBtn.addEventListener('click', toggleMenu);
+    if (menuBtn) menuBtn.addEventListener('click', toggleMenu);
 
     mobileLinks.forEach(link => {
         link.addEventListener('click', () => {
@@ -44,10 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                // Once visible, we can unobserve if we don't need re-animation
-                // revealObserver.unobserve(entry.target); 
             } else {
-                // Re-enable if you want animation every time you scroll up/down
                 entry.target.classList.remove('visible');
             }
         });
@@ -60,6 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const nav = document.querySelector('nav');
 
     const handleScroll = () => {
+        if (!nav) return;
         if (window.scrollY > 40) {
             nav.classList.add('py-2', 'shadow-xl', 'bg-white/95');
             nav.classList.remove('py-4', 'bg-white/70');
@@ -72,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', handleScroll);
     handleScroll(); // Initial check
 
-    // 4. Smooth Scrolling Extension (Optional since we use scroll-smooth in HTML)
+    // 4. Smooth Scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const href = this.getAttribute('href');
@@ -93,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 5. Parallax Effect for Hero Floating Icons (Subtle)
+    // 5. Parallax Effect for Hero Floating Icons
     window.addEventListener('mousemove', (e) => {
         const x = e.clientX / window.innerWidth;
         const y = e.clientY / window.innerHeight;
@@ -104,4 +103,112 @@ document.addEventListener('DOMContentLoaded', () => {
             el.style.transform = `translate(${(x - 0.5) * speed}px, ${(y - 0.5) * speed}px)`;
         });
     });
+
+    // 6. Onboarding Modal Logic
+    const onboardingModal = document.getElementById('onboarding-modal');
+    const closeBtn = document.getElementById('close-modal');
+    const onboardingForm = document.getElementById('onboarding-form');
+
+    const hasOnboarded = localStorage.getItem('getzio_onboarded');
+
+    if (onboardingModal && !hasOnboarded) {
+        // Show modal after 1.5 seconds with a smooth fade in
+        setTimeout(() => {
+            onboardingModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }, 1500);
+    }
+
+    const closeModal = () => {
+        if (onboardingModal) {
+            onboardingModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    };
+
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+
+    // Close on clicking outside the card
+    if (onboardingModal) {
+        onboardingModal.addEventListener('click', (e) => {
+            if (e.target === onboardingModal) closeModal();
+        });
+    }
+
+    if (onboardingForm) {
+        onboardingForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const submitBtn = onboardingForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerText;
+
+            // Collect form data
+            const formData = {
+                name: document.getElementById('name').value,
+                storeName: document.getElementById('store-name').value,
+                phone: document.getElementById('phone').value,
+                interest: document.getElementById('interest').value,
+                location: document.getElementById('location').value,
+                timestamp: new Date().toISOString()
+            };
+
+            // 1. Show Loading State
+            submitBtn.disabled = true;
+            submitBtn.innerText = '⌛ Sending Interest...';
+
+            try {
+                // 2. Send to Getzio Backend API
+                const apiUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+                    ? 'http://localhost:5000/api/form/submit-interest'
+                    : 'https://api.getzio.in/api/form/submit-interest';
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                if (response.ok) {
+                    console.log('Interest Registered & Emailed:', formData);
+
+                    // Save to localStorage
+                    localStorage.setItem('getzio_onboarded', 'true');
+
+                    // 3. Show Success State
+                    submitBtn.innerText = '✅ Thank You! Redirecting...';
+                    submitBtn.classList.remove('bg-getzio');
+                    submitBtn.classList.add('bg-green-600');
+
+                    setTimeout(() => {
+                        closeModal();
+                        // Scroll to partners if they chose vendor/restaurant
+                        if (formData.interest === 'vendor' || formData.interest === 'restaurant') {
+                            const partnerSection = document.getElementById('partners');
+                            if (partnerSection) {
+                                const headerOffset = 80;
+                                const elementPosition = partnerSection.getBoundingClientRect().top;
+                                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                                window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                            }
+                        }
+                    }, 1500);
+                } else {
+                    throw new Error('Failed to send');
+                }
+            } catch (error) {
+                console.error('Submission Error:', error);
+                submitBtn.innerText = '❌ Error. Try Again';
+                submitBtn.classList.add('bg-red-500');
+                submitBtn.disabled = false;
+
+                setTimeout(() => {
+                    submitBtn.innerText = originalText;
+                    submitBtn.classList.remove('bg-red-500');
+                }, 3000);
+            }
+        });
+    }
 });

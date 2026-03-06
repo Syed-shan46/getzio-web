@@ -310,6 +310,84 @@
     </div>
   </footer>
 
+  <!-- Onboarding Modal -->
+  <div id="onboarding-modal" class="modal-overlay">
+    <div class="onboarding-card">
+      <button class="onboarding-close" id="close-modal">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      <div class="onboarding-header">
+
+        <h2 class="text-3xl font-extrabold mb-2">Welcome to Getzio</h2>
+        <p class="text-blue-50/80 font-medium mb-4">Grow your business with Getzio</p>
+
+        <!-- Priority Early Access Banner -->
+        <div class="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20 text-[11px] leading-relaxed">
+          <p class="font-bold flex items-center justify-center gap-2 mb-2 text-xs uppercase tracking-wider">
+            <span class="flex h-2 w-2 rounded-full bg-green-400 animate-pulse"></span>
+            Early Bird Priority Access
+          </p>
+          <p class="opacity-90 mb-3">The first 50 partners to register will receive Featured Placement and Priority
+            Listing in the Getzio app.</p>
+
+          <div class="flex items-center justify-between bg-white/5 rounded-lg p-2 border border-white/10">
+            <span class="font-semibold text-blue-100 italic">Limited Availability:</span>
+            <span class="font-bold text-orange-300 animate__animated animate__pulse animate__infinite">Only 14 spots
+              left!</span>
+          </div>
+        </div>
+      </div>
+
+      <form id="onboarding-form" class="p-8">
+        <div class="form-group">
+          <label class="form-label">Full Name</label>
+          <input type="text" id="name" required class="form-input" placeholder="Your Name">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Store / Business Name</label>
+          <input type="text" id="store-name" required class="form-input" placeholder="Your Store Name">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Phone Number</label>
+          <div class="relative flex items-center">
+            <div
+              class="absolute left-0 h-full flex items-center pl-4 pr-3 bg-slate-50 rounded-l-2xl border-r border-slate-100 text-slate-600 font-bold text-sm pointer-events-none">
+              +91
+            </div>
+            <input type="tel" id="phone" required class="form-input !pl-16" placeholder="1234567890" pattern="[0-9]{10}"
+              maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+          </div>
+          <p class="text-[10px] text-slate-400 mt-1 ml-1">* Please enter exactly 10 digits</p>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">I'm interested in...</label>
+          <select id="interest" required class="form-input appearance-none bg-no-repeat bg-[right_1rem_center]"
+            style="background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%20fill%3D%22none%22%20stroke%3D%22%23475569%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M6%209l6%206%206-6%22%2F%3E%3C%2Fsvg%3E'); background-size: 1.25rem;">
+            <option value="" disabled selected>How can we help you?</option>
+            <option value="restaurant">Restaurant Partner</option>
+            <option value="digital_store">Digital Store</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">City / Location</label>
+          <input type="text" id="location" required class="form-input" placeholder="Your City">
+        </div>
+
+        <button type="submit"
+          class="w-full bg-getzio text-white py-4 rounded-xl font-bold text-lg hover:bg-getzio-dark transition-all transform hover:scale-[1.02] shadow-xl shadow-getzio/20 mt-4">
+          Submit & Continue
+        </button>
+      </form>
+    </div>
+  </div>
+
   <script src="app.js"></script>
 </body>
 

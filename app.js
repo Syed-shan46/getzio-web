@@ -122,13 +122,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const hasOnboarded = localStorage.getItem('getzio_onboarded');
 
-    if (onboardingModal && !hasOnboarded) {
-        // Show modal after 1.5 seconds with a smooth fade in
-        setTimeout(() => {
+    const openModal = () => {
+        if (onboardingModal) {
             onboardingModal.classList.add('active');
             document.body.style.overflow = 'hidden';
-        }, 1500);
-    }
+        }
+    };
 
     const closeModal = () => {
         if (onboardingModal) {
@@ -136,6 +135,14 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.style.overflow = 'auto';
         }
     };
+
+    // Attach open logic to manual trigger buttons
+    document.querySelectorAll('.open-onboarding').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            openModal();
+        });
+    });
 
     if (closeBtn) closeBtn.addEventListener('click', closeModal);
 

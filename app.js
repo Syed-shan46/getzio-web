@@ -109,6 +109,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeBtn = document.getElementById('close-modal');
     const onboardingForm = document.getElementById('onboarding-form');
 
+    // Initialize spots left count
+    const savedSpots = localStorage.getItem('getzio_spots');
+    if (savedSpots !== null) {
+        const spotsEl = document.getElementById('spots-left');
+        if (spotsEl) {
+            spotsEl.innerText = `Only ${savedSpots} spots left!`;
+            // Optional: Hide the line if spots reach 0
+            if (parseInt(savedSpots) === 0) spotsEl.innerText = `No spots left!`;
+        }
+    }
+
     const hasOnboarded = localStorage.getItem('getzio_onboarded');
 
     if (onboardingModal && !hasOnboarded) {
@@ -158,8 +169,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
             try {
                 // 2. Send to Getzio Backend API
-                const apiUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-                    ? 'http://localhost:5000/api/form/submit-interest'
+                const isLocal = window.location.hostname === 'localhost' ||
+                    window.location.hostname === '127.0.0.1' ||
+                    window.location.hostname.startsWith('192.168.') ||
+                    window.location.hostname.startsWith('10.');
+
+                const apiUrl = isLocal
+                    ? `http://${window.location.hostname}:5000/api/form/submit-interest`
                     : 'https://api.getzio.in/api/form/submit-interest';
 
                 const response = await fetch(apiUrl, {
@@ -176,6 +192,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     // Save to localStorage
                     localStorage.setItem('getzio_onboarded', 'true');
+
+                    // Decrease spots
+                    let currentSpots = parseInt(localStorage.getItem('getzio_spots')) || 14;
+                    if (currentSpots > 0) {
+                        currentSpots--;
+                        localStorage.setItem('getzio_spots', currentSpots);
+                        const spotsEl = document.getElementById('spots-left');
+                        if (spotsEl) spotsEl.innerText = `Only ${currentSpots} spots left!`;
+                    }
 
                     // 3. Show Success State
                     submitBtn.innerText = '✅ Thank You! Redirecting...';

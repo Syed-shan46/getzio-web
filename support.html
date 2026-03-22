@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support | Getzio - Customer Care & Help</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #FF385C;
+            --primary-dark: #D70466;
+            --surface: #ffffff;
+            --bg: #f7f7f7;
+            --text: #222222;
+            --text-light: #717171;
+            --border: #dddddd;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .support-container {
+            max-width: 1000px;
+            margin: 60px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .support-container {
+                grid-template-columns: 1fr;
+                margin: 20px auto;
+            }
+        }
+
+        .support-header {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+        }
+
+        .support-header h1 {
+            font-size: 3rem;
+            margin: 0;
+            font-weight: 800;
+        }
+
+        .support-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-top: 10px;
+        }
+
+        .contact-info-card {
+            background: var(--surface);
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border);
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+        }
+
+        .info-item i {
+            font-size: 24px;
+            color: var(--primary);
+            margin-right: 20px;
+            width: 30px;
+        }
+
+        .info-item h3 {
+            margin: 0 0 5px 0;
+            font-size: 1.1rem;
+        }
+
+        .info-item p {
+            margin: 0;
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .contact-form {
+            background: var(--surface);
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            font-size: 1rem;
+            box-sizing: border-box;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .submit-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 16px 30px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .submit-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="support-header">
+        <h1>Support Center</h1>
+        <p>We're here to help you 24/7</p>
+    </header>
+
+    <div class="support-container">
+        <!-- Contact Info Section -->
+        <div class="contact-info-card">
+            <h2>Professional Details</h2>
+            <p style="color: var(--text-light); margin-bottom: 30px;">Have questions about Getzio? Get in touch with
+                our team.</p>
+
+            <div class="info-item">
+                <i class="fas fa-envelope"></i>
+                <div>
+                    <h3>Email Support</h3>
+                    <p>Getzio.official@gmail.com</p>
+                    <p>Response time: < 2 Hours</p>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <div>
+                    <h3>Main Headquarters</h3>
+                    <p>Hira Outsourcing Pvt Ltd</p>
+                    <p>Palakkad, Kerala, India</p>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <i class="fas fa-clock"></i>
+                <div>
+                    <h3>Operation Hours</h3>
+                    <p>Monday - Sunday</p>
+                    <p>24/7 Availability for Orders</p>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <i class="fas fa-globe"></i>
+                <div>
+                    <h3>Marketing Hub</h3>
+                    <p>www.getzio.in</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Form Section -->
+        <div class="contact-form">
+            <h2>Send a Message</h2>
+            <form id="support-form">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" name="name" placeholder="John Doe" required>
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" name="email" placeholder="john@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Subject</label>
+                    <input type="text" name="subject" placeholder="Delivery Issue / Feature Request" required>
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea name="message" rows="5" placeholder="How can we help you?" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn" id="submit-btn">Send Message</button>
+            </form>
+            <div id="status-message" style="margin-top: 20px; font-weight: 600; text-align: center;"></div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 Getzio. All rights reserved. | <a href="index.html"
+                style="color: var(--primary); text-decoration: none;">Back to Home</a></p>
+    </footer>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            // Replace with your Public Key from EmailJS
+            emailjs.init("YOUR_PUBLIC_KEY");
+        })();
+    </script>
+    <script>
+        document.getElementById('support-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('submit-btn');
+            const status = document.getElementById('status-message');
+            
+            btn.disabled = true;
+            btn.innerText = 'Sending...';
+            status.innerText = '';
+
+            try {
+                // EmailJS: You need to set these up in your dashboard
+                // Service ID, Template ID, Form Element
+                const result = await emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', e.target);
+                
+                if (result.status === 200) {
+                    status.style.color = '#2ecc71';
+                    status.innerText = 'Message sent successfully! We will contact you soon.';
+                    e.target.reset();
+                } else {
+                    throw new Error('Failed to send');
+                }
+            } catch (err) {
+                status.style.color = '#e74c3c';
+                status.innerText = 'Failed to send message. Please ensure your EmailJS credentials are correct.';
+                console.error('EmailJS Error:', err);
+            } finally {
+                btn.disabled = false;
+                btn.innerText = 'Send Message';
+            }
+        });
+    </script>
+</body>
+
+</html>

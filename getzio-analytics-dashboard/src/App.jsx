@@ -104,7 +104,7 @@ function App() {
                               {row.endpoint}
                             </code>
                             <span className={`text-[10px] font-black px-2 py-0.5 rounded uppercase tracking-tighter w-fit ${
-                              row.app === 'Zepcart' ? 'bg-indigo-50 text-indigo-500' :
+                              row.app === 'Getzio' ? 'bg-indigo-50 text-indigo-500' :
                               row.app === 'Admin App' ? 'bg-purple-50 text-purple-500' :
                               row.app === 'Vendor App' ? 'bg-orange-50 text-orange-500' :
                               'bg-slate-100 text-slate-400'
@@ -215,7 +215,7 @@ function App() {
                                                 {row.endpoint}
                                             </code>
                                             <span className={`text-[9px] font-black px-1.5 py-0.5 rounded-md uppercase tracking-tighter w-fit ${
-                                              row.app === 'Zepcart' ? 'bg-indigo-50 text-indigo-500' :
+                                              row.app === 'Getzio' ? 'bg-indigo-50 text-indigo-500' :
                                               row.app === 'Admin App' ? 'bg-purple-50 text-purple-500' :
                                               row.app === 'Vendor App' ? 'bg-orange-50 text-orange-500' :
                                               'bg-slate-100 text-slate-400'

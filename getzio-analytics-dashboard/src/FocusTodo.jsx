@@ -4,7 +4,7 @@ import {
   Plus, Trash2, CheckCircle2, Circle, 
   Flame, Zap, Sprout, Target, 
   Loader2, Sparkles, RefreshCw,
-  ChevronUp, ChevronDown
+  ChevronUp, ChevronDown, Clock
 } from 'lucide-react';
 
 const BASE_URL = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
@@ -58,6 +58,8 @@ const FocusTodo = () => {
   const [vTitle, setVTitle] = useState('');
   const [vSub, setVSub] = useState('');
   const [priority, setPriority] = useState('medium');
+  const [deadline, setDeadline] = useState('');
+  const [currentTime, setCurrentTime] = useState(new Date());
   const [motivation, setMotivation] = useState(MOTIVATIONS[0]);
   const [loading, setLoading] = useState(true);
   const [showWinEffect, setShowWinEffect] = useState(false);
@@ -74,6 +76,10 @@ const FocusTodo = () => {
   useEffect(() => {
     fetchData();
     setMotivation(MOTIVATIONS[Math.floor(Math.random() * MOTIVATIONS.length)]);
+    
+    // Local timer for countdowns - updates every second without refetching API
+    const timer = setInterval(() => setCurrentTime(new Date()), 1000);
+    return () => clearInterval(timer);
   }, []);
 
   const fetchData = async () => {
@@ -96,10 +102,15 @@ const FocusTodo = () => {
     e.preventDefault();
     if (!newTodo.trim()) return;
     try {
-      const res = await axios.post(TODO_API, { title: newTodo, description: newDesc, priority });
+      const res = await axios.post(TODO_API, { 
+        title: newTodo, 
+        description: newDesc, 
+        priority,
+        deadline: deadline ? new Date(deadline).toISOString() : null
+      });
       if (res.data.data) {
         setTodos([res.data.data, ...todos]);
-        setNewTodo(''); setNewDesc(''); setPriority('medium');
+        setNewTodo(''); setNewDesc(''); setPriority('medium'); setDeadline('');
       }
     } catch (err) { console.error(err); }
   };
@@ -166,6 +177,35 @@ const FocusTodo = () => {
   const completedCount = todos.filter(t => t.isCompleted).length;
   const progress = todos.length > 0 ? (completedCount / todos.length) * 100 : 0;
   const rank = getRank(progress, todos.length);
+
+  const getDeadlineStatus = (deadlineStr) => {
+    if (!deadlineStr) return null;
+    const dl = new Date(deadlineStr);
+    const diff = dl - currentTime;
+    
+    if (diff <= 0) return { label: 'OVERDUE', color: 'text-red-500', bg: 'bg-red-500/10', critical: true };
+    const mins = diff / (1000 * 60);
+    if (mins < 5) return { label: 'CRITICAL', color: 'text-red-400', bg: 'bg-red-500/20', animate: 'animate-pulse' };
+    if (mins < 30) return { label: 'URGENT', color: 'text-orange-400', bg: 'bg-orange-500/10' };
+    if (mins < 120) return { label: 'WARNING', color: 'text-yellow-400', bg: 'bg-yellow-500/10' };
+    return { label: 'ON TRACK', color: 'text-blue-400', bg: 'bg-blue-500/10' };
+  };
+
+  const formatCountdown = (deadlineStr) => {
+    if (!deadlineStr) return "No deadline";
+    const dl = new Date(deadlineStr);
+    const diff = dl - currentTime;
+    if (diff <= 0) return "Time expired";
+
+    const hours = Math.floor(diff / (1000 * 60 * 60));
+    const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+    if (hours < 24) {
+      return `${hours.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    }
+    return `${hours}h ${mins}m`;
+  };
 
   return (
     <div className={`max-w-6xl mx-auto space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-500 pb-10 relative ${showWinEffect ? 'scale-[1.01]' : 'scale-100'} transition-transform duration-300`}>
@@ -244,6 +284,13 @@ const FocusTodo = () => {
               </div>
               
               <div className="flex items-center gap-3 p-2 bg-black/40 rounded-[1.5rem] border border-white/5">
+                <div className="flex flex-col px-3 text-left border-r border-white/5">
+                  <span className="text-[7px] font-black text-slate-500 uppercase tracking-widest">Deadline</span>
+                  <input 
+                    type="datetime-local" value={deadline} onChange={(e)=>setDeadline(e.target.value)}
+                    className="bg-transparent text-indigo-300 font-black text-[10px] outline-none [color-scheme:dark] w-28"
+                  />
+                </div>
                 <div className="flex flex-col px-3 text-left">
                   <span className="text-[7px] font-black text-slate-500 uppercase tracking-widest">Protocol</span>
                   <select value={priority} onChange={(e) => setPriority(e.target.value)} className="bg-transparent text-indigo-400 font-black text-[10px] uppercase tracking-widest outline-none appearance-none cursor-pointer">
@@ -274,8 +321,33 @@ const FocusTodo = () => {
                     {todo.isCompleted ? <CheckCircle2 className="w-8 h-8" /> : <Circle className="w-8 h-8 opacity-40" />}
                   </button>
                   <div className="flex-1 min-w-0">
-                    <p className={`text-base font-black truncate ${todo.isCompleted ? 'text-slate-600 line-through' : 'text-white'}`}>{todo.title}</p>
-                    {todo.description && <p className="text-[10px] font-bold text-slate-500 truncate">{todo.description}</p>}
+                    <div className="flex items-center gap-2 mb-1">
+                      <p className={`text-base font-black truncate ${todo.isCompleted ? 'text-slate-600 line-through' : 'text-white'}`}>{todo.title}</p>
+                      {todo.isCompleted && <span className="text-[8px] font-black text-emerald-500/60 uppercase tracking-widest">EXECUTED</span>}
+                    </div>
+                    {todo.description && <p className="text-[10px] font-bold text-slate-500 truncate mb-2">{todo.description}</p>}
+                    
+                    {/* Countdown / Deadline Display */}
+                    {!todo.isCompleted && (
+                      <div className="flex items-center gap-3">
+                        <div className={`px-2 py-0.5 rounded-lg border border-white/5 ${getDeadlineStatus(todo.deadline)?.bg || 'bg-white/5'} flex items-center gap-2`}>
+                          <Clock className={`w-3 h-3 ${getDeadlineStatus(todo.deadline)?.color || 'text-slate-500'}`} />
+                          <span className={`text-[10px] font-black tabular-nums tracking-tighter ${getDeadlineStatus(todo.deadline)?.color || 'text-slate-400'} ${getDeadlineStatus(todo.deadline)?.animate || ''}`}>
+                            {formatCountdown(todo.deadline)}
+                          </span>
+                        </div>
+                        {getDeadlineStatus(todo.deadline)?.label && (
+                          <span className={`text-[8px] font-black tracking-widest ${getDeadlineStatus(todo.deadline)?.color}`}>
+                            {getDeadlineStatus(todo.deadline).label}
+                          </span>
+                        )}
+                      </div>
+                    )}
+                    {todo.isCompleted && todo.completedAt && (
+                      <p className="text-[9px] font-bold text-slate-600 italic">
+                        Completed: {new Date(todo.completedAt).toLocaleString([], { hour: '2-digit', minute: '2-digit' })}
+                      </p>
+                    )}
                   </div>
                   <button onClick={() => handleDelete(todo._id)} className="p-2 text-slate-800 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-all"><Trash2 className="w-4 h-4" /></button>
                 </div>

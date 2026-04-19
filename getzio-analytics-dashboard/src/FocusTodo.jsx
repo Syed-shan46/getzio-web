@@ -52,11 +52,8 @@ const PRIORITY_CONFIG = {
 
 const FocusTodo = () => {
   const [todos, setTodos] = useState([]);
-  const [visionPlans, setVisionPlans] = useState([]);
   const [newTodo, setNewTodo] = useState('');
   const [newDesc, setNewDesc] = useState('');
-  const [vTitle, setVTitle] = useState('');
-  const [vSub, setVSub] = useState('');
   const [priority, setPriority] = useState('medium');
   const [deadline, setDeadline] = useState('');
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -92,13 +89,11 @@ const FocusTodo = () => {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const [todoRes, visionRes, affRes] = await Promise.all([
+      const [todoRes, affRes] = await Promise.all([
         axios.get(TODO_API),
-        axios.get(`${BASE_URL}/future-plans`),
         axios.get(`${BASE_URL}/affirmations`)
       ]);
       setTodos(todoRes.data.data);
-      setVisionPlans(visionRes.data.data);
       setAffirmations(affRes.data.data);
     } catch (err) { console.error(err); }
     setLoading(false);
@@ -138,18 +133,6 @@ const FocusTodo = () => {
     } catch (err) { console.error(err); }
   };
 
-  const handleAddVision = async (e) => {
-    e.preventDefault();
-    if (!vTitle.trim()) return;
-    try {
-      const res = await axios.post(`${BASE_URL}/future-plans`, { title: vTitle, subtitle: vSub });
-      if (res.data.data) {
-        setVisionPlans([res.data.data, ...visionPlans]);
-        setVTitle(''); setVSub('');
-      }
-    } catch (err) { console.error(err); }
-  };
-
   const handleDelete = async (id) => {
     const oldTodos = [...todos];
     setTodos(todos.filter(t => t._id !== id));
@@ -158,13 +141,6 @@ const FocusTodo = () => {
     } catch (err) {
       setTodos(oldTodos);
     }
-  };
-
-  const deleteVision = async (id) => {
-    try {
-      await axios.delete(`${BASE_URL}/future-plans/${id}`);
-      setVisionPlans(visionPlans.filter(p => p._id !== id));
-    } catch (err) { console.error(err); }
   };
 
   const handleToggle = async (id) => {
@@ -273,10 +249,10 @@ const FocusTodo = () => {
           })}
           
           {affirmations.length > 0 && affirmations.length < 10 && (
-             <form onSubmit={handleAddAff} className="opacity-0 hover:opacity-100 transition-opacity">
+             <form onSubmit={handleAddAff} className="opacity-40 hover:opacity-100 transition-opacity">
                <input 
-                 type="text" placeholder="Add node..." value={newAff} onChange={(e)=>setNewAff(e.target.value)}
-                 className="bg-white/5 border border-white/10 rounded-full px-4 py-2 text-[10px] text-white outline-none w-32"
+                 type="text" placeholder="+ Add Identity Node" value={newAff} onChange={(e)=>setNewAff(e.target.value)}
+                 className="bg-white/5 border border-white/10 rounded-full px-4 py-2 text-[10px] text-white outline-none w-40 text-center"
                />
              </form>
           )}
@@ -333,10 +309,10 @@ const FocusTodo = () => {
         </div>
       </header>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 gap-8">
         
-        {/* LEFT: Execution Deck (2 Cols) */}
-        <div className="lg:col-span-2 space-y-4">
+        {/* Execution Deck - NOW FULL WIDTH */}
+        <div className="space-y-4">
           <form onSubmit={handleAddTodo} className="group relative bg-white/[0.03] backdrop-blur-2xl p-2 rounded-[2rem] border border-white/10 focus-within:border-indigo-500/50 transition-all">
             <div className="flex flex-col sm:flex-row gap-2">
               <div className="flex-1 flex flex-col p-3 gap-1">
@@ -426,52 +402,6 @@ const FocusTodo = () => {
                 </div>
               );
             })}
-          </div>
-        </div>
-
-        {/* RIGHT: Vision Deck (1 Col) */}
-        <div className="space-y-4">
-          <div className="bg-gradient-to-br from-indigo-900/40 to-slate-900/40 backdrop-blur-3xl p-6 rounded-[2.5rem] border border-white/10 shadow-2xl relative overflow-hidden group">
-            <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity"><Target className="w-20 h-20 text-white" /></div>
-            <h3 className="text-xl font-black text-white mb-4 flex items-center gap-2">
-              <Sparkles className="w-5 h-5 text-indigo-400" /> MISSION VISION
-            </h3>
-            
-            <form onSubmit={handleAddVision} className="space-y-3 mb-6">
-              <input 
-                type="text" placeholder="Future Plan Title..." value={vTitle} onChange={(e)=>setVTitle(e.target.value)}
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-xs font-black text-white outline-none focus:border-indigo-500/50 transition-all placeholder:text-slate-700"
-              />
-              <input 
-                type="text" placeholder="Optional vision notes..." value={vSub} onChange={(e)=>setVSub(e.target.value)}
-                className="w-full bg-transparent px-4 text-[10px] font-bold text-slate-500 outline-none placeholder:text-slate-800"
-              />
-              <button type="submit" className="w-full py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl font-black text-[10px] uppercase tracking-widest transition-all active:scale-95 shadow-lg shadow-indigo-900/20">
-                Seal the Vision
-              </button>
-            </form>
-
-            <div className="space-y-4 max-h-[350px] overflow-y-auto custom-scrollbar pr-2">
-              {visionPlans.length === 0 ? (
-                <div className="text-center py-10 opacity-20"><p className="text-[10px] font-black uppercase tracking-widest text-white">No Vision Logged</p></div>
-              ) : visionPlans.map(plan => (
-                <div key={plan._id} className="p-4 bg-white/[0.02] border border-white/5 rounded-2xl group/plan relative">
-                  <button onClick={()=>deleteVision(plan._id)} className="absolute top-2 right-2 opacity-0 group-hover/plan:opacity-100 p-1 text-slate-700 hover:text-red-500 transition-all">
-                    <Trash2 className="w-3 h-3" />
-                  </button>
-                  <p className="text-sm font-black text-white mb-1 leading-tight">{plan.title}</p>
-                  {plan.subtitle && <p className="text-[9px] font-bold text-slate-500 italic">"{plan.subtitle}"</p>}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="bg-black/40 backdrop-blur-2xl p-6 rounded-[2.5rem] border border-white/5 text-center italic relative overflow-hidden group">
-             <div className="absolute inset-0 bg-blue-500/5 blur-3xl rounded-full translate-y-10 group-hover:translate-y-0 transition-transform duration-1000" />
-             <p className="text-xs font-bold text-slate-400 relative z-10 leading-relaxed">
-               "The best way to predict the future is to create it."
-             </p>
-             <div className="mt-3 text-[8px] font-black uppercase tracking-widest text-indigo-500 relative z-10">— ARCHITECT PROTOCOL</div>
           </div>
         </div>
       </div>

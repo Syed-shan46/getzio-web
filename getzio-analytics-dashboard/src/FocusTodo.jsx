@@ -15,13 +15,15 @@ const TODO_API = `${BASE_URL}/todos`;
 
 // Motivational quotes rotation
 const MOTIVATIONS = [
-  "Small wins → Big success 🚀",
-  "Discipline beats motivation ⚡",
-  "Do it now. Not later. 🔥",
-  "Execution is everything. 🎯",
-  "Build the future today. 🌱",
-  "No tasks. No excuses. Start now. 🧱",
-  "Stay hungry. Stay foolish. 🍎"
+  "Alhamdulillah for everything. 🤲",
+  "Time is the only thing you can't buy back. Spend it wisely. ⏳",
+  "Stop wasting time on things that don't build your future. 🏗️",
+  "Execution > Ideas. Do the work. 🔥",
+  "Focus is a superpower. Protect it. 🛡️",
+  "Is what you're doing right now getting you closer to your vision? 🎯",
+  "Win the morning. Win the day. ☀️",
+  "The elite don't wait for motivation. They rely on discipline. 🏅",
+  "Distraction is the enemy of greatness. ⚔️"
 ];
 
 const PRIORITY_CONFIG = {
@@ -168,7 +170,25 @@ const FocusTodo = () => {
   return (
     <div className={`max-w-6xl mx-auto space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-500 pb-10 relative ${showWinEffect ? 'scale-[1.01]' : 'scale-100'} transition-transform duration-300`}>
       
-      {/* 1. Compact Header */}
+      {/* Alhamdulillah Header */}
+      <div className="flex justify-center pt-2">
+        <h2 className="text-[10px] font-black tracking-[0.5em] text-white/40 uppercase animate-pulse">
+          Alhamdulillah for everything
+        </h2>
+      </div>
+
+      {/* Horizontal Motivation Ticker */}
+      <div className="relative h-8 bg-indigo-600/10 border-y border-indigo-500/20 overflow-hidden flex items-center">
+        <div className="flex whitespace-nowrap animate-marquee">
+          {Array(4).fill([...MOTIVATIONS]).flat().map((quote, i) => (
+            <span key={i} className="text-[9px] font-black uppercase tracking-widest text-indigo-400 mx-8 flex items-center gap-2">
+              <Zap className="w-2.5 h-2.5" /> {quote}
+            </span>
+          ))}
+        </div>
+        <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-slate-950 to-transparent z-10"></div>
+        <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-slate-950 to-transparent z-10"></div>
+      </div>
       <header className="flex flex-col md:flex-row md:items-center justify-between gap-4 py-4 relative">
         <div className="relative z-10">
           <div className="flex items-center gap-3 mb-2">

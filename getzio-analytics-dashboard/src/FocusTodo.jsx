@@ -3,7 +3,8 @@ import axios from 'axios';
 import { 
   Plus, Trash2, CheckCircle2, Circle, 
   Flame, Zap, Sprout, Target, 
-  Loader2, Sparkles, RefreshCw
+  Loader2, Sparkles, RefreshCw,
+  ChevronUp, ChevronDown
 } from 'lucide-react';
 
 const BASE_URL = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
@@ -138,6 +139,28 @@ const FocusTodo = () => {
     try { await axios.patch(`${TODO_API}/${id}/toggle`, {}); } catch (err) { fetchData(); }
   };
 
+  const handleMove = async (id, direction) => {
+    const idx = todos.findIndex(t => t._id === id);
+    if (direction === 'up' && idx === 0) return;
+    if (direction === 'down' && idx === todos.length - 1) return;
+
+    const newTodos = [...todos];
+    const swapIdx = direction === 'up' ? idx - 1 : idx + 1;
+    [newTodos[idx], newTodos[swapIdx]] = [newTodos[swapIdx], newTodos[idx]];
+    
+    // Optimistically update local state
+    setTodos(newTodos);
+
+    // Sync new order to backend
+    const orderings = newTodos.map((t, index) => ({ id: t._id, order: index }));
+    try {
+      await axios.post(`${TODO_API}/reorder`, { orderings });
+    } catch (err) {
+      console.error('Reorder failed:', err);
+      fetchData(); // Rollback
+    }
+  };
+
   const completedCount = todos.filter(t => t.isCompleted).length;
   const progress = todos.length > 0 ? (completedCount / todos.length) * 100 : 0;
   const rank = getRank(progress, todos.length);
@@ -223,6 +246,10 @@ const FocusTodo = () => {
               const config = PRIORITY_CONFIG[todo.priority] || PRIORITY_CONFIG.medium;
               return (
                 <div key={todo._id} className={`group flex items-center gap-4 p-4 rounded-[2rem] border transition-all duration-500 ${todo.isCompleted ? 'bg-black/40 border-white/5 opacity-30 grayscale' : `${config.card}`}`}>
+                  <div className="flex flex-col gap-1 pr-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <button onClick={() => handleMove(todo._id, 'up')} className="p-1 hover:text-indigo-400 text-slate-700 transition-colors"><ChevronUp className="w-3 h-3" /></button>
+                    <button onClick={() => handleMove(todo._id, 'down')} className="p-1 hover:text-indigo-400 text-slate-700 transition-colors"><ChevronDown className="w-3 h-3" /></button>
+                  </div>
                   <button onClick={() => handleToggle(todo._id)} className={todo.isCompleted ? 'text-slate-800' : config.check}>
                     {todo.isCompleted ? <CheckCircle2 className="w-8 h-8" /> : <Circle className="w-8 h-8 opacity-40" />}
                   </button>

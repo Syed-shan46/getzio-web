@@ -209,6 +209,26 @@ const FocusTodo = () => {
   return (
     <div className={`max-w-6xl mx-auto space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-500 pb-10 relative ${showWinEffect ? 'scale-[1.01]' : 'scale-100'} transition-transform duration-300`}>
       
+      {/* Alhamdulillah Header */}
+      <div className="flex justify-center pt-2">
+        <h2 className="text-[10px] font-black tracking-[0.5em] text-white/40 uppercase animate-pulse">
+          Alhamdulillah for everything
+        </h2>
+      </div>
+
+      {/* Horizontal Motivation Ticker */}
+      <div className="relative h-8 bg-indigo-600/10 border-y border-indigo-500/20 overflow-hidden flex items-center">
+        <div className="flex whitespace-nowrap animate-marquee">
+          {Array(4).fill([...MOTIVATIONS]).flat().map((quote, i) => (
+            <span key={i} className="text-[9px] font-black uppercase tracking-widest text-indigo-400 mx-8 flex items-center gap-2">
+              <Zap className="w-2.5 h-2.5" /> {quote}
+            </span>
+          ))}
+        </div>
+        <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-slate-950 to-transparent z-10"></div>
+        <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-slate-950 to-transparent z-10"></div>
+      </div>
+
       {/* Vision Board - Animated Identity System */}
       <div className="relative py-8 overflow-hidden rounded-[3rem] bg-indigo-950/20 border border-white/5 shadow-inner">
         <div className="absolute inset-0 bg-gradient-to-b from-indigo-500/5 to-transparent pointer-events-none" />
@@ -257,26 +277,6 @@ const FocusTodo = () => {
              </form>
           )}
         </div>
-      </div>
-
-      {/* Alhamdulillah Header */}
-      <div className="flex justify-center pt-2">
-        <h2 className="text-[10px] font-black tracking-[0.5em] text-white/40 uppercase animate-pulse">
-          Alhamdulillah for everything
-        </h2>
-      </div>
-
-      {/* Horizontal Motivation Ticker */}
-      <div className="relative h-8 bg-indigo-600/10 border-y border-indigo-500/20 overflow-hidden flex items-center">
-        <div className="flex whitespace-nowrap animate-marquee">
-          {Array(4).fill([...MOTIVATIONS]).flat().map((quote, i) => (
-            <span key={i} className="text-[9px] font-black uppercase tracking-widest text-indigo-400 mx-8 flex items-center gap-2">
-              <Zap className="w-2.5 h-2.5" /> {quote}
-            </span>
-          ))}
-        </div>
-        <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-slate-950 to-transparent z-10"></div>
-        <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-slate-950 to-transparent z-10"></div>
       </div>
       <header className="flex flex-col md:flex-row md:items-center justify-between gap-4 py-4 relative">
         <div className="relative z-10">

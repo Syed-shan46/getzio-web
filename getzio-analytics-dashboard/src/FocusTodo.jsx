@@ -58,7 +58,6 @@ const FocusTodo = () => {
   const [deadline, setDeadline] = useState('');
   const [currentTime, setCurrentTime] = useState(new Date());
   const [affirmations, setAffirmations] = useState([]);
-  const [activeAffIndex, setActiveAffIndex] = useState(0);
   const [newAff, setNewAff] = useState('');
   const [motivation, setMotivation] = useState(MOTIVATIONS[0]);
   const [loading, setLoading] = useState(true);
@@ -79,11 +78,7 @@ const FocusTodo = () => {
     
     // Local timer for countdowns - updates every second without refetching API
     const timer = setInterval(() => setCurrentTime(new Date()), 1000);
-    // Rotation for vision board
-    const rotTimer = setInterval(() => {
-      setActiveAffIndex(prev => (prev + 1));
-    }, 5000);
-    return () => { clearInterval(timer); clearInterval(rotTimer); };
+    return () => clearInterval(timer);
   }, []);
 
   const fetchData = async () => {
@@ -246,18 +241,15 @@ const FocusTodo = () => {
               </form>
             </div>
           ) : affirmations.map((aff, i) => {
-            const isActive = (activeAffIndex % affirmations.length) === i;
             return (
               <div 
                 key={aff._id}
-                className={`group relative px-6 py-4 rounded-[2rem] border transition-all duration-1000 cursor-default animate-float
-                ${isActive ? 'bg-indigo-600/30 animate-identity-glow scale-110 z-20' : 'bg-black/40 border-white/10 scale-95 opacity-80 backdrop-blur-md'}
-                `}
+                className={`group relative px-6 py-4 rounded-[2rem] border transition-all duration-1000 cursor-default animate-float bg-black/40 border-white/10 opacity-80 backdrop-blur-md`}
                 style={{ animationDelay: `${i * 0.8}s` }}
               >
                 <div className="flex items-center gap-3">
                   <span className="text-xl">{aff.emoji}</span>
-                  <p className={`text-xs font-black tracking-tight ${isActive ? 'text-white' : 'text-slate-400'}`}>
+                  <p className={`text-xs font-black tracking-tight text-slate-400 group-hover:text-white transition-colors`}>
                     {aff.text}
                   </p>
                   <button onClick={() => handleDeleteAff(aff._id)} className="opacity-0 group-hover:opacity-100 transition-opacity ml-2">

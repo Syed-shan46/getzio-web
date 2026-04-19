@@ -7,6 +7,22 @@
     display: flex;
     animation: marquee 120s linear infinite;
   }
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  .animate-identity-glow {
+    animation: identity-glow 4s ease-in-out infinite;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-10px) scale(1.02); }
+}
+
+@keyframes identity-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.2); border-color: rgba(99, 102, 241, 0.2); }
+  50% { box-shadow: 0 0 40px rgba(99, 102, 241, 0.4); border-color: rgba(99, 102, 241, 0.5); }
 }
 
 @keyframes marquee {

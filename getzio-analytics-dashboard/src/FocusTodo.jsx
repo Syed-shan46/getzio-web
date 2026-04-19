@@ -60,6 +60,9 @@ const FocusTodo = () => {
   const [priority, setPriority] = useState('medium');
   const [deadline, setDeadline] = useState('');
   const [currentTime, setCurrentTime] = useState(new Date());
+  const [affirmations, setAffirmations] = useState([]);
+  const [activeAffIndex, setActiveAffIndex] = useState(0);
+  const [newAff, setNewAff] = useState('');
   const [motivation, setMotivation] = useState(MOTIVATIONS[0]);
   const [loading, setLoading] = useState(true);
   const [showWinEffect, setShowWinEffect] = useState(false);
@@ -79,23 +82,43 @@ const FocusTodo = () => {
     
     // Local timer for countdowns - updates every second without refetching API
     const timer = setInterval(() => setCurrentTime(new Date()), 1000);
-    return () => clearInterval(timer);
+    // Rotation for vision board
+    const rotTimer = setInterval(() => {
+      setActiveAffIndex(prev => (prev + 1));
+    }, 5000);
+    return () => { clearInterval(timer); clearInterval(rotTimer); };
   }, []);
 
   const fetchData = async () => {
     setLoading(true);
     try {
-      const [todoRes, visionRes] = await Promise.all([
+      const [todoRes, visionRes, affRes] = await Promise.all([
         axios.get(TODO_API),
-        axios.get(`${BASE_URL}/future-plans`)
+        axios.get(`${BASE_URL}/future-plans`),
+        axios.get(`${BASE_URL}/affirmations`)
       ]);
       setTodos(todoRes.data.data);
       setVisionPlans(visionRes.data.data);
-    } catch (err) {
-      console.error('Failed to fetch data:', err);
-    } finally {
-      setLoading(false);
-    }
+      setAffirmations(affRes.data.data);
+    } catch (err) { console.error(err); }
+    setLoading(false);
+  };
+
+  const handleAddAff = async (e) => {
+    e.preventDefault();
+    if (!newAff.trim() || affirmations.length >= 10) return;
+    try {
+      const res = await axios.post(`${BASE_URL}/affirmations`, { text: newAff, emoji: '⚡' });
+      setAffirmations([res.data.data, ...affirmations]);
+      setNewAff('');
+    } catch (err) { console.error(err); }
+  };
+
+  const handleDeleteAff = async (id) => {
+    try {
+      await axios.delete(`${BASE_URL}/affirmations/${id}`);
+      setAffirmations(affirmations.filter(a => a._id !== id));
+    } catch (err) { console.error(err); }
   };
 
   const handleAddTodo = async (e) => {
@@ -210,6 +233,56 @@ const FocusTodo = () => {
   return (
     <div className={`max-w-6xl mx-auto space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-500 pb-10 relative ${showWinEffect ? 'scale-[1.01]' : 'scale-100'} transition-transform duration-300`}>
       
+      {/* Vision Board - Animated Identity System */}
+      <div className="relative py-8 overflow-hidden rounded-[3rem] bg-indigo-950/20 border border-white/5 shadow-inner">
+        <div className="absolute inset-0 bg-gradient-to-b from-indigo-500/5 to-transparent pointer-events-none" />
+        
+        <div className="relative px-6 flex flex-wrap justify-center gap-6 items-center min-h-[180px]">
+          {affirmations.length === 0 ? (
+            <div className="text-center opacity-40">
+              <p className="text-[10px] font-black tracking-[0.4em] text-white/50 uppercase mb-4">Initialize Founder Identity Nodes</p>
+              <form onSubmit={handleAddAff} className="flex gap-2 max-w-xs mx-auto">
+                <input 
+                  type="text" placeholder="Protocol identity..." value={newAff} onChange={(e)=>setNewAff(e.target.value)}
+                  className="bg-white/5 border border-white/10 rounded-xl px-4 py-2 text-xs text-white outline-none focus:border-indigo-500/50"
+                />
+                <button type="submit" className="p-2 bg-indigo-600 rounded-xl"><Plus className="w-4 h-4 text-white" /></button>
+              </form>
+            </div>
+          ) : affirmations.map((aff, i) => {
+            const isActive = (activeAffIndex % affirmations.length) === i;
+            return (
+              <div 
+                key={aff._id}
+                className={`group relative px-6 py-4 rounded-[2rem] border transition-all duration-1000 cursor-default animate-float
+                ${isActive ? 'bg-indigo-600/30 animate-identity-glow scale-110 z-20' : 'bg-black/40 border-white/10 scale-95 opacity-80 backdrop-blur-md'}
+                `}
+                style={{ animationDelay: `${i * 0.8}s` }}
+              >
+                <div className="flex items-center gap-3">
+                  <span className="text-xl">{aff.emoji}</span>
+                  <p className={`text-xs font-black tracking-tight ${isActive ? 'text-white' : 'text-slate-400'}`}>
+                    {aff.text}
+                  </p>
+                  <button onClick={() => handleDeleteAff(aff._id)} className="opacity-0 group-hover:opacity-100 transition-opacity ml-2">
+                    <Trash2 className="w-3 h-3 text-red-500" />
+                  </button>
+                </div>
+              </div>
+            );
+          })}
+          
+          {affirmations.length > 0 && affirmations.length < 10 && (
+             <form onSubmit={handleAddAff} className="opacity-0 hover:opacity-100 transition-opacity">
+               <input 
+                 type="text" placeholder="Add node..." value={newAff} onChange={(e)=>setNewAff(e.target.value)}
+                 className="bg-white/5 border border-white/10 rounded-full px-4 py-2 text-[10px] text-white outline-none w-32"
+               />
+             </form>
+          )}
+        </div>
+      </div>
+
       {/* Alhamdulillah Header */}
       <div className="flex justify-center pt-2">
         <h2 className="text-[10px] font-black tracking-[0.5em] text-white/40 uppercase animate-pulse">

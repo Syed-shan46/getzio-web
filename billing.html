@@ -6,18 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- SEO Optimization -->
-  <title>Getzio Billing | Run Your Entire Business. One Intelligent Workspace.</title>
-  <meta name="description" content="A complete business management and billing platform combining invoicing, inventory control, customer directories, supplier logs, and professional reporting in one secure workspace.">
-  <meta name="keywords" content="getzio billing, getzio desk, gst billing, inventory management, customer ledger, supplier invoice, daily sales report, analytics dashboard">
+  <title>Getzio Billing Workspace | Manage Invoices, Inventory & Reports</title>
+  <meta name="description" content="Access your Getzio Billing workspace to generate professional documents, track low stock, build customer ledgers, and audit business operations.">
   <meta name="author" content="Getzio Technologies">
   
-  <!-- OpenGraph Metadata -->
-  <meta property="og:title" content="Getzio Billing - Run Your Entire Business. One Intelligent Workspace.">
-  <meta property="og:description" content="Streamline operations with GST invoicing, stocks tracking, customer profiles, and analytics under a unified database engine.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://getzio.in/billing">
-  
-  <!-- Tailwind CSS & Icon library -->
+  <!-- Tailwind CSS & Icons -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
@@ -30,6 +23,7 @@
       --primary-dark: #1a157e;
       --slate-dark: #0b0f19;
       --slate-card: #131b2e;
+      --border-color: rgba(255, 255, 255, 0.08);
     }
 
     body {
@@ -49,65 +43,22 @@
       border-radius: 50%;
       filter: blur(140px);
       z-index: 0;
-      opacity: 0.15;
+      opacity: 0.12;
       pointer-events: none;
     }
 
-    /* Grid & Layout Cards */
+    /* Glassmorphism layouts */
     .glass-card {
-      background: rgba(19, 27, 46, 0.6);
+      background: rgba(19, 27, 46, 0.55);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .glass-card:hover {
-      border-color: rgba(78, 71, 212, 0.4);
-      transform: translateY(-4px);
-      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
-    }
-
-    /* Floating keyframes */
-    @keyframes float-slow {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-10px) rotate(1deg); }
-    }
-    @keyframes float-medium {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-15px) rotate(-1.5deg); }
-    }
-    @keyframes float-fast {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-20px) rotate(2deg); }
-    }
-
-    .animate-float-slow { animation: float-slow 7s ease-in-out infinite; }
-    .animate-float-medium { animation: float-medium 5s ease-in-out infinite; }
-    .animate-float-fast { animation: float-fast 4s ease-in-out infinite; }
-
-    /* Scroll Reveals */
-    .scroll-reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .scroll-reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Accordions */
-    .faq-panel {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease-in-out;
+      border: 1px solid var(--border-color);
     }
 
     /* Custom scrollbars */
     ::-webkit-scrollbar {
-      width: 8px;
+      width: 6px;
+      height: 6px;
     }
     ::-webkit-scrollbar-track {
       background: var(--slate-dark);
@@ -118,6 +69,13 @@
     }
     ::-webkit-scrollbar-thumb:hover {
       background: #334155;
+    }
+
+    /* Active navigation styling */
+    .sidebar-link.active {
+      background-color: rgba(78, 71, 212, 0.15);
+      color: #818cf8;
+      border-left: 3px solid #818cf8;
     }
   </style>
 
@@ -141,937 +99,520 @@
   </script>
 </head>
 
-<body class="bg-slate-dark text-slate-100 antialiased overflow-x-hidden font-sans">
+<body class="bg-slate-dark text-slate-100 antialiased overflow-hidden h-screen font-sans">
 
   <!-- Glowing Background Orbs -->
-  <div class="glow-blur bg-getzio w-[600px] h-[600px] top-[-100px] right-[-100px]"></div>
-  <div class="glow-blur bg-getzio-light w-[500px] h-[500px] top-[1200px] left-[-200px]"></div>
-  <div class="glow-blur bg-indigo-500 w-[600px] h-[600px] top-[2600px] right-[-300px]"></div>
-  <div class="glow-blur bg-getzio-dark w-[500px] h-[500px] bottom-[1800px] left-[-150px]"></div>
+  <div class="glow-blur bg-getzio w-[500px] h-[500px] top-[-100px] right-[-100px]"></div>
+  <div class="glow-blur bg-getzio-light w-[400px] h-[400px] bottom-[-100px] left-[-100px]"></div>
 
-  <!-- Navigation Bar -->
-  <nav class="fixed w-full z-50 transition-all duration-300 px-6 py-4 bg-slate-dark/85 backdrop-blur-lg border-b border-white/5">
-    <div class="max-w-7xl mx-auto flex justify-between items-center">
-      <a href="index.html" class="flex items-center space-x-2 group">
-        <div class="w-10 h-10 bg-getzio rounded-xl flex items-center justify-center shadow-lg shadow-getzio/40 transition-transform group-hover:scale-105">
-          <span class="text-white font-bold text-xl">G</span>
-        </div>
-        <span class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400 group-hover:to-white transition-all font-sans">Getzio</span>
-      </a>
-
-      <!-- Desktop Nav links -->
-      <div class="hidden lg:flex space-x-6 xl:space-x-8 items-center text-sm font-semibold text-slate-300">
-        <a href="index.html" class="hover:text-white transition-colors">Home</a>
-        <a href="#features" class="hover:text-white transition-colors">Features</a>
-        <a href="#documents" class="hover:text-white transition-colors">Documents</a>
-        <a href="#inventory" class="hover:text-white transition-colors">Inventory</a>
-        <a href="#customers" class="hover:text-white transition-colors">Customers</a>
-        <a href="#reports" class="hover:text-white transition-colors">Reports</a>
-        <a href="#faq" class="hover:text-white transition-colors">FAQ</a>
-        <a href="#contact" class="hover:text-white transition-colors">Contact</a>
-        <span class="text-slate-700">|</span>
-        <span class="bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">🚀 Launching Soon</span>
-        <a href="#early-access" class="bg-white hover:bg-slate-200 text-slate-900 px-5 py-2.5 rounded-full transition-all text-xs font-bold shadow-lg shadow-white/5">Get Early Access</a>
-      </div>
-
-      <!-- Mobile Menu Trigger -->
-      <button class="lg:hidden text-slate-300 hover:text-white" id="billing-menu-btn" aria-label="Toggle Menu">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-        </svg>
-      </button>
-    </div>
-
-    <!-- Mobile Dropdown -->
-    <div id="billing-mobile-menu" class="hidden lg:hidden absolute top-full left-0 w-full bg-slate-dark/95 border-b border-white/5 py-6 px-10 flex flex-col space-y-4 backdrop-blur-xl animate__animated animate__fadeInDown">
-      <a href="index.html" class="text-lg font-medium text-slate-300 hover:text-white">Home</a>
-      <a href="#features" class="text-lg font-medium text-slate-300 hover:text-white">Features</a>
-      <a href="#documents" class="text-lg font-medium text-slate-300 hover:text-white">Documents</a>
-      <a href="#inventory" class="text-lg font-medium text-slate-300 hover:text-white">Inventory</a>
-      <a href="#customers" class="text-lg font-medium text-slate-300 hover:text-white">Customers</a>
-      <a href="#reports" class="text-lg font-medium text-slate-300 hover:text-white">Reports</a>
-      <a href="#faq" class="text-lg font-medium text-slate-300 hover:text-white">FAQ</a>
-      <a href="#contact" class="text-lg font-medium text-slate-300 hover:text-white">Contact</a>
-      <a href="#early-access" class="bg-getzio text-white px-6 py-3 rounded-xl text-center font-bold shadow-lg shadow-getzio/20">Get Early Access</a>
-    </div>
-  </nav>
-
-  <!-- Hero Section -->
-  <section class="min-h-screen pt-40 pb-20 px-6 relative flex items-center">
-    <div class="max-w-7xl mx-auto w-full grid lg:grid-cols-12 gap-16 items-center relative z-10">
+  <!-- AUTHENTICATION CONTAINER (OTP Login Panel) -->
+  <div id="auth-container" class="flex flex-col items-center justify-center min-h-screen px-6 relative z-10">
+    <div class="w-full max-w-md bg-[#11192e] border border-white/10 p-8 rounded-3xl space-y-6 shadow-2xl relative">
       
-      <!-- Left Column: Copy & Actions -->
-      <div class="lg:col-span-6 space-y-8 text-left animate__animated animate__fadeInLeft">
-        
-        <!-- Glowing Launch Badge -->
-        <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-slate-800/60 border border-slate-700/50 text-xs md:text-sm text-slate-300 font-medium select-none shadow-inner">
-          <span class="flex h-2 w-2 relative">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
-          </span>
-          <span class="font-bold text-white tracking-wide">🚀 Launching Soon</span>
-          <span class="text-slate-500">|</span>
-          <span class="text-slate-400 text-xs font-light">Currently under final production rollout</span>
+      <!-- Top Logo Header -->
+      <div class="text-center space-y-2 select-none">
+        <div class="w-12 h-12 bg-getzio rounded-2xl flex items-center justify-center mx-auto shadow-lg shadow-getzio/30">
+          <span class="text-white font-bold text-2xl font-sans">G</span>
         </div>
-
-        <h1 class="text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.05] text-white font-sans">
-          Run Your Entire Business.<br>
-          <span class="bg-clip-text text-transparent bg-gradient-to-r from-getzio-light to-indigo-300">One Intelligent Workspace.</span>
-        </h1>
-        
-        <p class="text-lg md:text-xl text-slate-400 max-w-xl leading-relaxed font-light font-inter">
-          Getzio Billing combines invoices, stocks tracking, client ledgers, supplier logs, automated reports, analytics, and 42 business documents in one unified platform.
-        </p>
-
-        <!-- CTA Buttons -->
-        <div class="flex flex-wrap gap-4 pt-2">
-          <a href="#early-access" class="bg-white text-slate-900 hover:bg-slate-200 px-8 py-4 rounded-full font-bold text-lg hover:shadow-2xl hover:shadow-white/10 transition-all transform hover:-translate-y-0.5 active:translate-y-0 select-none shadow-xl">
-            Get Early Access <i class="fa-solid fa-chevron-right text-xs ml-1"></i>
-          </a>
-          <a href="#features" class="bg-slate-800/60 hover:bg-slate-800 border border-white/10 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all transform hover:-translate-y-0.5 shadow-xl select-none">
-            Explore Capabilities
-          </a>
-        </div>
-
-        <div class="flex items-center gap-6 pt-4 text-xs font-bold text-slate-500 tracking-wider uppercase">
-          <div class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-indigo-400 text-sm"></i> Shared Engine</div>
-          <div class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-indigo-400 text-sm"></i> GST Compliant</div>
-          <div class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-indigo-400 text-sm"></i> Realtime Sync</div>
-        </div>
+        <h1 class="text-2xl font-extrabold text-white">Getzio Billing Workspace</h1>
+        <p class="text-xs text-slate-400 font-inter">Sign in with your registered mobile number to continue</p>
       </div>
 
-      <!-- Right Column: Visual CSS/SVG Dashboard Layout Illustration -->
-      <div class="lg:col-span-6 relative w-full h-[540px] flex items-center justify-center animate__animated animate__fadeInRight animate__delay-1s select-none">
-        
-        <!-- Background Grid -->
-        <div class="absolute inset-0 bg-[linear-gradient(to_right,#ffffff02_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none"></div>
+      <!-- Send OTP Form -->
+      <form id="auth-send-form" class="space-y-4">
+        <div class="space-y-1.5">
+          <label for="auth-phone" class="text-[10px] font-bold uppercase tracking-wider text-slate-400 ml-1">Mobile Number</label>
+          <input type="tel" id="auth-phone" placeholder="9876543210" required class="w-full px-4 py-3.5 bg-slate-950 border border-white/10 rounded-xl text-white outline-none focus:border-indigo-500 transition-colors font-inter text-sm">
+        </div>
+        <button type="submit" id="auth-send-btn" class="w-full bg-white hover:bg-slate-200 text-slate-950 font-bold py-3.5 rounded-xl transition-all shadow-lg flex items-center justify-center gap-2 text-sm">
+          Send OTP Verification
+        </button>
+      </form>
 
-        <!-- Dashboard Frame (SaaS Mockup) -->
-        <div class="w-full max-w-[500px] h-[380px] rounded-2xl bg-slate-900/90 border border-white/10 p-5 relative shadow-2xl flex flex-col justify-between overflow-hidden">
-          
-          <!-- Top Window Controls -->
-          <div class="flex justify-between items-center border-b border-white/5 pb-3">
-            <div class="flex gap-1.5">
-              <span class="w-2.5 h-2.5 rounded-full bg-red-500/60"></span>
-              <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/60"></span>
-              <span class="w-2.5 h-2.5 rounded-full bg-green-500/60"></span>
+      <!-- Verify OTP Form (Hidden by default) -->
+      <form id="auth-verify-form" class="hidden space-y-4">
+        <div class="space-y-1.5">
+          <label for="auth-otp" class="text-[10px] font-bold uppercase tracking-wider text-slate-400 ml-1">6-Digit Verification Code</label>
+          <input type="text" id="auth-otp" placeholder="123456" required class="w-full px-4 py-3.5 bg-slate-950 border border-white/10 rounded-xl text-white outline-none focus:border-indigo-500 transition-colors font-inter text-sm text-center tracking-[0.4em] font-bold">
+        </div>
+        <button type="submit" id="auth-verify-btn" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 rounded-xl transition-all shadow-lg flex items-center justify-center gap-2 text-sm shadow-indigo-600/20">
+          Verify and Log In
+        </button>
+        <button type="button" onclick="resetAuthForm()" class="w-full text-center text-xs text-slate-500 hover:text-slate-300 font-semibold font-inter">
+          Change Mobile Number
+        </button>
+      </form>
+
+      <!-- Auth status banner -->
+      <div id="auth-status" class="hidden p-3.5 rounded-xl text-center text-xs font-semibold font-inter"></div>
+    </div>
+  </div>
+
+  <!-- APPLICATION WORKSPACE CONTAINER (Admin Portal Layout, Hidden by Default) -->
+  <div id="app-container" class="hidden flex h-screen overflow-hidden select-none font-inter">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="w-64 bg-[#0e1424] border-r border-white/5 flex flex-col justify-between h-full relative z-20">
+      <div class="p-5 space-y-8">
+        <!-- Sidebar Brand Header -->
+        <div class="flex items-center space-x-2.5 select-none">
+          <div class="w-8 h-8 bg-getzio rounded-lg flex items-center justify-center shadow-lg shadow-getzio/40">
+            <span class="text-white font-bold text-base font-sans">G</span>
+          </div>
+          <div>
+            <span class="text-base font-bold text-white font-sans block">Getzio Desk</span>
+            <span class="text-[9px] text-indigo-400 font-bold uppercase tracking-widest block" id="current-company-name">My Business</span>
+          </div>
+        </div>
+
+        <!-- Sidebar Navigation List -->
+        <nav class="flex flex-col gap-1.5 text-slate-400 text-sm font-semibold select-none">
+          <button onclick="switchTab('dashboard')" class="sidebar-link active flex items-center gap-3 px-4 py-3 rounded-xl transition-all hover:bg-white/5 text-left">
+            <i class="fa-solid fa-chart-simple text-sm w-5"></i> Dashboard
+          </button>
+          <button onclick="switchTab('documents')" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-xl transition-all hover:bg-white/5 text-left">
+            <i class="fa-solid fa-file-invoice text-sm w-5"></i> Documents
+          </button>
+          <button onclick="switchTab('inventory')" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-xl transition-all hover:bg-white/5 text-left">
+            <i class="fa-solid fa-boxes-stacked text-sm w-5"></i> Inventory
+          </button>
+          <button onclick="switchTab('customers')" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-xl transition-all hover:bg-white/5 text-left">
+            <i class="fa-solid fa-users text-sm w-5"></i> Customers
+          </button>
+          <button onclick="switchTab('reports')" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-xl transition-all hover:bg-white/5 text-left">
+            <i class="fa-solid fa-paste text-sm w-5"></i> Reports
+          </button>
+        </nav>
+      </div>
+
+      <!-- Bottom Profile / Logout info -->
+      <div class="p-5 border-t border-white/5 flex justify-between items-center bg-slate-950/20 text-slate-400 text-xs">
+        <div class="flex items-center gap-2 select-none">
+          <div class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-[10px] text-white font-bold" id="user-avatar">U</div>
+          <div class="overflow-hidden max-w-[100px]">
+            <span class="font-bold text-white block truncate" id="user-profile-name">User</span>
+            <span class="text-[9px] text-slate-500 block truncate" id="user-profile-phone">Phone</span>
+          </div>
+        </div>
+        <button onclick="logoutWorkspace()" class="w-8 h-8 hover:bg-white/5 hover:text-white rounded-lg flex items-center justify-center transition-colors" title="Log Out">
+          <i class="fa-solid fa-right-from-bracket"></i>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Workspace Content Section -->
+    <main class="flex-grow flex flex-col h-full overflow-hidden bg-slate-dark/30 relative z-10">
+      
+      <!-- Top Workspace Nav Banner -->
+      <header class="h-16 border-b border-white/5 px-8 flex justify-between items-center bg-slate-dark/10 select-none">
+        <h2 class="text-lg font-bold text-white" id="workspace-title">Dashboard Summary</h2>
+        <div class="flex items-center gap-3">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[10px] font-bold text-emerald-400">
+            <span class="h-1.5 w-1.5 bg-emerald-400 rounded-full animate-pulse"></span> Cloud Sync Active
+          </span>
+        </div>
+      </header>
+
+      <!-- Content Views Panel -->
+      <div class="flex-grow p-8 overflow-y-auto" id="workspace-content">
+        
+        <!-- Tab 1: Dashboard View -->
+        <section id="tab-dashboard" class="space-y-8 animate__animated animate__fadeIn">
+          <!-- Metrics row -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="glass-card p-6 rounded-2xl flex items-center justify-between">
+              <div>
+                <span class="text-xs text-slate-500 block font-bold uppercase tracking-wider mb-1">Monthly Revenue</span>
+                <span class="text-2xl font-bold text-white" id="metrics-revenue">$0.00</span>
+              </div>
+              <div class="w-12 h-12 bg-indigo-500/10 text-indigo-400 rounded-xl flex items-center justify-center text-lg"><i class="fa-solid fa-wallet"></i></div>
             </div>
-            <div class="h-4 w-32 bg-slate-800 rounded-full flex items-center justify-center text-[8px] text-slate-500 font-mono">dashboard.getzio.in</div>
-            <div class="h-4 w-4 bg-slate-800 rounded"></div>
+            
+            <div class="glass-card p-6 rounded-2xl flex items-center justify-between">
+              <div>
+                <span class="text-xs text-slate-500 block font-bold uppercase tracking-wider mb-1">Documents Generated</span>
+                <span class="text-2xl font-bold text-indigo-400" id="metrics-docs">0</span>
+              </div>
+              <div class="w-12 h-12 bg-indigo-500/10 text-indigo-400 rounded-xl flex items-center justify-center text-lg"><i class="fa-solid fa-file-invoice"></i></div>
+            </div>
+
+            <div class="glass-card p-6 rounded-2xl flex items-center justify-between">
+              <div>
+                <span class="text-xs text-slate-500 block font-bold uppercase tracking-wider mb-1">Products In Catalog</span>
+                <span class="text-2xl font-bold text-white" id="metrics-products">0</span>
+              </div>
+              <div class="w-12 h-12 bg-indigo-500/10 text-indigo-400 rounded-xl flex items-center justify-center text-lg"><i class="fa-solid fa-boxes-stacked"></i></div>
+            </div>
           </div>
 
-          <!-- Main Inner Layout Grid -->
-          <div class="grid grid-cols-12 gap-4 h-full pt-4">
-            <!-- Sidebar -->
-            <div class="col-span-3 border-r border-white/5 pr-2 space-y-3">
-              <div class="h-3 w-full bg-indigo-500/20 rounded"></div>
-              <div class="space-y-1.5 pt-2">
-                <div class="h-2 w-16 bg-slate-800 rounded"></div>
-                <div class="h-2 w-14 bg-slate-800 rounded"></div>
-                <div class="h-2 w-12 bg-slate-800 rounded"></div>
-                <div class="h-2 w-16 bg-slate-800 rounded"></div>
-              </div>
-            </div>
-
-            <!-- Content Area -->
-            <div class="col-span-9 space-y-4">
-              <!-- Metrics row -->
-              <div class="grid grid-cols-3 gap-2">
-                <div class="bg-slate-800/40 p-2.5 rounded-xl border border-white/5">
-                  <span class="text-[7px] text-slate-500 block uppercase tracking-wider">Revenue</span>
-                  <span class="text-xs font-bold text-white">$142K</span>
-                </div>
-                <div class="bg-slate-800/40 p-2.5 rounded-xl border border-white/5">
-                  <span class="text-[7px] text-slate-500 block uppercase tracking-wider">Invoices</span>
-                  <span class="text-xs font-bold text-indigo-400">1,240</span>
-                </div>
-                <div class="bg-indigo-600/10 p-2.5 rounded-xl border border-indigo-500/20">
-                  <span class="text-[7px] text-indigo-300 block uppercase tracking-wider">Outstanding</span>
-                  <span class="text-xs font-bold text-indigo-200">$4,850</span>
-                </div>
-              </div>
-
-              <!-- Mini Line Chart Section -->
-              <div class="bg-slate-800/20 p-3 rounded-xl border border-white/5 h-28 relative">
-                <span class="text-[8px] text-slate-500 uppercase tracking-wider block mb-1">Sales Analytics (Weekly)</span>
-                <!-- SVG Waveform -->
-                <svg class="w-full h-16" viewBox="0 0 100 40">
-                  <defs>
-                    <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stop-color="#4e47d4" stop-opacity="0.4"/>
-                      <stop offset="100%" stop-color="#4e47d4" stop-opacity="0"/>
-                    </linearGradient>
-                  </defs>
-                  <path d="M 0 35 Q 15 15 30 25 T 60 10 T 90 5 T 100 8 L 100 40 L 0 40 Z" fill="url(#chartGrad)"/>
-                  <path d="M 0 35 Q 15 15 30 25 T 60 10 T 90 5 T 100 8" fill="none" stroke="#4e47d4" stroke-width="1.5" stroke-linecap="round"/>
-                  <circle cx="90" cy="5" r="2" fill="#fff" />
+          <!-- Charts row -->
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-2 glass-card p-6 rounded-2xl flex flex-col justify-between h-80">
+              <span class="text-xs text-slate-400 font-bold block mb-4 uppercase tracking-wider">Weekly Revenue Analytics</span>
+              <div class="relative flex-grow flex items-end">
+                <svg class="w-full h-full" viewBox="0 0 100 40" id="dash-sales-svg">
+                  <path d="M 0 35 Q 20 20 40 30 T 80 15 T 100 10 L 100 40 L 0 40 Z" fill="rgba(78, 71, 212, 0.08)"/>
+                  <path d="M 0 35 Q 20 20 40 30 T 80 15 T 100 10" fill="none" stroke="#4e47d4" stroke-width="1.5" stroke-linecap="round"/>
                 </svg>
               </div>
+              <div class="flex justify-between text-[9px] text-slate-500 font-mono mt-4">
+                <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+              </div>
+            </div>
 
-              <!-- Document rows -->
-              <div class="space-y-1.5">
-                <div class="flex justify-between items-center text-[8px] text-slate-400 border-b border-white/5 pb-1">
-                  <span>Customer</span><span>Doc No.</span><span>Status</span><span>Amount</span>
-                </div>
-                <div class="flex justify-between items-center text-[7px] text-slate-500">
-                  <span class="font-bold text-slate-300">Acme Inc</span><span>INV-2026-08</span><span class="text-emerald-400 bg-emerald-500/10 px-1 rounded">Paid</span><span>$4,500</span>
-                </div>
-                <div class="flex justify-between items-center text-[7px] text-slate-500">
-                  <span class="font-bold text-slate-300">Beta Co</span><span>QTN-2026-44</span><span class="text-amber-400 bg-amber-500/10 px-1 rounded">Pending</span><span>$1,250</span>
-                </div>
+            <div class="glass-card p-6 rounded-2xl flex flex-col justify-between h-80">
+              <span class="text-xs text-slate-400 font-bold block mb-6 uppercase tracking-wider">Inventory Alerts</span>
+              <div class="space-y-4 overflow-y-auto flex-grow" id="dashboard-stock-alerts">
+                <p class="text-slate-500 text-xs italic text-center py-4">No low stock alerts</p>
               </div>
             </div>
           </div>
-        </div>
+        </section>
 
-        <!-- Floating Document Element (Invoice Left Overlay) -->
-        <div class="absolute bottom-[40px] left-[10px] z-20 w-[170px] bg-slate-950 border border-white/10 p-3.5 rounded-xl animate-float-slow shadow-2xl">
-          <div class="flex justify-between items-center mb-2">
-            <span class="text-[8px] font-bold text-indigo-400 uppercase tracking-widest">Invoicing</span>
-            <span class="text-[7px] text-slate-500">INV-812</span>
-          </div>
-          <div class="h-1.5 w-16 bg-slate-800 rounded mb-3"></div>
-          <div class="flex justify-between items-center pt-2 border-t border-white/5">
-            <span class="text-[8px] text-slate-400">$18,850.00</span>
-            <span class="text-[7px] font-bold bg-emerald-500/20 text-emerald-400 px-1 rounded">Approved</span>
-          </div>
-        </div>
-
-        <!-- Floating Analytics Card (Top Right Overlay) -->
-        <div class="absolute top-[40px] right-[10px] z-20 w-[150px] bg-[#1a233a] border border-indigo-500/20 p-3.5 rounded-xl animate-float-medium shadow-2xl">
-          <div class="flex items-center gap-2 mb-2">
-            <div class="w-4 h-4 bg-emerald-500/20 text-emerald-400 flex items-center justify-center rounded text-[10px]"><i class="fa-solid fa-arrow-up"></i></div>
-            <span class="text-[9px] font-bold text-white">Daily Growth</span>
-          </div>
-          <span class="text-sm font-extrabold text-white block">+24.5%</span>
-          <span class="text-[7px] text-slate-500 font-inter">Compared to last week</span>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Product Overview Section -->
-  <section class="py-24 px-6 border-t border-white/5 bg-slate-950/40 relative overflow-hidden" id="overview">
-    <div class="max-w-7xl mx-auto z-10 relative">
-      <div class="max-w-3xl mx-auto text-center space-y-4 mb-20 scroll-reveal">
-        <span class="text-xs font-bold uppercase tracking-widest text-indigo-400">Workspace Dashboard</span>
-        <h2 class="text-4xl font-bold tracking-tight text-white sm:text-5xl">Everything you need to grow</h2>
-        <p class="text-slate-400 text-lg font-light font-inter">
-          A seamless suite of applications powered by a single high-performance data engine.
-        </p>
-      </div>
-
-      <!-- Overview Cards Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        
-        <!-- Card 1 -->
-        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
-          <div>
-            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
-              <i class="fa-solid fa-file-invoice text-xl"></i>
+        <!-- Tab 2: Documents View -->
+        <section id="tab-documents" class="hidden space-y-6 animate__animated animate__fadeIn">
+          <div class="flex justify-between items-center">
+            <div class="flex gap-2">
+              <input type="text" id="doc-search" placeholder="Search Invoices..." onkeyup="filterDocumentsTable()" class="px-4 py-2 bg-slate-900 border border-white/5 rounded-xl text-xs outline-none focus:border-indigo-500 text-white font-inter">
+              <select id="doc-type-filter" onchange="filterDocumentsTable()" class="px-4 py-2 bg-slate-900 border border-white/5 rounded-xl text-xs outline-none focus:border-indigo-500 text-white">
+                <option value="ALL">All Types</option>
+                <option value="Invoice">Invoice</option>
+                <option value="Quotation">Quotation</option>
+                <option value="PurchaseOrder">Purchase Order</option>
+                <option value="DeliveryNote">Delivery Note</option>
+              </select>
             </div>
-            <h3 class="text-lg font-bold text-white mb-2">42 Business Documents</h3>
-            <p class="text-sm text-slate-400 leading-relaxed font-inter">Generate invoices, quotations, POs, and delivery notes under a single schema builder.</p>
-          </div>
-        </div>
-
-        <!-- Card 2 -->
-        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
-          <div>
-            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
-              <i class="fa-solid fa-cubes text-xl"></i>
-            </div>
-            <h3 class="text-lg font-bold text-white mb-2">Inventory Management</h3>
-            <p class="text-sm text-slate-400 leading-relaxed font-inter">Track item quantities, variants, warehouse slots, and batch logs in real time.</p>
-          </div>
-        </div>
-
-        <!-- Card 3 -->
-        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
-          <div>
-            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
-              <i class="fa-solid fa-address-book text-xl"></i>
-            </div>
-            <h3 class="text-lg font-bold text-white mb-2">Customer Directories</h3>
-            <p class="text-sm text-slate-400 leading-relaxed font-inter">Store profile balances, physical addresses, GST details, and invoice transaction ledgers.</p>
-          </div>
-        </div>
-
-        <!-- Card 4 -->
-        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
-          <div>
-            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
-              <i class="fa-solid fa-truck-moving text-xl"></i>
-            </div>
-            <h3 class="text-lg font-bold text-white mb-2">Supplier Registry</h3>
-            <p class="text-sm text-slate-400 leading-relaxed font-inter">Track purchase orders, track warehouse dispatches, and check outstanding debt states.</p>
-          </div>
-        </div>
-
-        <!-- Card 5 -->
-        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
-          <div>
-            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
-              <i class="fa-solid fa-chart-pie text-xl"></i>
-            </div>
-            <h3 class="text-lg font-bold text-white mb-2">Automated Reports</h3>
-            <p class="text-sm text-slate-400 leading-relaxed font-inter">Export consolidated spreadsheets of sales volumes, GST filings, and profits daily.</p>
-          </div>
-        </div>
-
-        <!-- Card 6 -->
-        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
-          <div>
-            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
-              <i class="fa-solid fa-chart-line text-xl"></i>
-            </div>
-            <h3 class="text-lg font-bold text-white mb-2">Analytics & Dashboards</h3>
-            <p class="text-sm text-slate-400 leading-relaxed font-inter">Inspect revenue curves, top products, top customers, and outstanding balances visually.</p>
-          </div>
-        </div>
-
-        <!-- Card 7 -->
-        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
-          <div>
-            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
-              <i class="fa-solid fa-percent text-xl"></i>
-            </div>
-            <h3 class="text-lg font-bold text-white mb-2">GST Compliant Engine</h3>
-            <p class="text-sm text-slate-400 leading-relaxed font-inter">Auto calculation models split CGST, SGST, IGST tax bounds immediately.</p>
-          </div>
-        </div>
-
-        <!-- Card 8 -->
-        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
-          <div>
-            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
-              <i class="fa-solid fa-rotate text-xl"></i>
-            </div>
-            <h3 class="text-lg font-bold text-white mb-2">Realtime Sync Channels</h3>
-            <p class="text-sm text-slate-400 leading-relaxed font-inter">Websocket channels trigger item changes and status approvals instantly across clients.</p>
-          </div>
-        </div>
-
-        <!-- Card 9 -->
-        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
-          <div>
-            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
-              <i class="fa-solid fa-cloud-arrow-up text-xl"></i>
-            </div>
-            <h3 class="text-lg font-bold text-white mb-2">Cloud-Native Backups</h3>
-            <p class="text-sm text-slate-400 leading-relaxed font-inter">Stateless microservice sync handles data replication automatically to cloud networks.</p>
-          </div>
-        </div>
-
-        <!-- Card 10 -->
-        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
-          <div>
-            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
-              <i class="fa-solid fa-circle-nodes text-xl"></i>
-            </div>
-            <h3 class="text-lg font-bold text-white mb-2">Shared Document Core</h3>
-            <p class="text-sm text-slate-400 leading-relaxed font-inter">Perform immediate document conversions, credit updates, and approvals securely.</p>
-          </div>
-        </div>
-
-        <!-- Card 11 -->
-        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
-          <div>
-            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
-              <i class="fa-solid fa-print text-xl"></i>
-            </div>
-            <h3 class="text-lg font-bold text-white mb-2">Professional Printing</h3>
-            <p class="text-sm text-slate-400 leading-relaxed font-inter">Pre-optimized layouts fit A4 sheets, letterheads, and 80mm thermal receipts.</p>
-          </div>
-        </div>
-
-        <!-- Card 12 -->
-        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
-          <div>
-            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
-              <i class="fa-solid fa-file-pdf text-xl"></i>
-            </div>
-            <h3 class="text-lg font-bold text-white mb-2">Export Vector PDFs</h3>
-            <p class="text-sm text-slate-400 leading-relaxed font-inter">Generate high-fidelity vector PDF files suitable for direct client sharing.</p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Complete Features Showcase Section (Alternating Layouts) -->
-  <section class="py-24 px-6 border-t border-white/5 relative" id="features">
-    <div class="max-w-7xl mx-auto space-y-32">
-      
-      <!-- Feature 1: Business Documents -->
-      <div class="grid lg:grid-cols-12 gap-16 items-center" id="documents">
-        <div class="lg:col-span-6 space-y-6 scroll-reveal">
-          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-xs font-bold uppercase">
-            <i class="fa-solid fa-file-lines"></i> Business Documents
-          </div>
-          <h2 class="text-4xl font-bold tracking-tight text-white">Every document model, pre-built and pre-connected</h2>
-          <p class="text-slate-400 leading-relaxed font-light font-inter">
-            Forget about handling separate invoicing, receipt logs, and estimate templates. Getzio Billing combines your operations into one unified document router that lets you convert quotations to invoices, delivery slips to cash logs, and purchase files to bills instantly.
-          </p>
-          <div class="space-y-3 font-inter">
-            <div class="flex items-start gap-2.5"><i class="fa-solid fa-circle-check text-emerald-400 mt-1"></i> <span class="text-slate-300"><strong>Use Case:</strong> Draft a quotation for client reviews, sign off via workflow, and click 'convert' to generate the official tax invoice.</span></div>
-            <div class="flex items-start gap-2.5"><i class="fa-solid fa-circle-check text-emerald-400 mt-1"></i> <span class="text-slate-300"><strong>Benefits:</strong> Zero duplicated data entries, zero math conversion errors, and full timeline auditing logs.</span></div>
-          </div>
-        </div>
-
-        <!-- Document Types Interactive Card Grid -->
-        <div class="lg:col-span-6 grid grid-cols-2 sm:grid-cols-3 gap-4 scroll-reveal font-inter text-xs select-none">
-          <div class="p-4 bg-slate-900/60 border border-white/5 rounded-2xl flex flex-col gap-2 hover:border-indigo-500/30 transition-colors">
-            <i class="fa-solid fa-file-invoice text-indigo-400 text-lg"></i>
-            <span class="font-bold text-white">Invoice</span>
-          </div>
-          <div class="p-4 bg-slate-900/60 border border-white/5 rounded-2xl flex flex-col gap-2 hover:border-indigo-500/30 transition-colors">
-            <i class="fa-solid fa-file-signature text-indigo-400 text-lg"></i>
-            <span class="font-bold text-white">Quotation</span>
-          </div>
-          <div class="p-4 bg-slate-900/60 border border-white/5 rounded-2xl flex flex-col gap-2 hover:border-indigo-500/30 transition-colors">
-            <i class="fa-solid fa-cart-shopping text-indigo-400 text-lg"></i>
-            <span class="font-bold text-white">Purchase Order</span>
-          </div>
-          <div class="p-4 bg-slate-900/60 border border-white/5 rounded-2xl flex flex-col gap-2 hover:border-indigo-500/30 transition-colors">
-            <i class="fa-solid fa-truck-ramp-box text-indigo-400 text-lg"></i>
-            <span class="font-bold text-white">Delivery Note</span>
-          </div>
-          <div class="p-4 bg-slate-900/60 border border-white/5 rounded-2xl flex flex-col gap-2 hover:border-indigo-500/30 transition-colors">
-            <i class="fa-solid fa-receipt text-indigo-400 text-lg"></i>
-            <span class="font-bold text-white">Receipt</span>
-          </div>
-          <div class="p-4 bg-slate-900/60 border border-white/5 rounded-2xl flex flex-col gap-2 hover:border-indigo-500/30 transition-colors">
-            <i class="fa-solid fa-file-circle-minus text-indigo-400 text-lg"></i>
-            <span class="font-bold text-white">Credit Note</span>
-          </div>
-          <div class="p-4 bg-slate-900/60 border border-white/5 rounded-2xl flex flex-col gap-2 hover:border-indigo-500/30 transition-colors">
-            <i class="fa-solid fa-file-circle-plus text-indigo-400 text-lg"></i>
-            <span class="font-bold text-white">Debit Note</span>
-          </div>
-          <div class="p-4 bg-slate-900/60 border border-white/5 rounded-2xl flex flex-col gap-2 hover:border-indigo-500/30 transition-colors">
-            <i class="fa-solid fa-calculator text-indigo-400 text-lg"></i>
-            <span class="font-bold text-white">Estimate</span>
-          </div>
-          <div class="p-4 bg-slate-900/60 border border-white/5 rounded-2xl flex flex-col gap-2 hover:border-indigo-500/30 transition-colors">
-            <i class="fa-solid fa-wallet text-indigo-400 text-lg"></i>
-            <span class="font-bold text-white">Expense</span>
-          </div>
-          <div class="p-4 bg-indigo-950/20 border border-indigo-500/20 rounded-2xl flex flex-col gap-2">
-            <i class="fa-solid fa-circle-nodes text-indigo-300 text-lg"></i>
-            <span class="font-bold text-white">+27 More Types</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Feature 2: Billing & GST -->
-      <div class="grid lg:grid-cols-12 gap-16 items-center" id="billing">
-        <!-- Visual Illustration Column -->
-        <div class="lg:col-span-6 order-last lg:order-first relative flex items-center justify-center h-[340px] scroll-reveal">
-          <div class="w-full max-w-[420px] bg-slate-900/80 border border-white/10 rounded-2xl p-6 space-y-4 shadow-2xl relative">
-            <span class="text-[9px] uppercase tracking-widest text-slate-500 font-bold block">Tax Computation Block</span>
-            <div class="space-y-2">
-              <div class="flex justify-between text-xs"><span class="text-slate-400">Total Net Amount</span><span class="text-white font-semibold">$10,000.00</span></div>
-              <div class="flex justify-between text-xs text-indigo-300"><span class="text-indigo-400">CGST (9%)</span><span>$900.00</span></div>
-              <div class="flex justify-between text-xs text-indigo-300"><span class="text-indigo-400">SGST (9%)</span><span>$900.00</span></div>
-              <div class="h-[1px] w-full bg-white/5 my-2"></div>
-              <div class="flex justify-between text-sm font-bold text-white"><span>Total (GST Incl)</span><span>$11,800.00</span></div>
-            </div>
-            
-            <!-- Floating Payment Methods -->
-            <div class="flex gap-2 pt-2 text-[9px] font-bold text-center">
-              <span class="flex-1 py-1.5 rounded-lg bg-slate-950 border border-white/10 text-slate-400"><i class="fa-solid fa-qrcode mr-1 text-indigo-400"></i> UPI QR</span>
-              <span class="flex-1 py-1.5 rounded-lg bg-slate-950 border border-white/10 text-slate-400"><i class="fa-solid fa-money-bill-1 mr-1 text-indigo-400"></i> Cash</span>
-              <span class="flex-1 py-1.5 rounded-lg bg-indigo-600 text-white"><i class="fa-solid fa-credit-card mr-1"></i> Card</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="lg:col-span-6 space-y-6 scroll-reveal">
-          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-xs font-bold uppercase">
-            <i class="fa-solid fa-calculator"></i> Billing & GST calculations
-          </div>
-          <h2 class="text-4xl font-bold tracking-tight text-white">Automated tax tiers and instant QR payment links</h2>
-          <p class="text-slate-400 leading-relaxed font-light font-inter">
-            Stop worrying about manual tax filing rates and billing computations. The Getzio Billing engine handles automated CGST, SGST, and IGST breakdowns, lets you configure percentage discounts per item, and generates dynamic UPI payment QR codes directly onto invoices.
-          </p>
-          <div class="space-y-3 font-inter">
-            <div class="flex items-start gap-2.5"><i class="fa-solid fa-circle-check text-emerald-400 mt-1"></i> <span class="text-slate-300"><strong>Use Case:</strong> Log customer payments, trace invoice histories, and check outstanding sheets with a simple click.</span></div>
-            <div class="flex items-start gap-2.5"><i class="fa-solid fa-circle-check text-emerald-400 mt-1"></i> <span class="text-slate-300"><strong>Payment Modes:</strong> Supports UPI, Cash, Bank Transfer, Card, and Credit tokens.</span></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Feature 3: Inventory Workspace -->
-      <div class="grid lg:grid-cols-12 gap-16 items-center" id="inventory">
-        <div class="lg:col-span-6 space-y-6 scroll-reveal">
-          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-xs font-bold uppercase">
-            <i class="fa-solid fa-boxes-stacked"></i> Inventory Workspace
-          </div>
-          <h2 class="text-4xl font-bold tracking-tight text-white">Full stock tracking with low-quantity indicators</h2>
-          <p class="text-slate-400 leading-relaxed font-light font-inter">
-            Keep shelves stocked and monitor storage movements automatically. Add custom barcode tags, map storage locations, set low stock indicators, and configure multiple product options (sizes, pricing, batch codes, and expiration ranges).
-          </p>
-          <div class="space-y-3 font-inter">
-            <div class="flex items-start gap-2.5"><i class="fa-solid fa-circle-check text-emerald-400 mt-1"></i> <span class="text-slate-300"><strong>Use Case:</strong> When an invoice is finalized, the stock manager decreases inventories immediately and fires low-quantity alarms if bounds are reached.</span></div>
-            <div class="flex items-start gap-2.5"><i class="fa-solid fa-circle-check text-emerald-400 mt-1"></i> <span class="text-slate-300"><strong>Features:</strong> Batch tracking, expiry warning schedules, variant matrix templates.</span></div>
-          </div>
-        </div>
-
-        <!-- Inventory CSS Illustration -->
-        <div class="lg:col-span-6 relative flex items-center justify-center h-[340px] scroll-reveal">
-          <div class="w-full max-w-[420px] bg-slate-900/80 border border-white/10 rounded-2xl p-6 space-y-4 shadow-2xl">
-            <div class="flex justify-between items-center border-b border-white/5 pb-3">
-              <span class="text-[9px] uppercase tracking-widest text-slate-500 font-bold block">Stocks Log</span>
-              <span class="text-[9px] bg-red-500/20 text-red-400 border border-red-500/30 px-2 py-0.5 rounded font-bold">Low Stock Warning</span>
-            </div>
-            
-            <div class="space-y-3 font-inter text-xs">
-              <div class="flex justify-between items-center">
-                <div class="flex items-center gap-2">
-                  <div class="w-2 h-2 rounded-full bg-red-400"></div>
-                  <span class="font-bold text-white">Premium Leather Bag</span>
-                </div>
-                <span class="text-slate-400 font-mono">Qty: 2 Left (Min: 5)</span>
-              </div>
-              <div class="h-[1px] w-full bg-white/5"></div>
-              <div class="flex justify-between items-center">
-                <div class="flex items-center gap-2">
-                  <div class="w-2 h-2 rounded-full bg-green-400"></div>
-                  <span class="font-bold text-white">Wireless Bluetooth Mouse</span>
-                </div>
-                <span class="text-slate-400 font-mono">Qty: 142 (Min: 10)</span>
-              </div>
-              <div class="h-[1px] w-full bg-white/5"></div>
-              <div class="flex justify-between items-center">
-                <div class="flex items-center gap-2">
-                  <div class="w-2 h-2 rounded-full bg-green-400"></div>
-                  <span class="font-bold text-white">USB-C Fast Charger</span>
-                </div>
-                <span class="text-slate-400 font-mono">Qty: 88 (Min: 15)</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Feature 4: Customer Management -->
-      <div class="grid lg:grid-cols-12 gap-16 items-center" id="customers">
-        <div class="lg:col-span-6 order-last lg:order-first relative flex items-center justify-center h-[340px] scroll-reveal">
-          <div class="w-full max-w-[420px] bg-slate-900/80 border border-white/10 rounded-2xl p-6 space-y-4 shadow-2xl">
-            <div class="flex justify-between items-center mb-3">
-              <span class="text-xs font-bold text-white">Client Summary</span>
-              <span class="text-[9px] text-slate-500">ID: #98122</span>
-            </div>
-            
-            <div class="space-y-3 font-inter text-xs">
-              <div class="flex justify-between"><span class="text-slate-400">Name</span><span class="text-white font-semibold">Syed Shan</span></div>
-              <div class="flex justify-between"><span class="text-slate-400">GSTIN</span><span class="text-slate-300 font-mono">32AAAAA1111A1Z1</span></div>
-              <div class="flex justify-between"><span class="text-slate-400">Outstanding Balance</span><span class="text-red-400 font-bold">$12,850.00</span></div>
-              <div class="flex justify-between"><span class="text-slate-400">Credit Limit</span><span class="text-slate-300">$50,000.00</span></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="lg:col-span-6 space-y-6 scroll-reveal">
-          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-xs font-bold uppercase">
-            <i class="fa-solid fa-address-card"></i> Customer Directories
-          </div>
-          <h2 class="text-4xl font-bold tracking-tight text-white">Detailed contact logs and complete client history</h2>
-          <p class="text-slate-400 leading-relaxed font-light font-inter">
-            Maintain deep relationships with clean customer profile cards. Store shipping addresses, check tax registration codes, monitor total outstanding lists, set custom credit limits, and inspect transaction timelines instantly.
-          </p>
-          <div class="space-y-3 font-inter">
-            <div class="flex items-start gap-2.5"><i class="fa-solid fa-circle-check text-emerald-400 mt-1"></i> <span class="text-slate-300"><strong>Use Case:</strong> Instantly check customer payment trends and overdue balance sheets to manage follow-up emails.</span></div>
-            <div class="flex items-start gap-2.5"><i class="fa-solid fa-circle-check text-emerald-400 mt-1"></i> <span class="text-slate-300"><strong>Features:</strong> Profile search, ledger statement builder, outstanding alarms.</span></div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Reports & Live Analytics Section -->
-  <section class="py-24 px-6 border-t border-white/5 relative bg-slate-950/20" id="reports">
-    <div class="max-w-7xl mx-auto z-10 relative">
-      <div class="max-w-3xl mx-auto text-center space-y-4 mb-20 scroll-reveal">
-        <span class="text-xs font-bold uppercase tracking-widest text-indigo-400">Business Intelligence</span>
-        <h2 class="text-4xl font-bold tracking-tight text-white sm:text-5xl">Live metrics & visual spreadsheets</h2>
-        <p class="text-slate-400 text-lg font-light font-inter">
-          Getzio Billing tracks daily metrics, lets you check profit parameters, and generates export spreadsheets for GST filings.
-        </p>
-      </div>
-
-      <!-- Interactive SVG Chart Dashboard Mockup -->
-      <div class="bg-slate-900/60 border border-white/5 p-8 rounded-3xl space-y-8 scroll-reveal relative">
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-          <div>
-            <h3 class="text-lg font-bold text-white mb-1">Company Performance</h3>
-            <p class="text-xs text-slate-500 font-inter">Synchronized with local node backend endpoints</p>
-          </div>
-          <div class="flex gap-2 text-xs font-inter font-bold">
-            <span class="px-3.5 py-1.5 bg-indigo-600 text-white rounded-lg">Sales Revenue</span>
-            <span class="px-3.5 py-1.5 bg-slate-950 text-slate-400 border border-white/5 rounded-lg">Expense Statements</span>
-          </div>
-        </div>
-
-        <!-- SVG Interactive Graphs Grid -->
-        <div class="grid lg:grid-cols-3 gap-8">
-          
-          <!-- Line Graph -->
-          <div class="lg:col-span-2 bg-slate-950/40 border border-white/5 p-5 rounded-2xl h-64 flex flex-col justify-between">
-            <div class="flex justify-between text-xs text-slate-500 mb-4">
-              <span>Monthly Volume ($)</span>
-              <span class="font-bold text-white" id="live-sales-total">$142,500.00</span>
-            </div>
-            <!-- Live chart render path -->
-            <div class="relative flex-1 flex items-end">
-              <svg class="w-full h-full" viewBox="0 0 100 40" id="live-sales-svg">
-                <path d="M 0 35 Q 12 18 24 28 T 48 12 T 72 6 T 100 9 L 100 40 L 0 40 Z" fill="rgba(78, 71, 212, 0.1)"/>
-                <path d="M 0 35 Q 12 18 24 28 T 48 12 T 72 6 T 100 9" fill="none" stroke="#4e47d4" stroke-width="1.5" stroke-linecap="round"/>
-              </svg>
-            </div>
-            <div class="flex justify-between text-[9px] text-slate-500 font-mono mt-4">
-              <span>Jan</span><span>Mar</span><span>May</span><span>Jul</span><span>Sep</span><span>Nov</span>
-            </div>
-          </div>
-
-          <!-- Pie / Bar Graph Indicators -->
-          <div class="bg-slate-950/40 border border-white/5 p-5 rounded-2xl h-64 flex flex-col justify-between">
-            <span class="text-xs text-slate-500 font-bold block mb-4">Top Fast Moving Products</span>
-            <div class="space-y-4 flex-1 flex flex-col justify-center">
-              <div class="space-y-1">
-                <div class="flex justify-between text-[10px]"><span class="text-slate-300">Software Licences</span><span class="text-indigo-400 font-bold">54%</span></div>
-                <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden"><div class="bg-indigo-500 h-full w-[54%]"></div></div>
-              </div>
-              <div class="space-y-1">
-                <div class="flex justify-between text-[10px]"><span class="text-slate-300">Consulting Services</span><span class="text-indigo-400 font-bold">28%</span></div>
-                <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden"><div class="bg-indigo-500 h-full w-[28%]"></div></div>
-              </div>
-              <div class="space-y-1">
-                <div class="flex justify-between text-[10px]"><span class="text-slate-300">Design Audits</span><span class="text-indigo-400 font-bold">18%</span></div>
-                <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden"><div class="bg-indigo-500 h-full w-[18%]"></div></div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Platform Core Strengths (Business Insights) -->
-  <section class="py-24 px-6 border-t border-white/5 relative">
-    <div class="max-w-7xl mx-auto z-10 relative">
-      <div class="max-w-3xl mx-auto text-center space-y-4 mb-20 scroll-reveal">
-        <span class="text-xs font-bold uppercase tracking-widest text-indigo-400">Core Strengths</span>
-        <h2 class="text-4xl font-bold tracking-tight text-white sm:text-5xl">Built on Getzio Platform Infrastructure</h2>
-        <p class="text-slate-400 text-lg font-light font-inter">
-          Getzio Billing leverages existing shared components to deliver speed, reliability, and synchronization.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        
-        <div class="p-8 rounded-3xl bg-slate-900/60 border border-white/5 space-y-4 scroll-reveal">
-          <div class="w-10 h-10 bg-indigo-500/10 text-indigo-300 rounded-xl flex items-center justify-center"><i class="fa-solid fa-server"></i></div>
-          <h4 class="text-lg font-bold text-white">One Backend</h4>
-          <p class="text-sm text-slate-400 leading-relaxed font-inter">Uses the exact same production API server that powers the Getzio mobile applications, ensuring zero metadata discrepancies.</p>
-        </div>
-
-        <div class="p-8 rounded-3xl bg-slate-900/60 border border-white/5 space-y-4 scroll-reveal">
-          <div class="w-10 h-10 bg-indigo-500/10 text-indigo-300 rounded-xl flex items-center justify-center"><i class="fa-solid fa-network-wired"></i></div>
-          <h4 class="text-lg font-bold text-white">Shared API Contracts</h4>
-          <p class="text-sm text-slate-400 leading-relaxed font-inter">All routes are mapped cleanly under existing controllers. Products, tax records, and audit paths update the same tables immediately.</p>
-        </div>
-
-        <div class="p-8 rounded-3xl bg-indigo-950/15 border border-indigo-500/20 space-y-4 scroll-reveal">
-          <div class="w-10 h-10 bg-indigo-500/25 text-indigo-200 rounded-xl flex items-center justify-center animate-pulse"><i class="fa-solid fa-rotate"></i></div>
-          <h4 class="text-lg font-bold text-white">Realtime Sync Channels</h4>
-          <p class="text-sm text-slate-300 leading-relaxed font-inter">Socket.IO handles real-time ledger updates. Invoices printed locally automatically populate customer statements on other devices.</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Architecture Visual Section -->
-  <section class="py-24 px-6 border-t border-white/5 relative bg-slate-950/20" id="architecture">
-    <div class="max-w-5xl mx-auto z-10 relative">
-      <div class="text-center space-y-4 mb-20 scroll-reveal">
-        <span class="text-xs font-bold uppercase tracking-widest text-indigo-400">System Blueprint</span>
-        <h2 class="text-4xl font-bold tracking-tight text-white">Unified System Architecture</h2>
-        <p class="text-slate-400 font-light font-inter">
-          A stateless microservices blueprint integrating mobile, web, and cloud databases.
-        </p>
-      </div>
-
-      <!-- Architecture flow items -->
-      <div class="grid grid-cols-1 md:grid-cols-7 gap-4 items-center text-center text-xs font-mono select-none">
-        
-        <!-- Block 1 -->
-        <div class="p-5 rounded-2xl glass-card space-y-2 scroll-reveal">
-          <span class="text-[9px] text-slate-500 font-bold uppercase">Client App</span>
-          <div class="font-sans text-white font-bold">Flutter Mobile</div>
-        </div>
-
-        <div class="hidden md:block text-indigo-500 scroll-reveal"><i class="fa-solid fa-arrows-left-right text-lg"></i></div>
-
-        <!-- Block 2 -->
-        <div class="p-5 rounded-2xl bg-indigo-950/20 border border-indigo-500/20 space-y-2 scroll-reveal">
-          <span class="text-[9px] text-indigo-300 font-bold uppercase">API Endpoint</span>
-          <div class="font-sans text-white font-bold">Shared API Router</div>
-        </div>
-
-        <div class="hidden md:block text-indigo-500 scroll-reveal"><i class="fa-solid fa-arrows-left-right text-lg"></i></div>
-
-        <!-- Block 3 -->
-        <div class="p-5 rounded-2xl glass-card space-y-2 scroll-reveal">
-          <span class="text-[9px] text-slate-500 font-bold uppercase">Backend Core</span>
-          <div class="font-sans text-white font-bold">Node.js / Express</div>
-        </div>
-
-        <div class="hidden md:block text-indigo-500 scroll-reveal"><i class="fa-solid fa-arrows-left-right text-lg"></i></div>
-
-        <!-- Block 4 -->
-        <div class="p-5 rounded-2xl bg-slate-900/60 border border-white/5 space-y-2 scroll-reveal">
-          <span class="text-[9px] text-slate-500 font-bold uppercase">Data Cloud</span>
-          <div class="font-sans text-white font-bold">MongoDB Cluster</div>
-        </div>
-
-      </div>
-
-      <div class="mt-8 text-center text-sm font-semibold text-slate-500 select-none scroll-reveal">
-        <span class="inline-flex items-center gap-2 px-4 py-2 bg-slate-900/60 border border-white/5 rounded-full">
-          <i class="fa-solid fa-circle-nodes text-indigo-400"></i>
-          Uses the same backend powering the mobile application.
-        </span>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQs Dropdown Accordion Section -->
-  <section class="py-24 px-6 border-t border-white/5 relative" id="faq">
-    <div class="max-w-3xl mx-auto z-10 relative">
-      <div class="text-center space-y-4 mb-16 scroll-reveal">
-        <span class="text-xs font-bold uppercase tracking-widest text-indigo-400">FAQ</span>
-        <h2 class="text-4xl font-bold tracking-tight text-white">Frequently Asked Questions</h2>
-        <p class="text-slate-400 font-light font-inter font-inter">Find answers to questions about our Billing rollout.</p>
-      </div>
-
-      <div class="space-y-4 font-inter">
-        
-        <!-- Accordion 1 -->
-        <div class="rounded-2xl border border-white/5 bg-slate-900/40 overflow-hidden scroll-reveal">
-          <button class="w-full px-6 py-5 text-left flex justify-between items-center text-white hover:bg-slate-900/60 transition-colors font-semibold" onclick="toggleFaq(this)">
-            <span>When is Getzio Billing launching?</span>
-            <i class="fa-solid fa-chevron-down text-slate-500 transition-transform"></i>
-          </button>
-          <div class="faq-panel">
-            <p class="px-6 pb-5 text-sm text-slate-400 leading-relaxed pt-2">
-              We are currently in a closed beta rollout. The public deployment of the platform modules is scheduled to go live by the end of Q3 2026.
-            </p>
-          </div>
-        </div>
-
-        <!-- Accordion 2 -->
-        <div class="rounded-2xl border border-white/5 bg-slate-900/40 overflow-hidden scroll-reveal">
-          <button class="w-full px-6 py-5 text-left flex justify-between items-center text-white hover:bg-slate-900/60 transition-colors font-semibold" onclick="toggleFaq(this)">
-            <span>Will existing Getzio users get access?</span>
-            <i class="fa-solid fa-chevron-down text-slate-500 transition-transform"></i>
-          </button>
-          <div class="faq-panel">
-            <p class="px-6 pb-5 text-sm text-slate-400 leading-relaxed pt-2">
-              Yes! All existing authenticated user accounts registered under Getzio platforms (Todo app, Insights, etc.) will have immediate access to Billing workspaces.
-            </p>
-          </div>
-        </div>
-
-        <!-- Accordion 3 -->
-        <div class="rounded-2xl border border-white/5 bg-slate-900/40 overflow-hidden scroll-reveal">
-          <button class="w-full px-6 py-5 text-left flex justify-between items-center text-white hover:bg-slate-900/60 transition-colors font-semibold" onclick="toggleFaq(this)">
-            <span>Will my business data sync in real time?</span>
-            <i class="fa-solid fa-chevron-down text-slate-500 transition-transform"></i>
-          </button>
-          <div class="faq-panel">
-            <p class="px-6 pb-5 text-sm text-slate-400 leading-relaxed pt-2">
-              Absolutely. The billing client connects to our main API clusters, syncing all customer files, product directories, and invoices immediately as actions occur.
-            </p>
-          </div>
-        </div>
-
-        <!-- Accordion 4 -->
-        <div class="rounded-2xl border border-white/5 bg-slate-900/40 overflow-hidden scroll-reveal">
-          <button class="w-full px-6 py-5 text-left flex justify-between items-center text-white hover:bg-slate-900/60 transition-colors font-semibold" onclick="toggleFaq(this)">
-            <span>Can I manage multiple businesses under one profile?</span>
-            <i class="fa-solid fa-chevron-down text-slate-500 transition-transform"></i>
-          </button>
-          <div class="faq-panel">
-            <p class="px-6 pb-5 text-sm text-slate-400 leading-relaxed pt-2">
-              Yes, the backend supports multi-tenant company mapping. You can configure and toggle between different business branches, each with unique logo catalogs, signatures, and billing histories.
-            </p>
-          </div>
-        </div>
-
-        <!-- Accordion 5 -->
-        <div class="rounded-2xl border border-white/5 bg-slate-900/40 overflow-hidden scroll-reveal">
-          <button class="w-full px-6 py-5 text-left flex justify-between items-center text-white hover:bg-slate-900/60 transition-colors font-semibold" onclick="toggleFaq(this)">
-            <span>Does it support GST calculations?</span>
-            <i class="fa-solid fa-chevron-down text-slate-500 transition-transform"></i>
-          </button>
-          <div class="faq-panel">
-            <p class="px-6 pb-5 text-sm text-slate-400 leading-relaxed pt-2">
-              Yes, the calculations engine automatically manages standard GST tax rates (CGST, SGST, IGST) and maps invoice line items to their respective HSN/SAC codes.
-            </p>
-          </div>
-        </div>
-
-        <!-- Accordion 6 -->
-        <div class="rounded-2xl border border-white/5 bg-slate-900/40 overflow-hidden scroll-reveal">
-          <button class="w-full px-6 py-5 text-left flex justify-between items-center text-white hover:bg-slate-900/60 transition-colors font-semibold" onclick="toggleFaq(this)">
-            <span>Is Getzio Billing cloud-based?</span>
-            <i class="fa-solid fa-chevron-down text-slate-500 transition-transform"></i>
-          </button>
-          <div class="faq-panel">
-            <p class="px-6 pb-5 text-sm text-slate-400 leading-relaxed pt-2">
-              Yes, it is entirely cloud-synced, allowing you to access and draft invoices from any authenticated mobile or desktop browser securely.
-            </p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Interactive Forms Section (Early Access / Enquiries) -->
-  <section class="py-24 px-6 border-t border-white/5 relative" id="contact">
-    <div class="max-w-7xl mx-auto z-10 relative">
-      <div class="grid lg:grid-cols-12 gap-16 items-start">
-        
-        <!-- Copy Column & Newsletter -->
-        <div class="lg:col-span-6 space-y-10 scroll-reveal">
-          <div class="space-y-4">
-            <h2 class="text-4xl font-bold tracking-tight text-white sm:text-5xl">Connect With Our Team</h2>
-            <p class="text-slate-400 font-light font-inter">
-              Ask questions about developer APIs, enter newsletters, or request enterprise partnerships.
-            </p>
-          </div>
-
-          <!-- Newsletter registration -->
-          <div class="glass-card p-6 rounded-2xl border border-white/5 space-y-4">
-            <h4 class="font-bold text-white text-sm">Subscribe to our Product Newsletter</h4>
-            <form id="newsletter-form" class="flex gap-2">
-              <input type="email" id="news-email" placeholder="john@company.com" required class="flex-grow px-4 py-3 bg-slate-950 border border-white/10 rounded-xl text-white outline-none focus:border-indigo-500 transition-colors font-inter text-xs">
-              <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-5 py-3 rounded-xl text-xs transition-colors shadow-lg shadow-indigo-600/10">Subscribe</button>
-            </form>
-            <span id="news-status" class="hidden text-xs font-semibold font-inter"></span>
-          </div>
-
-          <div class="flex gap-6 text-xs text-slate-500 font-semibold font-inter uppercase">
-            <div><i class="fa-solid fa-envelope text-indigo-400 mr-1.5"></i> support@getzio.in</div>
-            <div><i class="fa-solid fa-clock text-indigo-400 mr-1.5"></i> response under 2 hours</div>
-          </div>
-        </div>
-
-        <!-- Early Access / Business Enquiries Card Form -->
-        <div class="lg:col-span-6 glass-card p-8 rounded-3xl border border-white/5 scroll-reveal" id="early-access">
-          <h3 class="text-xl font-bold text-white mb-6">Request Early Access</h3>
-          
-          <form id="billing-early-access-form" class="space-y-5">
-            <div class="space-y-2">
-              <label for="reg-name" class="text-xs font-bold uppercase tracking-wider text-slate-400 ml-1">Full Name</label>
-              <input type="text" id="reg-name" placeholder="John Doe" required class="w-full px-4 py-3.5 bg-slate-950 border border-white/10 rounded-xl text-white outline-none focus:border-indigo-500 transition-colors font-inter text-sm">
-            </div>
-            
-            <div class="space-y-2">
-              <label for="reg-phone" class="text-xs font-bold uppercase tracking-wider text-slate-400 ml-1">Mobile Number</label>
-              <input type="tel" id="reg-phone" placeholder="+91 98765 43210" required class="w-full px-4 py-3.5 bg-slate-950 border border-white/10 rounded-xl text-white outline-none focus:border-indigo-500 transition-colors font-inter text-sm">
-            </div>
-
-            <div class="space-y-2">
-              <label for="reg-store" class="text-xs font-bold uppercase tracking-wider text-slate-400 ml-1">Business Name (Optional)</label>
-              <input type="text" id="reg-store" placeholder="Acme Invoicing Inc" class="w-full px-4 py-3.5 bg-slate-950 border border-white/10 rounded-xl text-white outline-none focus:border-indigo-500 transition-colors font-inter text-sm">
-            </div>
-
-            <div class="space-y-2">
-              <label for="reg-location" class="text-xs font-bold uppercase tracking-wider text-slate-400 ml-1">Business Location</label>
-              <input type="text" id="reg-location" placeholder="Kerala, India" required class="w-full px-4 py-3.5 bg-slate-950 border border-white/10 rounded-xl text-white outline-none focus:border-indigo-500 transition-colors font-inter text-sm">
-            </div>
-
-            <button type="submit" id="reg-submit-btn" class="w-full bg-white hover:bg-slate-200 text-slate-950 font-bold py-4 rounded-xl transition-all shadow-lg flex items-center justify-center gap-2">
-              Notify Me
+            <button onclick="openCreateDocModal()" class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold px-4 py-2 rounded-xl transition-all shadow-lg shadow-indigo-600/10">
+              + Create Document
             </button>
-          </form>
-
-          <div id="reg-status-message" class="hidden mt-4 p-4 rounded-xl text-center text-sm font-semibold font-inter"></div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer Section -->
-  <footer class="py-16 px-6 border-t border-white/5 bg-slate-950 text-slate-500 text-sm font-inter">
-    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-      
-      <!-- Column 1: Info -->
-      <div class="space-y-4">
-        <div class="flex items-center gap-2">
-          <div class="w-8 h-8 bg-getzio rounded-lg flex items-center justify-center">
-            <span class="text-white font-bold text-base">G</span>
           </div>
-          <span class="text-lg font-bold text-white font-sans">Getzio Billing</span>
+
+          <!-- Documents list table -->
+          <div class="glass-card rounded-2xl overflow-hidden font-inter text-xs">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse" id="documents-table">
+                <thead>
+                  <tr class="bg-slate-950/20 text-slate-500 border-b border-white/5 font-semibold">
+                    <th class="p-4">Reference No</th>
+                    <th class="p-4">Customer</th>
+                    <th class="p-4">Document Type</th>
+                    <th class="p-4">Total Amount</th>
+                    <th class="p-4">Workflow Status</th>
+                    <th class="p-4 text-center">Actions</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-white/5 text-slate-300">
+                  <!-- JS Injection -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- Tab 3: Inventory View -->
+        <section id="tab-inventory" class="hidden space-y-6 animate__animated animate__fadeIn">
+          <div class="flex justify-between items-center">
+            <input type="text" id="inv-search" placeholder="Search Products..." onkeyup="filterInventoryTable()" class="px-4 py-2 bg-slate-900 border border-white/5 rounded-xl text-xs outline-none focus:border-indigo-500 text-white font-inter">
+            <button onclick="openAddProductModal()" class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold px-4 py-2 rounded-xl transition-all shadow-lg shadow-indigo-600/10">
+              + Add Product
+            </button>
+          </div>
+
+          <!-- Product inventory list table -->
+          <div class="glass-card rounded-2xl overflow-hidden font-inter text-xs">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse" id="inventory-table">
+                <thead>
+                  <tr class="bg-slate-950/20 text-slate-500 border-b border-white/5 font-semibold">
+                    <th class="p-4">Barcode</th>
+                    <th class="p-4">Item Description</th>
+                    <th class="p-4">Category</th>
+                    <th class="p-4">Tax Tier</th>
+                    <th class="p-4">Unit Pricing</th>
+                    <th class="p-4">Available Stock</th>
+                    <th class="p-4 text-center">Actions</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-white/5 text-slate-300">
+                  <!-- JS Injection -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- Tab 4: Customers View -->
+        <section id="tab-customers" class="hidden space-y-6 animate__animated animate__fadeIn">
+          <div class="flex justify-between items-center">
+            <input type="text" id="cust-search" placeholder="Search Customers..." onkeyup="filterCustomersTable()" class="px-4 py-2 bg-slate-900 border border-white/5 rounded-xl text-xs outline-none focus:border-indigo-500 text-white font-inter">
+            <button onclick="openAddCustomerModal()" class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold px-4 py-2 rounded-xl transition-all shadow-lg shadow-indigo-600/10">
+              + Add Customer
+            </button>
+          </div>
+
+          <!-- Customer registry list table -->
+          <div class="glass-card rounded-2xl overflow-hidden font-inter text-xs">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse" id="customers-table">
+                <thead>
+                  <tr class="bg-slate-950/20 text-slate-500 border-b border-white/5 font-semibold">
+                    <th class="p-4">Client Name</th>
+                    <th class="p-4">GST Number</th>
+                    <th class="p-4">Outstanding Bal</th>
+                    <th class="p-4">Phone Contact</th>
+                    <th class="p-4">Shipping Address</th>
+                    <th class="p-4 text-center">Actions</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-white/5 text-slate-300">
+                  <!-- JS Injection -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- Tab 5: Reports View -->
+        <section id="tab-reports" class="hidden space-y-6 animate__animated animate__fadeIn">
+          <div class="glass-card p-6 rounded-2xl space-y-6 max-w-xl">
+            <h3 class="text-sm font-bold text-white uppercase tracking-wider border-b border-white/5 pb-2">Generate Spreadsheet Reports</h3>
+            <div class="space-y-4">
+              <div class="flex justify-between items-center">
+                <div>
+                  <span class="text-xs font-semibold text-white block">Sales Summary Ledger</span>
+                  <span class="text-[10px] text-slate-500 block">CSV spreadsheet containing generated invoices</span>
+                </div>
+                <button onclick="exportReports('sales')" class="bg-slate-800 hover:bg-slate-700 text-white text-xs px-3 py-1.5 rounded-lg border border-white/10 transition-colors">
+                  Export CSV
+                </button>
+              </div>
+              <div class="h-[1px] w-full bg-white/5"></div>
+              <div class="flex justify-between items-center">
+                <div>
+                  <span class="text-xs font-semibold text-white block">Inventory Reconciliation List</span>
+                  <span class="text-[10px] text-slate-500 block">Stock counts, warehouse tags and expiry warnings</span>
+                </div>
+                <button onclick="exportReports('inventory')" class="bg-slate-800 hover:bg-slate-700 text-white text-xs px-3 py-1.5 rounded-lg border border-white/10 transition-colors">
+                  Export CSV
+                </button>
+              </div>
+              <div class="h-[1px] w-full bg-white/5"></div>
+              <div class="flex justify-between items-center">
+                <div>
+                  <span class="text-xs font-semibold text-white block">Outstanding Aging Statement</span>
+                  <span class="text-[10px] text-slate-500 block">Client balance sheets and credit bounds</span>
+                </div>
+                <button onclick="exportReports('outstanding')" class="bg-slate-800 hover:bg-slate-700 text-white text-xs px-3 py-1.5 rounded-lg border border-white/10 transition-colors">
+                  Export CSV
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- COMPANY SETUP ONBOARDING SCREEN MODAL (Shown if Company Setup is missing) -->
+  <div id="company-onboarding-modal" class="hidden fixed inset-0 z-50 bg-slate-dark/90 backdrop-blur-xl flex items-center justify-center p-6">
+    <div class="w-full max-w-xl bg-[#11192e] border border-white/10 p-8 rounded-3xl space-y-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+      <div class="text-center space-y-1">
+        <h2 class="text-xl font-bold text-white">Create Company Profile</h2>
+        <p class="text-xs text-slate-400 font-inter">Before generating documents, please register your brand profile</p>
+      </div>
+
+      <form id="company-setup-form" class="space-y-4">
+        <div class="grid grid-cols-2 gap-4 font-inter text-xs">
+          <div class="space-y-1.5">
+            <label for="setup-name" class="font-semibold text-slate-400 block">Company Name</label>
+            <input type="text" id="setup-name" placeholder="Acme Invoicing Ltd" required class="w-full px-3.5 py-2.5 bg-slate-950 border border-white/10 rounded-xl text-white outline-none focus:border-indigo-500 transition-colors">
+          </div>
+          <div class="space-y-1.5">
+            <label for="setup-gstin" class="font-semibold text-slate-400 block">GSTIN / Tax ID</label>
+            <input type="text" id="setup-gstin" placeholder="32AAAAA1111A1Z1" required class="w-full px-3.5 py-2.5 bg-slate-950 border border-white/10 rounded-xl text-white outline-none focus:border-indigo-500 transition-colors">
+          </div>
+          <div class="space-y-1.5">
+            <label for="setup-email" class="font-semibold text-slate-400 block">Contact Email</label>
+            <input type="email" id="setup-email" placeholder="billing@acme.com" required class="w-full px-3.5 py-2.5 bg-slate-950 border border-white/10 rounded-xl text-white outline-none focus:border-indigo-500 transition-colors">
+          </div>
+          <div class="space-y-1.5">
+            <label for="setup-phone" class="font-semibold text-slate-400 block">Contact Phone</label>
+            <input type="tel" id="setup-phone" placeholder="9876543210" required class="w-full px-3.5 py-2.5 bg-slate-950 border border-white/10 rounded-xl text-white outline-none focus:border-indigo-500 transition-colors">
+          </div>
+          <div class="col-span-2 space-y-1.5">
+            <label for="setup-address" class="font-semibold text-slate-400 block">Physical Address</label>
+            <input type="text" id="setup-address" placeholder="102, Hira Tower, Palakkad, Kerala, 678001" required class="w-full px-3.5 py-2.5 bg-slate-950 border border-white/10 rounded-xl text-white outline-none focus:border-indigo-500 transition-colors">
+          </div>
+          <div class="space-y-1.5">
+            <label for="setup-bank" class="font-semibold text-slate-400 block">Bank Name</label>
+            <input type="text" id="setup-bank" placeholder="HDFC Bank" class="w-full px-3.5 py-2.5 bg-slate-950 border border-white/10 rounded-xl text-white outline-none focus:border-indigo-500 transition-colors">
+          </div>
+          <div class="space-y-1.5">
+            <label for="setup-account" class="font-semibold text-slate-400 block">Bank Account Number</label>
+            <input type="text" id="setup-account" placeholder="5010029312211" class="w-full px-3.5 py-2.5 bg-slate-950 border border-white/10 rounded-xl text-white outline-none focus:border-indigo-500 transition-colors">
+          </div>
         </div>
-        <p class="text-xs text-slate-600 leading-relaxed">
-          Stateless enterprise billing modules powering business invoicing, ledger reconciliations, and customer logs under secure cloud networks.
-        </p>
-      </div>
 
-      <!-- Column 2: Navigation Links -->
-      <div class="space-y-3.5">
-        <h5 class="text-xs font-bold uppercase tracking-widest text-slate-400">Capabilities</h5>
-        <ul class="space-y-2 text-xs">
-          <li><a href="#documents" class="hover:text-white transition-colors">42 Document Types</a></li>
-          <li><a href="#billing" class="hover:text-white transition-colors">GST Tax Engines</a></li>
-          <li><a href="#inventory" class="hover:text-white transition-colors">Low-stock Warnings</a></li>
-          <li><a href="#reports" class="hover:text-white transition-colors">Daily Sales Logs</a></li>
-        </ul>
-      </div>
-
-      <!-- Column 3: Platform Links -->
-      <div class="space-y-3.5">
-        <h5 class="text-xs font-bold uppercase tracking-widest text-slate-400">Ecosystem</h5>
-        <ul class="space-y-2 text-xs">
-          <li><a href="index.html#users" class="hover:text-white transition-colors">Getzio Super App</a></li>
-          <li><a href="index.html#partners" class="hover:text-white transition-colors">Restaurant Portal</a></li>
-          <li><a href="index.html#stores" class="hover:text-white transition-colors">Digital Storefronts</a></li>
-          <li><a href="https://github.com/Syed-shan46/Getzio-billing-privacy-policy" target="_blank" class="hover:text-white transition-colors">Privacy Policy Page</a></li>
-        </ul>
-      </div>
-
-      <!-- Column 4: Operational hours -->
-      <div class="space-y-3.5">
-        <h5 class="text-xs font-bold uppercase tracking-widest text-slate-400">Main Headquarters</h5>
-        <p class="text-xs text-slate-600 leading-relaxed">
-          Hira Outsourcing Pvt Ltd<br>
-          Palakkad, Kerala, India<br>
-          Contact: getzio.offiical@gmail.com
-        </p>
-      </div>
-
+        <button type="submit" id="company-setup-btn" class="w-full bg-white hover:bg-slate-200 text-slate-950 font-bold py-3.5 rounded-xl transition-all shadow-lg flex items-center justify-center gap-2 text-sm">
+          Register Company profile
+        </button>
+      </form>
     </div>
+  </div>
 
-    <!-- Final copyright bar -->
-    <div class="max-w-7xl mx-auto border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
-      <p>&copy; 2026 Getzio Technologies. All rights reserved.</p>
-      <p class="text-slate-700">Getzio Desk is powered by Getzio Platform Infrastructure • Launching Soon</p>
+  <!-- POPUP MODALS: CREATE PRODUCT / CUSTOMER / DOCUMENT (Hidden by Default) -->
+  <!-- 1. Add Product Modal -->
+  <div id="modal-add-product" class="hidden fixed inset-0 z-50 bg-slate-dark/80 backdrop-blur-md flex items-center justify-center p-6">
+    <div class="w-full max-w-md bg-[#11192e] border border-white/10 p-6 rounded-3xl space-y-6 shadow-2xl">
+      <div class="flex justify-between items-center border-b border-white/5 pb-3">
+        <h3 class="text-sm font-bold text-white uppercase tracking-wider">Add New Product</h3>
+        <button onclick="closeModal('modal-add-product')" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <form id="form-add-product" class="space-y-4 font-inter text-xs">
+        <div class="space-y-1">
+          <label class="font-semibold text-slate-400 block">Product Name</label>
+          <input type="text" id="prod-name" placeholder="Premium Charger Block" required class="w-full px-3.5 py-2 bg-slate-950 border border-white/10 rounded-xl text-white outline-none focus:border-indigo-500">
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="space-y-1">
+            <label class="font-semibold text-slate-400 block">Available Stock Qty</label>
+            <input type="number" id="prod-qty" placeholder="100" required class="w-full px-3.5 py-2 bg-slate-950 border border-white/10 rounded-xl text-white outline-none focus:border-indigo-500 font-mono">
+          </div>
+          <div class="space-y-1">
+            <label class="font-semibold text-slate-400 block">Unit Selling Price</label>
+            <input type="number" step="0.01" id="prod-price" placeholder="49.99" required class="w-full px-3.5 py-2 bg-slate-950 border border-white/10 rounded-xl text-white outline-none focus:border-indigo-500 font-mono">
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="space-y-1">
+            <label class="font-semibold text-slate-400 block">Category</label>
+            <input type="text" id="prod-category" placeholder="Electronics" required class="w-full px-3.5 py-2 bg-slate-950 border border-white/10 rounded-xl text-white outline-none focus:border-indigo-500">
+          </div>
+          <div class="space-y-1">
+            <label class="font-semibold text-slate-400 block">GST Tax Tier (%)</label>
+            <select id="prod-gst" class="w-full px-3.5 py-2 bg-slate-950 border border-white/10 rounded-xl text-white outline-none focus:border-indigo-500 font-mono">
+              <option value="0">0%</option>
+              <option value="5">5%</option>
+              <option value="12">12%</option>
+              <option value="18" selected>18%</option>
+              <option value="28">28%</option>
+            </select>
+          </div>
+        </div>
+        <div class="space-y-1">
+          <label class="font-semibold text-slate-400 block">Custom Barcode (Optional)</label>
+          <input type="text" id="prod-barcode" placeholder="89010212345" class="w-full px-3.5 py-2 bg-slate-950 border border-white/10 rounded-xl text-white outline-none focus:border-indigo-500 font-mono">
+        </div>
+        <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-xl transition-colors shadow-lg shadow-indigo-600/10">
+          Save Product
+        </button>
+      </form>
     </div>
-  </footer>
+  </div>
 
-  <!-- Connect script file -->
-  <script src="billing.js"></script>
+  <!-- 2. Add Customer Modal -->
+  <div id="modal-add-customer" class="hidden fixed inset-0 z-50 bg-slate-dark/80 backdrop-blur-md flex items-center justify-center p-6">
+    <div class="w-full max-w-md bg-[#11192e] border border-white/10 p-6 rounded-3xl space-y-6 shadow-2xl">
+      <div class="flex justify-between items-center border-b border-white/5 pb-3">
+        <h3 class="text-sm font-bold text-white uppercase tracking-wider">Add New Customer</h3>
+        <button onclick="closeModal('modal-add-customer')" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <form id="form-add-customer" class="space-y-4 font-inter text-xs">
+        <div class="space-y-1">
+          <label class="font-semibold text-slate-400 block">Customer Name</label>
+          <input type="text" id="cust-name" placeholder="Syed Shan" required class="w-full px-3.5 py-2 bg-slate-950 border border-white/10 rounded-xl text-white outline-none focus:border-indigo-500">
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="space-y-1">
+            <label class="font-semibold text-slate-400 block">GSTIN / Tax ID</label>
+            <input type="text" id="cust-gstin" placeholder="32AAAAA1111A1Z1" required class="w-full px-3.5 py-2 bg-slate-950 border border-white/10 rounded-xl text-white outline-none focus:border-indigo-500 font-mono">
+          </div>
+          <div class="space-y-1">
+            <label class="font-semibold text-slate-400 block">Mobile Contact</label>
+            <input type="tel" id="cust-phone" placeholder="9876543210" required class="w-full px-3.5 py-2 bg-slate-950 border border-white/10 rounded-xl text-white outline-none focus:border-indigo-500">
+          </div>
+        </div>
+        <div class="space-y-1">
+          <label class="font-semibold text-slate-400 block">Shipping / Billing Address</label>
+          <input type="text" id="cust-address" placeholder="12, Residency Road, Palakkad, Kerala" required class="w-full px-3.5 py-2 bg-slate-950 border border-white/10 rounded-xl text-white outline-none focus:border-indigo-500">
+        </div>
+        <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-xl transition-colors shadow-lg shadow-indigo-600/10">
+          Save Customer
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 3. Create Document Builder Modal -->
+  <div id="modal-create-document" class="hidden fixed inset-0 z-50 bg-slate-dark/95 backdrop-blur-xl flex items-center justify-center p-6">
+    <div class="w-full max-w-2xl bg-[#11192e] border border-white/10 p-8 rounded-3xl space-y-6 shadow-2xl max-h-[90vh] overflow-y-auto">
+      <div class="flex justify-between items-center border-b border-white/5 pb-3 select-none">
+        <h3 class="text-sm font-bold text-white uppercase tracking-wider">Universal Document Builder</h3>
+        <button onclick="closeModal('modal-create-document')" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <form id="form-create-document" class="space-y-5 font-inter text-xs">
+        <div class="grid grid-cols-2 gap-4">
+          <div class="space-y-1">
+            <label class="font-semibold text-slate-400 block">Document Type</label>
+            <select id="doc-type" required class="w-full px-3.5 py-2.5 bg-slate-950 border border-white/10 rounded-xl text-white outline-none focus:border-indigo-500">
+              <option value="Invoice">GST Invoice</option>
+              <option value="Quotation">Quotation / Estimate</option>
+              <option value="PurchaseOrder">Purchase Order</option>
+              <option value="DeliveryNote">Delivery Challan</option>
+            </select>
+          </div>
+          <div class="space-y-1">
+            <label class="font-semibold text-slate-400 block">Select Customer</label>
+            <select id="doc-customer-select" required class="w-full px-3.5 py-2.5 bg-slate-950 border border-white/10 rounded-xl text-white outline-none focus:border-indigo-500">
+              <!-- Dynamically Populated -->
+            </select>
+          </div>
+        </div>
+
+        <!-- Document Item Row List -->
+        <div class="space-y-3">
+          <span class="font-bold text-slate-400 block uppercase tracking-wider text-[10px]">Invoiced Line Items</span>
+          
+          <div id="document-items-rows" class="space-y-3">
+            <!-- Row template injection -->
+            <div class="grid grid-cols-12 gap-3 items-center bg-slate-950/20 p-3 rounded-xl border border-white/5">
+              <div class="col-span-6 space-y-1">
+                <label class="font-semibold text-slate-500 block text-[9px]">Select Inventory Product</label>
+                <select required class="w-full px-3.5 py-2 bg-slate-950 border border-white/10 rounded-xl text-white outline-none focus:border-indigo-500 item-product-select" onchange="calculateDocTotals()">
+                  <!-- Dynamically Populated -->
+                </select>
+              </div>
+              <div class="col-span-3 space-y-1">
+                <label class="font-semibold text-slate-500 block text-[9px]">Quantity</label>
+                <input type="number" required min="1" value="1" class="w-full px-3.5 py-2 bg-slate-950 border border-white/10 rounded-xl text-white outline-none focus:border-indigo-500 font-mono item-quantity" onchange="calculateDocTotals()">
+              </div>
+              <div class="col-span-3 space-y-1 pt-4 text-center">
+                <span class="font-bold text-indigo-400 font-mono item-total-label">$0.00</span>
+              </div>
+            </div>
+          </div>
+          
+          <button type="button" onclick="addDocumentItemRow()" class="text-xs text-indigo-400 hover:text-indigo-300 font-bold select-none">
+            + Add Another Item
+          </button>
+        </div>
+
+        <!-- Bill Calculations totals -->
+        <div class="border-t border-white/5 pt-4 flex flex-col items-end space-y-2 select-none">
+          <div class="flex justify-between w-64 text-slate-400"><span>Taxable Net</span><span id="doc-summary-taxable" class="font-mono text-white">$0.00</span></div>
+          <div class="flex justify-between w-64 text-slate-400"><span>CGST/SGST (18%)</span><span id="doc-summary-gst" class="font-mono text-white">$0.00</span></div>
+          <div class="h-[1px] w-64 bg-white/5 my-1"></div>
+          <div class="flex justify-between w-64 font-bold text-white text-sm"><span>Total Amount</span><span id="doc-summary-total" class="font-mono">$0.00</span></div>
+        </div>
+
+        <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3.5 rounded-xl transition-colors shadow-lg shadow-indigo-600/10">
+          Generate Document
+        </button>
+      </form>
+    </div>
+  </div>
 
 </body>
 </html>

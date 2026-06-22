@@ -77,7 +77,7 @@ function setupAuthListeners() {
         const res = await fetch(`${BASE_URL}/api/user/auth/send-otp`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ phone })
+          body: JSON.stringify({ mobile: phone })
         });
 
         const data = await res.json();
@@ -99,7 +99,7 @@ function setupAuthListeners() {
         localStorage.setItem('user_phone', phone);
         sendForm.classList.add('hidden');
         verifyForm.classList.remove('hidden');
-        status.innerText = 'Demo OTP Verification enabled (Enter any 6 digits).';
+        status.innerText = 'Demo OTP Verification enabled (Enter code 123456).';
         status.className = 'p-3.5 rounded-xl text-center text-xs font-semibold font-inter bg-indigo-500/10 text-indigo-300 border border-indigo-500/20';
         status.classList.remove('hidden');
       } finally {
@@ -123,7 +123,7 @@ function setupAuthListeners() {
         const res = await fetch(`${BASE_URL}/api/user/auth/verify-otp`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ phone, otp })
+          body: JSON.stringify({ mobile: phone, otp })
         });
 
         const data = await res.json();

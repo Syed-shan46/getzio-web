@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     window.location.hostname.startsWith('10.');
 
                 const apiUrl = isLocal
-                    ? `http://${window.location.hostname}:5000/api/form/submit-interest`
+                    ? `http://${window.location.hostname}:5005/api/form/submit-interest`
                     : 'https://api.getzio.in/api/form/submit-interest';
 
                 const response = await fetch(apiUrl, {

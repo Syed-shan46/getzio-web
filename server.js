@@ -18,6 +18,10 @@ app.get('/support', (req, res) => {
     res.sendFile(path.join(__dirname, 'support.html'));
 });
 
+app.get('/billing', (req, res) => {
+    res.sendFile(path.join(__dirname, 'billing.html'));
+});
+
 // Post Route for Support Email
 app.post('/api/support', async (req, res) => {
     const { name, email, subject, message } = req.body;

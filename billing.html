@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Optimization -->
+  <title>Getzio Billing | Run Every Business Document. In One Place.</title>
+  <meta name="description" content="Create invoices, quotations, purchase orders, delivery notes and 42 professional business document types from one intelligent, secure workspace. Launching soon.">
+  <meta name="keywords" content="billing, invoicing, invoice generator, gst invoice, purchase order, quotation software, getzio billing, business documents">
+  <meta name="author" content="Getzio Technologies">
+  
+  <!-- OpenGraph Metadata -->
+  <meta property="og:title" content="Getzio Billing - Run Every Business Document. In One Place.">
+  <meta property="og:description" content="Generate invoices, purchase orders, and 42 document types. Secure sync with Getzio platforms.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://getzio.in/billing">
+  
+  <!-- Tailwind CSS & Libraries -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary: #261FB3;
+      --primary-light: #4e47d4;
+      --primary-dark: #1a157e;
+      --slate-dark: #0b0f19;
+      --slate-card: #131b2e;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: var(--slate-dark);
+      color: #f1f5f9;
+      overflow-x: hidden;
+    }
+
+    /* Inter for clean body details and tables */
+    .font-inter {
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* Custom Premium Glow Effects */
+    .glow-blur {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(140px);
+      z-index: 0;
+      opacity: 0.15;
+      pointer-events: none;
+    }
+
+    /* Glassmorphism Cards */
+    .glass-card {
+      background: rgba(19, 27, 46, 0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .glass-card:hover {
+      border-color: rgba(78, 71, 212, 0.4);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Custom Floating animations */
+    @keyframes float-slow {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-12px) rotate(1deg); }
+    }
+
+    @keyframes float-medium {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-18px) rotate(-1.5deg); }
+    }
+
+    @keyframes float-fast {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-24px) rotate(2deg); }
+    }
+
+    .animate-float-slow { animation: float-slow 8s ease-in-out infinite; }
+    .animate-float-medium { animation: float-medium 6s ease-in-out infinite; }
+    .animate-float-fast { animation: float-fast 5s ease-in-out infinite; }
+
+    /* Custom Scroll Reveal class */
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .scroll-reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Glowing border animation */
+    .btn-glow {
+      position: relative;
+    }
+    .btn-glow::after {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      background: linear-gradient(90deg, var(--primary), var(--primary-light), var(--primary-dark));
+      border-radius: 9999px;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .btn-glow:hover::after {
+      opacity: 1;
+    }
+
+    /* Timeline connectors */
+    .timeline-line {
+      background: linear-gradient(180deg, #10b981 0%, #3b82f6 50%, #4b5563 100%);
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--slate-dark);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #334155;
+    }
+  </style>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            getzio: '#261FB3',
+            'getzio-dark': '#1a157e',
+            'getzio-light': '#4e47d4',
+            'slate-dark': '#0b0f19',
+            'slate-card': '#131b2e'
+          },
+          fontFamily: {
+            sans: ['Outfit', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-slate-dark text-slate-100 antialiased overflow-x-hidden font-sans">
+
+  <!-- Glowing Background Orbs -->
+  <div class="glow-blur bg-getzio w-[600px] h-[600px] top-[-100px] right-[-100px]"></div>
+  <div class="glow-blur bg-getzio-light w-[500px] h-[500px] top-[800px] left-[-200px]"></div>
+  <div class="glow-blur bg-indigo-500 w-[600px] h-[600px] bottom-[1200px] right-[-300px]"></div>
+  <div class="glow-blur bg-getzio-dark w-[400px] h-[400px] bottom-[200px] left-[-100px]"></div>
+
+  <!-- Navigation Bar -->
+  <nav class="fixed w-full z-50 transition-all duration-300 px-6 py-4 bg-slate-dark/80 backdrop-blur-lg border-b border-white/5">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="index.html" class="flex items-center space-x-2 group">
+        <div class="w-10 h-10 bg-getzio rounded-xl flex items-center justify-center shadow-lg shadow-getzio/40 transition-transform group-hover:scale-105">
+          <span class="text-white font-bold text-xl">G</span>
+        </div>
+        <span class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400 group-hover:to-white transition-all">Getzio</span>
+      </a>
+
+      <!-- Desktop Nav links -->
+      <div class="hidden md:flex space-x-8 items-center text-sm font-semibold text-slate-300">
+        <a href="index.html#users" class="hover:text-white transition-colors">Customers</a>
+        <a href="index.html#partners" class="hover:text-white transition-colors">Restaurants</a>
+        <a href="index.html#stores" class="hover:text-white transition-colors">Digital Stores</a>
+        <a href="/billing" class="text-white flex items-center gap-1.5 relative py-1">
+          Billing <span class="bg-getzio/20 text-getzio-light border border-getzio-light/30 text-[10px] px-1.5 py-0.5 rounded-full font-bold">Soon</span>
+          <span class="absolute bottom-0 left-0 w-full h-[2px] bg-getzio-light rounded-full"></span>
+        </a>
+        <a href="support.html" class="hover:text-white transition-colors">Support</a>
+        <a href="#early-access" class="bg-white/10 hover:bg-white/15 text-white border border-white/10 px-5 py-2 rounded-full transition-all text-xs">Join Early Access</a>
+      </div>
+
+      <!-- Mobile Menu Trigger -->
+      <button class="md:hidden text-slate-300 hover:text-white" id="billing-menu-btn" aria-label="Toggle Menu">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Dropdown -->
+    <div id="billing-mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-slate-dark/95 border-b border-white/5 py-6 px-10 flex flex-col space-y-4 backdrop-blur-xl animate__animated animate__fadeInDown">
+      <a href="index.html#users" class="text-lg font-medium text-slate-300 hover:text-white">Customers</a>
+      <a href="index.html#partners" class="text-lg font-medium text-slate-300 hover:text-white">Restaurants</a>
+      <a href="index.html#stores" class="text-lg font-medium text-slate-300 hover:text-white">Digital Stores</a>
+      <a href="/billing" class="text-lg font-medium text-white flex items-center gap-2">Billing <span class="bg-getzio/20 text-getzio-light border border-getzio-light/20 text-xs px-2 py-0.5 rounded-full font-bold">Soon</span></a>
+      <a href="support.html" class="text-lg font-medium text-slate-300 hover:text-white">Support</a>
+      <a href="#early-access" class="bg-getzio text-white px-6 py-3 rounded-xl text-center font-bold shadow-lg shadow-getzio/20">Join Early Access</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="min-h-screen pt-40 pb-20 px-6 relative flex items-center">
+    <div class="max-w-7xl mx-auto w-full grid lg:grid-cols-12 gap-16 items-center relative z-10">
+      
+      <!-- Left Column: Copy & CTAs -->
+      <div class="lg:col-span-7 space-y-8 text-left animate__animated animate__fadeInLeft">
+        
+        <!-- Glowing Launch Badge -->
+        <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-slate-800/60 border border-slate-700/50 text-xs md:text-sm text-slate-300 font-medium select-none shadow-inner">
+          <span class="flex h-2 w-2 relative">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
+          </span>
+          <span class="font-semibold text-white tracking-wide">🚀 Launching Soon</span>
+          <span class="text-slate-400">|</span>
+          <span class="text-slate-400 text-xs font-light">Currently under final production rollout</span>
+        </div>
+
+        <h1 class="text-5xl sm:text-6xl md:text-[5rem] font-extrabold tracking-tight leading-[1.05] text-white">
+          Run Every Business Document. <br>
+          <span class="bg-clip-text text-transparent bg-gradient-to-r from-getzio-light to-indigo-300">In One Place.</span>
+        </h1>
+        
+        <p class="text-lg md:text-xl text-slate-400 max-w-xl leading-relaxed font-light font-inter">
+          Create invoices, quotations, purchase orders, delivery notes and 42 professional business document types from one intelligent, secure workspace.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-wrap gap-4 pt-2">
+          <!-- Coming Soon Disabled Button -->
+          <div class="relative group cursor-not-allowed">
+            <div class="absolute -inset-0.5 bg-gradient-to-r from-getzio to-indigo-600 rounded-full blur opacity-40 group-hover:opacity-60 transition duration-1000 group-hover:duration-200"></div>
+            <button class="relative bg-slate-900 border border-white/10 text-slate-400 px-8 py-4 rounded-full font-semibold text-lg flex items-center gap-2 cursor-not-allowed select-none shadow-xl">
+              <i class="fa-solid fa-lock text-slate-500 text-sm"></i> Coming Soon
+            </button>
+          </div>
+          <!-- Join Early Access Trigger -->
+          <a href="#early-access" class="bg-white text-slate-900 hover:bg-slate-200 px-8 py-4 rounded-full font-semibold text-lg hover:shadow-2xl hover:shadow-white/10 transition-all transform hover:-translate-y-0.5 active:translate-y-0 select-none shadow-xl">
+            Join Early Access <i class="fa-solid fa-chevron-right text-xs ml-1"></i>
+          </a>
+        </div>
+
+        <!-- Secondary Info Details -->
+        <div class="flex items-center gap-6 pt-4 text-xs font-semibold text-slate-500 tracking-wider uppercase">
+          <div class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-indigo-400 text-sm"></i> Shared Engine</div>
+          <div class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-indigo-400 text-sm"></i> GST Compliant</div>
+          <div class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-indigo-400 text-sm"></i> Realtime Sync</div>
+        </div>
+      </div>
+
+      <!-- Right Column: Translucent Vector Document Illustration Stack -->
+      <div class="lg:col-span-5 relative w-full h-[500px] flex items-center justify-center animate__animated animate__fadeInRight animate__delay-1s select-none">
+        
+        <!-- Document 1: Invoice (Floating Back) -->
+        <div class="absolute w-[280px] h-[360px] rounded-2xl glass-card p-5 transform -rotate-12 -translate-x-16 -translate-y-8 animate-float-slow flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-center mb-4">
+              <div class="h-3 w-16 bg-white/20 rounded"></div>
+              <div class="h-3 w-8 bg-indigo-500/30 rounded"></div>
+            </div>
+            <div class="space-y-2 mb-6">
+              <div class="h-2 w-full bg-white/10 rounded"></div>
+              <div class="h-2 w-3/4 bg-white/10 rounded"></div>
+            </div>
+            <div class="border-t border-white/10 pt-4 space-y-2">
+              <div class="flex justify-between"><div class="h-2 w-12 bg-white/15 rounded"></div><div class="h-2 w-6 bg-white/15 rounded"></div></div>
+              <div class="flex justify-between"><div class="h-2 w-16 bg-white/15 rounded"></div><div class="h-2 w-8 bg-white/15 rounded"></div></div>
+            </div>
+          </div>
+          <div class="flex justify-between items-center border-t border-white/10 pt-3">
+            <div class="h-3 w-12 bg-white/20 rounded"></div>
+            <div class="h-4 w-16 bg-emerald-500/20 text-emerald-400 text-[8px] font-bold uppercase tracking-wider rounded flex items-center justify-center">Paid</div>
+          </div>
+        </div>
+
+        <!-- Document 2: Purchase Order (Floating Middle) -->
+        <div class="absolute w-[300px] h-[390px] rounded-2xl bg-[#17223b]/90 border border-white/10 p-6 transform rotate-6 translate-x-12 -translate-y-4 animate-float-medium flex flex-col justify-between shadow-2xl">
+          <div>
+            <div class="flex justify-between items-center mb-6">
+              <div class="flex items-center gap-1.5">
+                <div class="w-5 h-5 bg-indigo-600 rounded-md"></div>
+                <div class="h-3.5 w-16 bg-white/30 rounded"></div>
+              </div>
+              <div class="h-3 w-10 bg-indigo-500/20 rounded"></div>
+            </div>
+            <div class="space-y-3 mb-6">
+              <div class="flex justify-between items-center"><div class="h-2 w-24 bg-white/25 rounded"></div><div class="h-2 w-10 bg-white/25 rounded"></div></div>
+              <div class="h-[1px] w-full bg-white/10"></div>
+              <div class="flex justify-between items-center"><div class="h-2 w-16 bg-white/20 rounded"></div><div class="h-2 w-8 bg-white/20 rounded"></div></div>
+              <div class="flex justify-between items-center"><div class="h-2 w-20 bg-white/20 rounded"></div><div class="h-2 w-12 bg-white/20 rounded"></div></div>
+            </div>
+          </div>
+          <div class="flex justify-between items-center border-t border-white/10 pt-4">
+            <div class="h-3.5 w-16 bg-white/30 rounded"></div>
+            <div class="h-5 w-20 bg-amber-500/20 text-amber-400 text-[8px] font-bold uppercase tracking-wider rounded flex items-center justify-center">Draft</div>
+          </div>
+        </div>
+
+        <!-- Document 3: Interactive Quotation (Floating Front) -->
+        <div class="absolute w-[320px] h-[410px] rounded-2xl bg-[#1e2942]/95 border border-indigo-500/20 p-6 transform -rotate-2 translate-y-12 animate-float-fast flex flex-col justify-between shadow-2xl">
+          <div>
+            <div class="flex justify-between items-center mb-6">
+              <span class="text-xs font-bold text-indigo-400 tracking-widest uppercase">Quotation</span>
+              <span class="text-[10px] text-slate-500 font-inter">QTN-2026-004</span>
+            </div>
+            
+            <div class="space-y-4 mb-6">
+              <div class="space-y-2">
+                <div class="h-2.5 w-1/3 bg-slate-600 rounded"></div>
+                <div class="h-2 w-2/3 bg-slate-700 rounded"></div>
+              </div>
+              <div class="h-[1px] w-full bg-slate-800"></div>
+              <div class="space-y-2.5">
+                <div class="flex justify-between"><span class="text-xs text-slate-400">Design Consulting</span><span class="text-xs font-semibold text-white">$4,800.00</span></div>
+                <div class="flex justify-between"><span class="text-xs text-slate-400">Development Services</span><span class="text-xs font-semibold text-white">$12,500.00</span></div>
+                <div class="flex justify-between"><span class="text-xs text-slate-400">CGST (9%)</span><span class="text-xs font-semibold text-slate-300">$1,557.00</span></div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="flex justify-between items-center border-t border-slate-850 pt-4">
+            <div>
+              <span class="text-[10px] uppercase text-slate-500 block tracking-wider">Total Amount</span>
+              <span class="text-lg font-bold text-white font-inter">$18,857.00</span>
+            </div>
+            <div class="h-6 px-3 bg-indigo-500 text-white text-[9px] font-bold uppercase tracking-wider rounded-full flex items-center justify-center shadow-lg shadow-getzio/20">
+              Approved
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Floating Showcase -->
+  <section class="py-24 px-6 border-t border-white/5 relative overflow-hidden bg-slate-950/40">
+    <div class="max-w-6xl mx-auto text-center relative z-10">
+      <div class="max-w-2xl mx-auto space-y-4 mb-16 scroll-reveal">
+        <h2 class="text-4xl font-bold tracking-tight text-white">Interactive Document Ecosystem</h2>
+        <p class="text-slate-400 font-light font-inter">
+          A seamless flow connecting documents, teams, approval hierarchies, and secure data logging under one single umbrella.
+        </p>
+      </div>
+
+      <!-- Canvas Showcase Area -->
+      <div class="relative w-full h-[480px] bg-slate-900/60 rounded-3xl border border-white/5 shadow-inner overflow-hidden flex items-center justify-center">
+        <!-- Background Grid Grid -->
+        <div class="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+        
+        <!-- Timeline connection node lines -->
+        <svg class="absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Flowing connections -->
+          <path d="M 150,150 Q 300,100 480,240" fill="none" stroke="rgba(99, 102, 241, 0.2)" stroke-width="1.5" stroke-dasharray="4 4" />
+          <path d="M 850,160 Q 650,200 480,240" fill="none" stroke="rgba(99, 102, 241, 0.2)" stroke-width="1.5" stroke-dasharray="4 4" />
+          <path d="M 200,380 Q 350,420 480,240" fill="none" stroke="rgba(99, 102, 241, 0.2)" stroke-width="1.5" />
+          <path d="M 800,360 Q 600,400 480,240" fill="none" stroke="rgba(99, 102, 241, 0.2)" stroke-width="1.5" />
+        </svg>
+
+        <!-- Node 1: Central Document Engine -->
+        <div class="absolute z-20 w-40 h-40 bg-indigo-600/20 border border-indigo-500/30 rounded-full flex flex-col items-center justify-center shadow-2xl backdrop-blur-md select-none transform hover:scale-105 transition-all duration-300">
+          <div class="w-14 h-14 bg-indigo-500 rounded-2xl flex items-center justify-center mb-2 shadow-lg shadow-indigo-500/50">
+            <i class="fa-solid fa-circle-nodes text-white text-2xl"></i>
+          </div>
+          <span class="text-xs font-bold uppercase tracking-widest text-indigo-200">Shared Engine</span>
+          <span class="text-[9px] text-slate-400">42 Document Types</span>
+        </div>
+
+        <!-- Node 2: Floating Invoice Paper (Top-Left) -->
+        <div class="absolute top-[80px] left-[80px] z-10 glass-card px-4 py-3 rounded-xl flex items-center gap-3 animate-float-slow">
+          <i class="fa-solid fa-file-invoice-dollar text-indigo-400 text-lg"></i>
+          <div class="text-left">
+            <span class="text-xs font-bold block text-white">GST Invoice</span>
+            <span class="text-[9px] text-emerald-400 font-inter">+$12,450.00</span>
+          </div>
+        </div>
+
+        <!-- Node 3: Quotation Note (Top-Right) -->
+        <div class="absolute top-[90px] right-[90px] z-10 glass-card px-4 py-3 rounded-xl flex items-center gap-3 animate-float-medium">
+          <i class="fa-solid fa-file-invoice text-indigo-400 text-lg"></i>
+          <div class="text-left">
+            <span class="text-xs font-bold block text-white">Quotation</span>
+            <span class="text-[9px] text-slate-400 font-inter">QTN-2026-981</span>
+          </div>
+        </div>
+
+        <!-- Node 4: Purchase Order (Bottom-Left) -->
+        <div class="absolute bottom-[80px] left-[100px] z-10 glass-card px-4 py-3 rounded-xl flex items-center gap-3 animate-float-fast">
+          <i class="fa-solid fa-cart-shopping text-indigo-400 text-lg"></i>
+          <div class="text-left">
+            <span class="text-xs font-bold block text-white">Purchase Order</span>
+            <span class="text-[9px] text-slate-400 font-inter">PO-8812</span>
+          </div>
+        </div>
+
+        <!-- Node 5: Credit Note (Bottom-Right) -->
+        <div class="absolute bottom-[100px] right-[100px] z-10 glass-card px-4 py-3 rounded-xl flex items-center gap-3 animate-float-slow">
+          <i class="fa-solid fa-file-circle-minus text-indigo-400 text-lg"></i>
+          <div class="text-left">
+            <span class="text-xs font-bold block text-white">Credit Note</span>
+            <span class="text-[9px] text-slate-400 font-inter">CR-202</span>
+          </div>
+        </div>
+
+        <!-- Small Floating Badge: Approval Stamp -->
+        <div class="absolute top-[40px] left-[45%] z-10 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest animate-bounce">
+          <i class="fa-solid fa-circle-check mr-1"></i> Approved
+        </div>
+
+        <!-- Small Floating Badge: Timeline Log -->
+        <div class="absolute bottom-[30px] left-[42%] z-10 bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 px-3 py-1.5 rounded-full text-[10px] font-semibold tracking-wider flex items-center gap-1.5">
+          <i class="fa-solid fa-clock-rotate-left"></i> Timeline Updated
+        </div>
+
+        <!-- Small Floating Badge: Version Badge -->
+        <div class="absolute top-[260px] left-[60px] z-10 bg-indigo-500/15 border border-indigo-500/30 text-indigo-200 px-2 py-0.5 rounded text-[9px] font-mono">
+          v2.0.4-snapshot
+        </div>
+
+        <!-- Small Floating Badge: Audit Shield -->
+        <div class="absolute top-[250px] right-[80px] z-10 glass-card px-3 py-1.5 rounded-full flex items-center gap-1.5 text-[10px] font-bold text-slate-300">
+          <i class="fa-solid fa-shield-halved text-indigo-400 text-xs"></i> Audit Checked
+        </div>
+
+        <!-- Small Floating Badge: Comment Bubble -->
+        <div class="absolute top-[180px] left-[250px] z-10 bg-slate-800/80 border border-white/5 text-slate-200 px-3 py-1.5 rounded-2xl text-[10px] shadow-lg flex items-center gap-1.5 animate-float-medium">
+          <i class="fa-solid fa-message text-indigo-400"></i> Approved the changes
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feature Grid Section -->
+  <section class="py-24 px-6 relative" id="features">
+    <div class="max-w-7xl mx-auto z-10 relative">
+      <div class="max-w-3xl mx-auto text-center space-y-4 mb-20 scroll-reveal">
+        <h2 class="text-4xl font-bold tracking-tight text-white sm:text-5xl">Engineered for Complete Control</h2>
+        <p class="text-slate-400 text-lg font-light font-inter">
+          Getzio Billing is built on a shared enterprise-grade document schema, integrating 42 capabilities into a single lightning-fast app.
+        </p>
+      </div>
+
+      <!-- 42 Feature Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        
+        <!-- Feature 1 -->
+        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
+          <div>
+            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
+              <i class="fa-solid fa-microchip text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Unified Document Engine</h3>
+            <p class="text-sm text-slate-400 leading-relaxed font-inter">Supports 42 business document types from one single reusable schema engine.</p>
+          </div>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
+          <div>
+            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
+              <i class="fa-solid fa-file-invoice-dollar text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Invoices</h3>
+            <p class="text-sm text-slate-400 leading-relaxed font-inter">Generate beautiful GST-ready and custom taxable invoices for business clients.</p>
+          </div>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
+          <div>
+            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
+              <i class="fa-solid fa-file-signature text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Quotations</h3>
+            <p class="text-sm text-slate-400 leading-relaxed font-inter">Issue custom estimates and convert quotations into official invoices instantly.</p>
+          </div>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
+          <div>
+            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
+              <i class="fa-solid fa-cart-flatbed text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Purchase Orders</h3>
+            <p class="text-sm text-slate-400 leading-relaxed font-inter">Track external procurements and vendor workflows from generation to receipt.</p>
+          </div>
+        </div>
+
+        <!-- Feature 5 -->
+        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
+          <div>
+            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
+              <i class="fa-solid fa-truck text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Delivery Notes</h3>
+            <p class="text-sm text-slate-400 leading-relaxed font-inter">Issue and track professional delivery acknowledgements for physical dispatches.</p>
+          </div>
+        </div>
+
+        <!-- Feature 6 -->
+        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
+          <div>
+            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
+              <i class="fa-solid fa-circle-minus text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Credit Notes</h3>
+            <p class="text-sm text-slate-400 leading-relaxed font-inter">Manage returns and balances efficiently by generating credit records.</p>
+          </div>
+        </div>
+
+        <!-- Feature 7 -->
+        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
+          <div>
+            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
+              <i class="fa-solid fa-circle-plus text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Debit Notes</h3>
+            <p class="text-sm text-slate-400 leading-relaxed font-inter">Track additional client liabilities and pricing updates post-invoicing.</p>
+          </div>
+        </div>
+
+        <!-- Feature 8 -->
+        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
+          <div>
+            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
+              <i class="fa-solid fa-receipt text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Receipts</h3>
+            <p class="text-sm text-slate-400 leading-relaxed font-inter">Generate instant digital transaction receipts upon successful payment captures.</p>
+          </div>
+        </div>
+
+        <!-- Feature 9 -->
+        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
+          <div>
+            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
+              <i class="fa-solid fa-wallet text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Expense Tracking</h3>
+            <p class="text-sm text-slate-400 leading-relaxed font-inter">Keep business logs in check. Log overhead bills and categorize corporate spend.</p>
+          </div>
+        </div>
+
+        <!-- Feature 10 -->
+        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
+          <div>
+            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
+              <i class="fa-solid fa-boxes-stacked text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Inventory</h3>
+            <p class="text-sm text-slate-400 leading-relaxed font-inter">Track item quantities, trigger low stock alerts, and monitor product movements.</p>
+          </div>
+        </div>
+
+        <!-- Feature 11 -->
+        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
+          <div>
+            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
+              <i class="fa-solid fa-users text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Customers</h3>
+            <p class="text-sm text-slate-400 leading-relaxed font-inter">Store contact detail cards, view outstanding sheets, and check transaction lists.</p>
+          </div>
+        </div>
+
+        <!-- Feature 12 -->
+        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
+          <div>
+            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
+              <i class="fa-solid fa-handshake text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Suppliers</h3>
+            <p class="text-sm text-slate-400 leading-relaxed font-inter">Map vendor registry directories and catalog incoming procurement orders.</p>
+          </div>
+        </div>
+
+        <!-- Feature 13 -->
+        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
+          <div>
+            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
+              <i class="fa-solid fa-chart-line text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Analytics Dashboard</h3>
+            <p class="text-sm text-slate-400 leading-relaxed font-inter">Visualize incoming revenue, pending items, margins, and active payment lines.</p>
+          </div>
+        </div>
+
+        <!-- Feature 14 -->
+        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
+          <div>
+            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
+              <i class="fa-solid fa-clock-rotate-left text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Document History</h3>
+            <p class="text-sm text-slate-400 leading-relaxed font-inter">Chronological updates tracking exactly when files are drafted, edited, and approved.</p>
+          </div>
+        </div>
+
+        <!-- Feature 15 -->
+        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
+          <div>
+            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
+              <i class="fa-solid fa-user-check text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Approval Workflow</h3>
+            <p class="text-sm text-slate-400 leading-relaxed font-inter">Define strict workflow structures before files transition into finalized assets.</p>
+          </div>
+        </div>
+
+        <!-- Feature 16 -->
+        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
+          <div>
+            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
+              <i class="fa-solid fa-code-compare text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Version Control</h3>
+            <p class="text-sm text-slate-400 leading-relaxed font-inter">Log document changes and roll back to past drafts in one click.</p>
+          </div>
+        </div>
+
+        <!-- Feature 17 -->
+        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
+          <div>
+            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
+              <i class="fa-solid fa-shield-halved text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Audit Trail</h3>
+            <p class="text-sm text-slate-400 leading-relaxed font-inter">Keep log audits of user interactions and state modifications for compliance.</p>
+          </div>
+        </div>
+
+        <!-- Feature 18 -->
+        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
+          <div>
+            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
+              <i class="fa-solid fa-paste text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Business Reports</h3>
+            <p class="text-sm text-slate-400 leading-relaxed font-inter">Export consolidated spreadsheets of sales, product stocks, and ledger balances.</p>
+          </div>
+        </div>
+
+        <!-- Feature 19 -->
+        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
+          <div>
+            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
+              <i class="fa-solid fa-percent text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">GST Ready</h3>
+            <p class="text-sm text-slate-400 leading-relaxed font-inter">Automated CGST, SGST, IGST calculations based on standard HSN codes.</p>
+          </div>
+        </div>
+
+        <!-- Feature 20 -->
+        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
+          <div>
+            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
+              <i class="fa-solid fa-network-wired text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Multi Business</h3>
+            <p class="text-sm text-slate-400 leading-relaxed font-inter">Manage multiple distinct enterprise branches from one single profile account.</p>
+          </div>
+        </div>
+
+        <!-- Feature 21 -->
+        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
+          <div>
+            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
+              <i class="fa-solid fa-cloud-arrow-up text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Cloud Sync</h3>
+            <p class="text-sm text-slate-400 leading-relaxed font-inter">Real-time encryption backups across Railway platform clouds to MongoDB servers.</p>
+          </div>
+        </div>
+
+        <!-- Feature 22 -->
+        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
+          <div>
+            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
+              <i class="fa-solid fa-magnifying-glass text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Fast Search</h3>
+            <p class="text-sm text-slate-400 leading-relaxed font-inter">Instantly filter invoices, customers, and ledger files across large datasets.</p>
+          </div>
+        </div>
+
+        <!-- Feature 23 -->
+        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
+          <div>
+            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
+              <i class="fa-solid fa-palette text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Reusable Templates</h3>
+            <p class="text-sm text-slate-400 leading-relaxed font-inter">Save customized styles, margins, fonts, and headers for quick drafting.</p>
+          </div>
+        </div>
+
+        <!-- Feature 24 -->
+        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
+          <div>
+            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
+              <i class="fa-solid fa-key text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Role Based Access</h3>
+            <p class="text-sm text-slate-400 leading-relaxed font-inter">Assign permissions. Restrict editing to admins while staff access is read-only.</p>
+          </div>
+        </div>
+
+        <!-- Feature 25 -->
+        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
+          <div>
+            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
+              <i class="fa-solid fa-print text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Professional Printing</h3>
+            <p class="text-sm text-slate-400 leading-relaxed font-inter">Print optimization schemas support A4, Letter, and thermal receipt formats.</p>
+          </div>
+        </div>
+
+        <!-- Feature 26 -->
+        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
+          <div>
+            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
+              <i class="fa-solid fa-file-pdf text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Export PDF</h3>
+            <p class="text-sm text-slate-400 leading-relaxed font-inter">Export vector-drawn PDF documents to client devices cleanly.</p>
+          </div>
+        </div>
+
+        <!-- Feature 27 -->
+        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
+          <div>
+            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
+              <i class="fa-solid fa-file-excel text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Export Excel</h3>
+            <p class="text-sm text-slate-400 leading-relaxed font-inter">Get raw tabular formats of inventory spreadsheets and ledgers.</p>
+          </div>
+        </div>
+
+        <!-- Feature 28 -->
+        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
+          <div>
+            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
+              <i class="fa-solid fa-file-import text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Import Data</h3>
+            <p class="text-sm text-slate-400 leading-relaxed font-inter">Load CSV files of item stocks and customer directories directly.</p>
+          </div>
+        </div>
+
+        <!-- Feature 29 -->
+        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
+          <div>
+            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
+              <i class="fa-solid fa-server text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Secure Storage</h3>
+            <p class="text-sm text-slate-400 leading-relaxed font-inter">Hardware-level keychain encryption handles authentication tokens safely.</p>
+          </div>
+        </div>
+
+        <!-- Feature 30 -->
+        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
+          <div>
+            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
+              <i class="fa-solid fa-compass text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Modern Dashboard</h3>
+            <p class="text-sm text-slate-400 leading-relaxed font-inter">View statistics, latest notifications, and items requiring action.</p>
+          </div>
+        </div>
+
+        <!-- Feature 31 -->
+        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
+          <div>
+            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
+              <i class="fa-solid fa-timeline text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Activity Timeline</h3>
+            <p class="text-sm text-slate-400 leading-relaxed font-inter">Inspect an interactive chronologic feed of document lifecycle actions.</p>
+          </div>
+        </div>
+
+        <!-- Feature 32 -->
+        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
+          <div>
+            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
+              <i class="fa-solid fa-bell text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Notification Center</h3>
+            <p class="text-sm text-slate-400 leading-relaxed font-inter">Real-time alerts keep teams notified of overdue invoices and signatures.</p>
+          </div>
+        </div>
+
+        <!-- Feature 33 -->
+        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
+          <div>
+            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
+              <i class="fa-solid fa-pen-ruler text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Document Drafts</h3>
+            <p class="text-sm text-slate-400 leading-relaxed font-inter">Save progress on bills or quotes without affecting operational statements.</p>
+          </div>
+        </div>
+
+        <!-- Feature 34 -->
+        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
+          <div>
+            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
+              <i class="fa-solid fa-signature text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Approval Status</h3>
+            <p class="text-sm text-slate-400 leading-relaxed font-inter">Audit signatures and stamps directly from the details inspect sheet.</p>
+          </div>
+        </div>
+
+        <!-- Feature 35 -->
+        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
+          <div>
+            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
+              <i class="fa-solid fa-money-bill-transfer text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Payment Tracking</h3>
+            <p class="text-sm text-slate-400 leading-relaxed font-inter">Log transactions, record payments, and monitor partial settlements.</p>
+          </div>
+        </div>
+
+        <!-- Feature 36 -->
+        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
+          <div>
+            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
+              <i class="fa-solid fa-file-shield text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Outstanding Reports</h3>
+            <p class="text-sm text-slate-400 leading-relaxed font-inter">Check client aging balances and send payment reminders in seconds.</p>
+          </div>
+        </div>
+
+        <!-- Feature 37 -->
+        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
+          <div>
+            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
+              <i class="fa-solid fa-industry text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Vendor Management</h3>
+            <p class="text-sm text-slate-400 leading-relaxed font-inter">Maintain contact directories and ledgers for primary wholesalers.</p>
+          </div>
+        </div>
+
+        <!-- Feature 38 -->
+        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
+          <div>
+            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
+              <i class="fa-solid fa-book text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Customer Ledger</h3>
+            <p class="text-sm text-slate-400 leading-relaxed font-inter">Comprehensive statements showing balances, bills, and payments.</p>
+          </div>
+        </div>
+
+        <!-- Feature 39 -->
+        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
+          <div>
+            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
+              <i class="fa-solid fa-file-lines text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Document Templates</h3>
+            <p class="text-sm text-slate-400 leading-relaxed font-inter">Select from modern document formats matching your industry vertical.</p>
+          </div>
+        </div>
+
+        <!-- Feature 40 -->
+        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
+          <div>
+            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
+              <i class="fa-solid fa-eye text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Business Insights</h3>
+            <p class="text-sm text-slate-400 leading-relaxed font-inter">Analyze fast-moving assets and seasonal client purchasing flows.</p>
+          </div>
+        </div>
+
+        <!-- Feature 41 -->
+        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
+          <div>
+            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
+              <i class="fa-solid fa-rotate text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Realtime Updates</h3>
+            <p class="text-sm text-slate-400 leading-relaxed font-inter">Socket.IO web channels update lists in real time when documents are approved.</p>
+          </div>
+        </div>
+
+        <!-- Feature 42 -->
+        <div class="glass-card p-6 rounded-3xl flex flex-col justify-between scroll-reveal">
+          <div>
+            <div class="w-12 h-12 bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
+              <i class="fa-solid fa-building-shield text-xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Enterprise Ready Architecture</h3>
+            <p class="text-sm text-slate-400 leading-relaxed font-inter">Stateless microservice deployment models built to scale with growth.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison Matrix Section -->
+  <section class="py-24 px-6 border-t border-white/5 relative bg-slate-950/20">
+    <div class="max-w-4xl mx-auto z-10 relative">
+      <div class="text-center space-y-4 mb-16 scroll-reveal">
+        <h2 class="text-4xl font-bold tracking-tight text-white">Why Getzio Billing?</h2>
+        <p class="text-slate-400 font-light font-inter">How we stack up against traditional business systems.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8 font-inter">
+        <!-- Card 1: Traditional -->
+        <div class="p-8 rounded-3xl bg-slate-900/40 border border-white/5 space-y-6 scroll-reveal">
+          <h3 class="text-xl font-bold text-slate-400 uppercase tracking-widest text-sm">Traditional Systems</h3>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3 text-slate-400">
+              <span class="text-red-500 font-bold">❌</span>
+              <span>Requires multiple fragmented software for invoices, receipts, and inventory.</span>
+            </li>
+            <li class="flex items-start gap-3 text-slate-400">
+              <span class="text-red-500 font-bold">❌</span>
+              <span>Manual document conversion leads to human data entry errors.</span>
+            </li>
+            <li class="flex items-start gap-3 text-slate-400">
+              <span class="text-red-500 font-bold">❌</span>
+              <span>No document audit logs or version tracking details.</span>
+            </li>
+            <li class="flex items-start gap-3 text-slate-400">
+              <span class="text-red-500 font-bold">❌</span>
+              <span>Difficult dashboard setups requiring external database queries.</span>
+            </li>
+            <li class="flex items-start gap-3 text-slate-400">
+              <span class="text-red-500 font-bold">❌</span>
+              <span>Needlessly repeating customer and items setup processes.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Card 2: Getzio Billing -->
+        <div class="p-8 rounded-3xl bg-indigo-950/20 border border-indigo-500/20 space-y-6 scroll-reveal shadow-xl shadow-indigo-950/10">
+          <h3 class="text-xl font-bold text-indigo-300 uppercase tracking-widest text-sm">Getzio Billing</h3>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3 text-white">
+              <span class="text-emerald-400 font-bold">✅</span>
+              <span><strong>One Workspace:</strong> Consolidate operations, lists, and metrics under one app.</span>
+            </li>
+            <li class="flex items-start gap-3 text-white">
+              <span class="text-emerald-400 font-bold">✅</span>
+              <span><strong>42 Document Types:</strong> Run everything using standard, built-in forms.</span>
+            </li>
+            <li class="flex items-start gap-3 text-white">
+              <span class="text-emerald-400 font-bold">✅</span>
+              <span><strong>Shared Engine:</strong> Instant cross-document conversion (e.g. Quotation to Invoice).</span>
+            </li>
+            <li class="flex items-start gap-3 text-white">
+              <span class="text-emerald-400 font-bold">✅</span>
+              <span><strong>Audit logs & Comments:</strong> Full version histories and team comments.</span>
+            </li>
+            <li class="flex items-start gap-3 text-white">
+              <span class="text-emerald-400 font-bold">✅</span>
+              <span><strong>Enterprise Architecture:</strong> Encrypted, clean sync with Getzio databases.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline Roadmap Section -->
+  <section class="py-24 px-6 border-t border-white/5 relative" id="roadmap">
+    <div class="max-w-5xl mx-auto z-10 relative">
+      <div class="text-center space-y-4 mb-20 scroll-reveal">
+        <h2 class="text-4xl font-bold tracking-tight text-white">Development Roadmap</h2>
+        <p class="text-slate-400 font-light font-inter">Transparent milestones as we scale our billing modules.</p>
+      </div>
+
+      <div class="relative grid grid-cols-1 md:grid-cols-3 gap-8 font-inter">
+        
+        <!-- Phase 1: Completed -->
+        <div class="relative p-8 rounded-3xl bg-slate-900/60 border border-emerald-500/20 flex flex-col justify-between scroll-reveal">
+          <div>
+            <div class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] font-bold uppercase tracking-wider mb-6">
+              <i class="fa-solid fa-circle-check"></i> Completed
+            </div>
+            <h3 class="text-xl font-bold text-white mb-4">Phase 1: Foundations</h3>
+            <ul class="space-y-3 text-sm text-slate-300">
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Unified Document Engine</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> 42 Business Documents</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Customers & Suppliers</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Inventory & Products Catalog</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Reports & Document templates</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Approval Workflows & Auditing</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Phase 2: Rolling Out -->
+        <div class="relative p-8 rounded-3xl bg-slate-900/60 border border-indigo-500/30 flex flex-col justify-between scroll-reveal shadow-2xl">
+          <div class="absolute -inset-px bg-gradient-to-b from-indigo-500/10 to-transparent rounded-3xl pointer-events-none"></div>
+          <div>
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 text-[10px] font-bold uppercase tracking-wider mb-6 animate-pulse">
+              <span class="h-1.5 w-1.5 bg-indigo-400 rounded-full"></span> Rolling Out
+            </div>
+            <h3 class="text-xl font-bold text-white mb-4">Phase 2: Launchpad</h3>
+            <ul class="space-y-3 text-sm text-slate-300 font-semibold">
+              <li class="flex items-center gap-2 text-indigo-300"><i class="fa-solid fa-circle-notch animate-spin"></i> Web Launch Experience</li>
+              <li class="flex items-center gap-2 text-indigo-300"><i class="fa-solid fa-circle-notch animate-spin"></i> Early Access Collection</li>
+              <li class="flex items-center gap-2 text-indigo-300"><i class="fa-solid fa-circle-notch animate-spin"></i> Production Deployment</li>
+              <li class="flex items-center gap-2 text-slate-500"><i class="fa-solid fa-clock text-xs"></i> App Store Final Approvals</li>
+              <li class="flex items-center gap-2 text-slate-500"><i class="fa-solid fa-clock text-xs"></i> Platform Integration Testing</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Phase 3: Upcoming -->
+        <div class="relative p-8 rounded-3xl bg-slate-900/40 border border-white/5 flex flex-col justify-between scroll-reveal">
+          <div>
+            <div class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-slate-800 text-slate-400 border border-white/5 text-[10px] font-bold uppercase tracking-wider mb-6">
+              <i class="fa-solid fa-rocket"></i> Future Plans
+            </div>
+            <h3 class="text-xl font-bold text-white mb-4">Phase 3: Automation</h3>
+            <ul class="space-y-3 text-sm text-slate-400">
+              <li class="flex items-center gap-2"><i class="fa-solid fa-ellipsis text-xs"></i> AI Billing Assistant</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-ellipsis text-xs"></i> Webhook & API Automation</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-ellipsis text-xs"></i> Advanced Workflow Builder</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-ellipsis text-xs"></i> Multi-Currency Settlements</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-ellipsis text-xs"></i> Business Intelligence Audits</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Architecture Section -->
+  <section class="py-24 px-6 border-t border-white/5 relative bg-slate-950/20">
+    <div class="max-w-5xl mx-auto z-10 relative">
+      <div class="text-center space-y-4 mb-20 scroll-reveal">
+        <h2 class="text-4xl font-bold tracking-tight text-white">System Architecture</h2>
+        <p class="text-slate-400 font-light font-inter">
+          Highly modular stack integrated seamlessly into the existing Getzio ecosystem.
+        </p>
+      </div>
+
+      <!-- Architecture Flow Chart -->
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-4 items-center font-mono text-center text-xs select-none">
+        
+        <!-- Frontend -->
+        <div class="p-6 rounded-2xl glass-card space-y-2 scroll-reveal">
+          <span class="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Frontend</span>
+          <div class="text-base font-bold text-white font-sans">Flutter Client</div>
+          <span class="text-[10px] block bg-indigo-500/10 text-indigo-300 py-0.5 rounded border border-indigo-500/20">Desktop / Mobile</span>
+        </div>
+
+        <div class="hidden md:flex justify-center text-indigo-400 scroll-reveal"><i class="fa-solid fa-chevron-right text-lg"></i></div>
+
+        <!-- API Layer -->
+        <div class="p-6 rounded-2xl bg-indigo-950/20 border border-indigo-500/20 space-y-2 scroll-reveal">
+          <span class="text-[10px] text-indigo-300 uppercase tracking-widest font-bold">API Routing</span>
+          <div class="text-base font-bold text-white font-sans">Express / Node</div>
+          <span class="text-[10px] block bg-indigo-500/20 text-indigo-200 py-0.5 rounded">Shared APIs</span>
+        </div>
+
+        <div class="hidden md:flex justify-center text-indigo-400 scroll-reveal"><i class="fa-solid fa-chevron-right text-lg"></i></div>
+
+        <!-- Database -->
+        <div class="p-6 rounded-2xl glass-card space-y-2 scroll-reveal">
+          <span class="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Database</span>
+          <div class="text-base font-bold text-white font-sans">MongoDB Cluster</div>
+          <span class="text-[10px] block bg-indigo-500/10 text-indigo-300 py-0.5 rounded border border-indigo-500/20">Cloud / Encrypted</span>
+        </div>
+      </div>
+
+      <!-- Supporting integrations -->
+      <div class="mt-8 text-center text-sm font-semibold text-slate-500 select-none scroll-reveal">
+        <span class="inline-flex items-center gap-2 px-4 py-2 bg-slate-900/60 border border-white/5 rounded-full">
+          <i class="fa-solid fa-circle-nodes text-indigo-400"></i>
+          Uses the same production backend already powering the mobile application.
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Security Section -->
+  <section class="py-24 px-6 border-t border-white/5 relative">
+    <div class="max-w-6xl mx-auto z-10 relative">
+      <div class="grid lg:grid-cols-12 gap-16 items-center">
+        <!-- Copy Column -->
+        <div class="lg:col-span-6 space-y-6 scroll-reveal">
+          <h2 class="text-4xl font-bold tracking-tight text-white">Enterprise Grade Security</h2>
+          <p class="text-slate-400 font-light leading-relaxed font-inter">
+            Your billing details represent critical business assets. Getzio ensures every endpoint, database document, and sync token is guarded under compliance models.
+          </p>
+          <div class="space-y-4 font-inter text-slate-300">
+            <div class="flex items-start gap-3">
+              <i class="fa-solid fa-shield-halved text-indigo-400 mt-1"></i>
+              <div>
+                <h4 class="font-bold text-white">JWT Access Keys</h4>
+                <p class="text-sm text-slate-400">Stateless JWT session tokens handle authentication checks on Railway cloud clusters.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <i class="fa-solid fa-lock text-indigo-400 mt-1"></i>
+              <div>
+                <h4 class="font-bold text-white">Hardware Keyrings</h4>
+                <p class="text-sm text-slate-400">Local credentials are locked under KeyStore (Android) and Keychain (iOS) hardware chips.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <i class="fa-solid fa-list-check text-indigo-400 mt-1"></i>
+              <div>
+                <h4 class="font-bold text-white">Audit Logging Logs</h4>
+                <p class="text-sm text-slate-400">Chronological history snapshots record document changes and edits for compliance reviews.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Visual grid of security features -->
+        <div class="lg:col-span-6 grid grid-cols-2 gap-4">
+          <div class="p-6 rounded-2xl bg-slate-900/60 border border-white/5 space-y-2 scroll-reveal">
+            <i class="fa-solid fa-fingerprint text-indigo-400 text-2xl mb-2 block"></i>
+            <h4 class="font-bold text-white text-sm">Role Based Access</h4>
+            <p class="text-xs text-slate-500 font-inter">Custom configurations specify reading and writing actions for staff profiles.</p>
+          </div>
+          <div class="p-6 rounded-2xl bg-slate-900/60 border border-white/5 space-y-2 scroll-reveal">
+            <i class="fa-solid fa-cloud-arrow-up text-indigo-400 text-2xl mb-2 block"></i>
+            <h4 class="font-bold text-white text-sm">Cloud Backup</h4>
+            <p class="text-xs text-slate-500 font-inter">Automated database cluster replication ensures your documents are never deleted.</p>
+          </div>
+          <div class="p-6 rounded-2xl bg-slate-900/60 border border-white/5 space-y-2 scroll-reveal">
+            <i class="fa-solid fa-circle-nodes text-indigo-400 text-2xl mb-2 block"></i>
+            <h4 class="font-bold text-white text-sm">TLS 1.3 Encryption</h4>
+            <p class="text-xs text-slate-500 font-inter">Every API call and websocket connection is tunnelled through HTTPS/TLS security layers.</p>
+          </div>
+          <div class="p-6 rounded-2xl bg-indigo-950/20 border border-indigo-500/20 space-y-2 scroll-reveal">
+            <i class="fa-solid fa-clock-rotate-left text-indigo-300 text-2xl mb-2 block"></i>
+            <h4 class="font-bold text-white text-sm">Version History</h4>
+            <p class="text-xs text-indigo-300 font-inter font-semibold">Instantly check and restore previous document states from database tables.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Premium Stats Counters -->
+  <section class="py-20 px-6 bg-slate-950/60 border-t border-b border-white/5">
+    <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center select-none font-inter">
+      
+      <div class="space-y-1.5 scroll-reveal">
+        <div class="text-4xl md:text-5xl font-extrabold text-white" id="stat-docs">0</div>
+        <div class="text-xs text-slate-500 uppercase tracking-widest font-bold">Document Types</div>
+      </div>
+
+      <div class="space-y-1.5 scroll-reveal">
+        <div class="text-4xl md:text-5xl font-extrabold text-white" id="stat-cloud">0%</div>
+        <div class="text-xs text-slate-500 uppercase tracking-widest font-bold">Cloud Based</div>
+      </div>
+
+      <div class="space-y-1.5 scroll-reveal">
+        <div class="text-4xl md:text-5xl font-extrabold text-white" id="stat-sync">0</div>
+        <div class="text-xs text-slate-500 uppercase tracking-widest font-bold">Realtime Sync</div>
+      </div>
+
+      <div class="space-y-1.5 scroll-reveal">
+        <div class="text-4xl md:text-5xl font-extrabold text-white" id="stat-reports">0</div>
+        <div class="text-xs text-slate-500 uppercase tracking-widest font-bold">Professional Reports</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FAQs Dropdown Accordions -->
+  <section class="py-24 px-6 relative" id="faq">
+    <div class="max-w-3xl mx-auto z-10 relative">
+      <div class="text-center space-y-4 mb-16 scroll-reveal">
+        <h2 class="text-4xl font-bold tracking-tight text-white">Frequently Asked Questions</h2>
+        <p class="text-slate-400 font-light font-inter">Find answers to common questions about the Billing module rollout.</p>
+      </div>
+
+      <!-- FAQ Container -->
+      <div class="space-y-4 font-inter">
+        
+        <!-- FAQ 1 -->
+        <div class="rounded-2xl border border-white/5 bg-slate-900/40 overflow-hidden scroll-reveal">
+          <button class="w-full px-6 py-5 text-left flex justify-between items-center text-white hover:bg-slate-900/60 transition-colors font-semibold" onclick="toggleFaq(this)">
+            <span>When is Getzio Billing launching?</span>
+            <i class="fa-solid fa-chevron-down text-slate-500 transition-transform"></i>
+          </button>
+          <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+            <p class="px-6 pb-5 text-sm text-slate-400 leading-relaxed pt-2">
+              We are currently in a closed beta rollout. The public deployment of the platform modules is scheduled to go live by the end of Q3 2026.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="rounded-2xl border border-white/5 bg-slate-900/40 overflow-hidden scroll-reveal">
+          <button class="w-full px-6 py-5 text-left flex justify-between items-center text-white hover:bg-slate-900/60 transition-colors font-semibold" onclick="toggleFaq(this)">
+            <span>Will existing Getzio users get access?</span>
+            <i class="fa-solid fa-chevron-down text-slate-500 transition-transform"></i>
+          </button>
+          <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+            <p class="px-6 pb-5 text-sm text-slate-400 leading-relaxed pt-2">
+              Yes! All existing authenticated user accounts registered under Getzio platforms (Todo app, Insights, etc.) will have immediate access to Billing workspaces.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="rounded-2xl border border-white/5 bg-slate-900/40 overflow-hidden scroll-reveal">
+          <button class="w-full px-6 py-5 text-left flex justify-between items-center text-white hover:bg-slate-900/60 transition-colors font-semibold" onclick="toggleFaq(this)">
+            <span>Will my business data sync in real time?</span>
+            <i class="fa-solid fa-chevron-down text-slate-500 transition-transform"></i>
+          </button>
+          <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+            <p class="px-6 pb-5 text-sm text-slate-400 leading-relaxed pt-2">
+              Absolutely. The billing client connects to our main API clusters, syncing all customer files, product directories, and invoices immediately as actions occur.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ 4 -->
+        <div class="rounded-2xl border border-white/5 bg-slate-900/40 overflow-hidden scroll-reveal">
+          <button class="w-full px-6 py-5 text-left flex justify-between items-center text-white hover:bg-slate-900/60 transition-colors font-semibold" onclick="toggleFaq(this)">
+            <span>Can I manage multiple businesses under one profile?</span>
+            <i class="fa-solid fa-chevron-down text-slate-500 transition-transform"></i>
+          </button>
+          <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+            <p class="px-6 pb-5 text-sm text-slate-400 leading-relaxed pt-2">
+              Yes, the backend supports multi-tenant company mapping. You can configure and toggle between different business branches, each with unique logo catalogs, signatures, and billing histories.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ 5 -->
+        <div class="rounded-2xl border border-white/5 bg-slate-900/40 overflow-hidden scroll-reveal">
+          <button class="w-full px-6 py-5 text-left flex justify-between items-center text-white hover:bg-slate-900/60 transition-colors font-semibold" onclick="toggleFaq(this)">
+            <span>Does it support GST calculations?</span>
+            <i class="fa-solid fa-chevron-down text-slate-500 transition-transform"></i>
+          </button>
+          <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+            <p class="px-6 pb-5 text-sm text-slate-400 leading-relaxed pt-2">
+              Yes, the calculations engine automatically manages standard GST tax rates (CGST, SGST, IGST) and maps invoice line items to their respective HSN/SAC codes.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ 6 -->
+        <div class="rounded-2xl border border-white/5 bg-slate-900/40 overflow-hidden scroll-reveal">
+          <button class="w-full px-6 py-5 text-left flex justify-between items-center text-white hover:bg-slate-900/60 transition-colors font-semibold" onclick="toggleFaq(this)">
+            <span>Is Getzio Billing cloud-based?</span>
+            <i class="fa-solid fa-chevron-down text-slate-500 transition-transform"></i>
+          </button>
+          <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+            <p class="px-6 pb-5 text-sm text-slate-400 leading-relaxed pt-2">
+              Yes, it is entirely cloud-synced, allowing you to access and draft invoices from any authenticated mobile or desktop browser securely.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Early Access Forms Section -->
+  <section class="py-24 px-6 border-t border-white/5 relative" id="early-access">
+    <div class="max-w-xl mx-auto text-center relative z-10 space-y-8 scroll-reveal">
+      <div class="space-y-4">
+        <h2 class="text-4xl font-bold tracking-tight text-white sm:text-5xl">Get Early Access</h2>
+        <p class="text-slate-400 font-light font-inter">Be among the first businesses to experience the power of Getzio Billing.</p>
+      </div>
+
+      <!-- Registration Form Card -->
+      <div class="glass-card p-8 rounded-3xl text-left border border-white/5 relative">
+        <form id="billing-early-access-form" class="space-y-5">
+          <div class="space-y-2">
+            <label for="reg-name" class="text-xs font-bold uppercase tracking-wider text-slate-400 ml-1">Full Name</label>
+            <input type="text" id="reg-name" placeholder="John Doe" required class="w-full px-4 py-3.5 bg-slate-950 border border-white/10 rounded-xl text-white outline-none focus:border-indigo-500 transition-colors font-inter">
+          </div>
+          
+          <div class="space-y-2">
+            <label for="reg-phone" class="text-xs font-bold uppercase tracking-wider text-slate-400 ml-1">Mobile Number</label>
+            <input type="tel" id="reg-phone" placeholder="+91 98765 43210" required class="w-full px-4 py-3.5 bg-slate-950 border border-white/10 rounded-xl text-white outline-none focus:border-indigo-500 transition-colors font-inter">
+          </div>
+
+          <div class="space-y-2">
+            <label for="reg-store" class="text-xs font-bold uppercase tracking-wider text-slate-400 ml-1">Business Name (Optional)</label>
+            <input type="text" id="reg-store" placeholder="Acme Invoicing Inc" class="w-full px-4 py-3.5 bg-slate-950 border border-white/10 rounded-xl text-white outline-none focus:border-indigo-500 transition-colors font-inter">
+          </div>
+
+          <div class="space-y-2">
+            <label for="reg-location" class="text-xs font-bold uppercase tracking-wider text-slate-400 ml-1">Business Location</label>
+            <input type="text" id="reg-location" placeholder="Kerala, India" required class="w-full px-4 py-3.5 bg-slate-950 border border-white/10 rounded-xl text-white outline-none focus:border-indigo-500 transition-colors font-inter">
+          </div>
+
+          <button type="submit" id="reg-submit-btn" class="w-full bg-white hover:bg-slate-200 text-slate-950 font-bold py-4 rounded-xl transition-all shadow-lg flex items-center justify-center gap-2">
+            Notify Me
+          </button>
+        </form>
+
+        <div id="reg-status-message" class="hidden mt-4 p-4 rounded-xl text-center text-sm font-semibold font-inter"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer class="py-12 px-6 border-t border-white/5 bg-slate-950 text-slate-500 text-sm font-inter">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 bg-getzio rounded-lg flex items-center justify-center">
+          <span class="text-white font-bold text-base">G</span>
+        </div>
+        <span class="text-lg font-bold text-white font-sans">Getzio Billing</span>
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-6 text-xs font-semibold uppercase tracking-wider">
+        <a href="index.html" class="hover:text-white transition-colors">Main Hub</a>
+        <a href="support.html" class="hover:text-white transition-colors">Support</a>
+        <a href="https://github.com/Syed-shan46/Getzio-billing-privacy-policy" target="_blank" class="hover:text-white transition-colors">Privacy Policy</a>
+      </div>
+
+      <div class="text-center md:text-right space-y-1">
+        <p>&copy; 2026 Getzio Technologies. All rights reserved.</p>
+        <p class="text-xs text-slate-600">Powered by Getzio Platform • Launching Soon</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Link script file -->
+  <script src="billing.js"></script>
+
+</body>
+</html>

@@ -10,7 +10,14 @@
   <meta name="description" content="Access your Getzio Billing workspace to generate professional documents, track low stock, build customer ledgers, and audit business operations.">
   <meta name="author" content="Getzio Technologies">
   
-  <!-- Tailwind CSS & Icons -->
+  <!-- Suppress Tailwind CDN console warning -->
+  <script>
+    const originalWarn = console.warn;
+    console.warn = function(...args) {
+      if (args[0] && typeof args[0] === 'string' && args[0].includes('cdn.tailwindcss.com')) return;
+      originalWarn.apply(console, args);
+    };
+  </script>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
